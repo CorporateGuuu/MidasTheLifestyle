@@ -163,41 +163,107 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Contact Form Submission
-document.getElementById('contact-form').addEventListener('submit', function(e) {
+// Contact Form Submission with Backend Integration
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
     e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData);
-    
-    // Show success message
-    alert('Thank you for your inquiry! Our VVIP concierge team will contact you shortly.');
-    
-    // Reset form
-    this.reset();
-    
-    // Here you would typically send the data to your server
-    console.log('Contact form data:', data);
+
+    // Show loading state
+    const submitButton = this.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
+
+    try {
+        // Get form data
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData);
+
+        // Add honeypot field for spam protection
+        data.honeypot = '';
+
+        // Send to Netlify function
+        const response = await fetch('/.netlify/functions/contact-form', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+            // Show success message
+            showNotification('success', result.message || 'Thank you for your inquiry! Our VVIP concierge team will contact you within 2 hours.');
+
+            // Reset form
+            this.reset();
+        } else {
+            throw new Error(result.error || 'Failed to submit form');
+        }
+
+    } catch (error) {
+        console.error('Error submitting contact form:', error);
+        showNotification('error', 'There was an error submitting your inquiry. Please try again or contact us directly at +971 123 456 789.');
+    } finally {
+        // Restore button state
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+    }
 });
 
-// Modal Form Submission
-document.getElementById('modal-form').addEventListener('submit', function(e) {
+// Modal Form Submission with Backend Integration
+document.getElementById('modal-form').addEventListener('submit', async function(e) {
     e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData);
-    
-    // Show success message
-    alert('Your reservation request has been submitted! Our concierge will confirm shortly.');
-    
-    // Close modal and reset form
-    closeModal();
-    this.reset();
-    
-    // Here you would typically send the data to your server
-    console.log('Reservation form data:', data);
+
+    // Show loading state
+    const submitButton = this.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Processing...';
+    submitButton.disabled = true;
+
+    try {
+        // Get form data
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData);
+
+        // Add the selected item from modal title
+        const modalTitle = document.getElementById('modal-title').textContent;
+        data.item = modalTitle.replace('Reserve ', '').replace('Request VVIP Consultation', 'General Inquiry');
+
+        // Add honeypot field for spam protection
+        data.honeypot = '';
+
+        // Send to Netlify function
+        const response = await fetch('/.netlify/functions/reservation-form', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+            // Show success message
+            showNotification('success', result.message || 'Your reservation request has been submitted with PRIORITY status!');
+
+            // Close modal and reset form
+            closeModal();
+            this.reset();
+        } else {
+            throw new Error(result.error || 'Failed to submit reservation');
+        }
+
+    } catch (error) {
+        console.error('Error submitting reservation:', error);
+        showNotification('error', 'There was an error submitting your reservation. Please contact our concierge team directly at +971 123 456 789.');
+    } finally {
+        // Restore button state
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+    }
 });
 
 // Smooth scrolling for navigation links
@@ -249,12 +315,133 @@ document.querySelectorAll('img').forEach(img => {
     }
 });
 
+// Notification System
+function showNotification(type, message) {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notification => notification.remove());
+
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-icon">${type === 'success' ? '✅' : '❌'}</span>
+            <span class="notification-message">${message}</span>
+            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
+        </div>
+    `;
+
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10000;
+        max-width: 400px;
+        background: ${type === 'success' ? '#1a5f1a' : '#8B0000'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        border: 2px solid #D4AF37;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        animation: slideInRight 0.3s ease-out;
+    `;
+
+    // Add to page
+    document.body.appendChild(notification);
+
+    // Auto-remove after 8 seconds
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.style.animation = 'slideOutRight 0.3s ease-in';
+            setTimeout(() => notification.remove(), 300);
+        }
+    }, 8000);
+}
+
+// Add notification animations to CSS
+const notificationStyles = document.createElement('style');
+notificationStyles.textContent = `
+    @keyframes slideInRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+    .notification-content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .notification-icon {
+        font-size: 18px;
+    }
+    .notification-message {
+        flex: 1;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    .notification-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 0;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: background-color 0.2s;
+    }
+    .notification-close:hover {
+        background-color: rgba(255,255,255,0.2);
+    }
+`;
+document.head.appendChild(notificationStyles);
+
+// Rate limiting for form submissions
+const formSubmissionTracker = {
+    submissions: [],
+    maxSubmissions: 3,
+    timeWindow: 300000, // 5 minutes
+
+    canSubmit() {
+        const now = Date.now();
+        // Remove old submissions outside time window
+        this.submissions = this.submissions.filter(time => now - time < this.timeWindow);
+
+        if (this.submissions.length >= this.maxSubmissions) {
+            showNotification('error', 'Too many submissions. Please wait 5 minutes before trying again.');
+            return false;
+        }
+
+        this.submissions.push(now);
+        return true;
+    }
+};
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Midas Lifestyle website loaded successfully');
-    
-    // Add any additional initialization here
-    
+
+    // Add honeypot fields to forms for spam protection
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        const honeypot = document.createElement('input');
+        honeypot.type = 'text';
+        honeypot.name = 'honeypot';
+        honeypot.style.cssText = 'position: absolute; left: -9999px; opacity: 0; pointer-events: none;';
+        honeypot.tabIndex = -1;
+        honeypot.autocomplete = 'off';
+        form.appendChild(honeypot);
+    });
+
     // Preload hero images for better performance
     const heroImages = [
         'https://source.unsplash.com/random/1920x1080?bugatti',
@@ -262,9 +449,95 @@ document.addEventListener('DOMContentLoaded', function() {
         'https://source.unsplash.com/random/1920x1080?private-jet',
         'https://source.unsplash.com/random/1920x1080?luxury-villa'
     ];
-    
+
     heroImages.forEach(src => {
         const img = new Image();
         img.src = src;
     });
+
+    // Initialize form validation
+    initializeFormValidation();
 });
+
+// Enhanced form validation
+function initializeFormValidation() {
+    const forms = document.querySelectorAll('form');
+
+    forms.forEach(form => {
+        const inputs = form.querySelectorAll('input, textarea, select');
+
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                validateField(this);
+            });
+
+            input.addEventListener('input', function() {
+                // Clear error state on input
+                this.classList.remove('error');
+                const errorMsg = this.parentElement.querySelector('.error-message');
+                if (errorMsg) errorMsg.remove();
+            });
+        });
+    });
+}
+
+function validateField(field) {
+    const value = field.value.trim();
+    let isValid = true;
+    let errorMessage = '';
+
+    // Required field validation
+    if (field.hasAttribute('required') && !value) {
+        isValid = false;
+        errorMessage = 'This field is required';
+    }
+
+    // Email validation
+    if (field.type === 'email' && value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) {
+            isValid = false;
+            errorMessage = 'Please enter a valid email address';
+        }
+    }
+
+    // Phone validation (basic)
+    if (field.type === 'tel' && value) {
+        const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+        if (!phoneRegex.test(value.replace(/[\s\-\(\)]/g, ''))) {
+            isValid = false;
+            errorMessage = 'Please enter a valid phone number';
+        }
+    }
+
+    // Message length validation
+    if (field.tagName === 'TEXTAREA' && value && value.length < 10) {
+        isValid = false;
+        errorMessage = 'Message must be at least 10 characters long';
+    }
+
+    // Update field appearance
+    if (!isValid) {
+        field.classList.add('error');
+        showFieldError(field, errorMessage);
+    } else {
+        field.classList.remove('error');
+        clearFieldError(field);
+    }
+
+    return isValid;
+}
+
+function showFieldError(field, message) {
+    clearFieldError(field);
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = message;
+    errorDiv.style.cssText = 'color: #ff6b6b; font-size: 12px; margin-top: 5px;';
+    field.parentElement.appendChild(errorDiv);
+}
+
+function clearFieldError(field) {
+    const errorMsg = field.parentElement.querySelector('.error-message');
+    if (errorMsg) errorMsg.remove();
+}

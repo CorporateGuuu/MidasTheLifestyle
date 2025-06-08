@@ -1,14 +1,19 @@
 [build]
-  # No build command needed for static HTML site
-  command = ""
+  # Install dependencies for Netlify functions
+  command = "npm install"
   # Publish the root directory
   publish = "."
   # Base directory (leave empty for root)
   base = ""
+  # Functions directory
+  functions = "netlify/functions"
 
 [build.environment]
-  # Node.js version (if needed for future enhancements)
+  # Node.js version for Netlify functions
   NODE_VERSION = "18"
+  # Email configuration (set these in Netlify dashboard)
+  EMAIL_USER = ""
+  EMAIL_PASS = ""
 
 # Redirect rules for SPA-like behavior
 [[redirects]]

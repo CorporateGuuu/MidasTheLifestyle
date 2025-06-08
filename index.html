@@ -286,6 +286,8 @@
                     <textarea id="message" class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]" rows="5" required></textarea>
                 </div>
                 <button type="submit" class="bg-[#D4AF37] text-black px-8 py-4 rounded-lg hover:bg-[#E8C96A] transition-colors w-full">Request a Quote</button>
+                <!-- Honeypot field for spam protection -->
+                <input type="text" name="honeypot" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off">
             </form>
             <div class="mt-12 text-center">
                 <p class="text-white">Midas Lifestyle, Office #22, JAC Building, Al Quoz 1, Dubai</p>
@@ -317,6 +319,8 @@
                 </div>
                 <button type="submit" class="bg-[#D4AF37] text-black px-6 py-3 rounded-lg hover:bg-[#E8C96A] w-full">Submit Reservation</button>
                 <button type="button" onclick="closeModal()" class="mt-4 text-[#D4AF37] hover:underline">Close</button>
+                <!-- Honeypot field for spam protection -->
+                <input type="text" name="honeypot" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off">
             </form>
         </div>
     </div>

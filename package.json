@@ -1,0 +1,50 @@
+{
+  "name": "midas-lifestyle-website",
+  "version": "1.1.0",
+  "description": "Midas Lifestyle - Bespoke luxury rentals website with backend form processing",
+  "main": "index.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'No build step required for static site'",
+    "test": "echo 'Running tests...' && node test/form-validation.test.js",
+    "deploy": "netlify deploy --prod",
+    "functions:dev": "netlify functions:serve",
+    "lint": "eslint netlify/functions/*.js",
+    "start": "python3 -m http.server 8000"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.7",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.10.1",
+    "eslint": "^8.55.0"
+  },
+  "keywords": [
+    "luxury",
+    "rentals",
+    "exotic-cars",
+    "superyachts",
+    "private-jets",
+    "estates",
+    "dubai",
+    "miami",
+    "netlify",
+    "serverless"
+  ],
+  "author": "Midas Lifestyle",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CorporateGuuu/MidasTheLifestyle.git"
+  },
+  "homepage": "https://midasthelifestyle.netlify.app",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "netlify": {
+    "functions": {
+      "directory": "netlify/functions"
+    }
+  }
+}
