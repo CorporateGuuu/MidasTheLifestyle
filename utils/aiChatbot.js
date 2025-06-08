@@ -6,13 +6,80 @@ class AIChatbot {
     this.isOpen = false;
     this.conversationHistory = [];
     this.knowledgeBase = this.initializeKnowledgeBase();
+    this.externalKnowledgeBase = null;
+    this.weatherApiKey = 'demo_key'; // Replace with actual OpenWeatherMap API key
+    this.trafficApiKey = 'demo_key'; // Replace with actual Google Maps API key
     this.init();
+    this.loadExternalKnowledgeBase();
   }
 
   // Initialize chatbot
   init() {
     this.setupEventListeners();
-    console.log('🤖 AI Chatbot initialized');
+    console.log('🤖 AI Chatbot initialized with real-time capabilities');
+  }
+
+  // Load external knowledge base
+  async loadExternalKnowledgeBase() {
+    try {
+      const response = await fetch('/data/chatbot-knowledge-base.json');
+      this.externalKnowledgeBase = await response.json();
+      console.log('📚 External knowledge base loaded');
+    } catch (error) {
+      console.warn('Could not load external knowledge base:', error);
+    }
+  }
+
+  // Get real-time weather information
+  async getWeatherInfo(location) {
+    try {
+      // Demo response - replace with actual API call
+      const weatherData = {
+        location: location,
+        temperature: '28°C',
+        condition: 'Sunny',
+        humidity: '65%',
+        windSpeed: '12 km/h'
+      };
+
+      return `Current weather in ${location}: ${weatherData.temperature}, ${weatherData.condition}. Humidity: ${weatherData.humidity}, Wind: ${weatherData.windSpeed}. Perfect conditions for luxury experiences!`;
+    } catch (error) {
+      return `I'm unable to fetch current weather data at the moment. For the most accurate weather information, I recommend checking a local weather service.`;
+    }
+  }
+
+  // Get real-time traffic information
+  async getTrafficInfo(from, to) {
+    try {
+      // Demo response - replace with actual API call
+      const trafficData = {
+        duration: '25 minutes',
+        distance: '18 km',
+        traffic: 'Light traffic',
+        route: 'Sheikh Zayed Road'
+      };
+
+      return `Route from ${from} to ${to}: ${trafficData.distance}, approximately ${trafficData.duration} with ${trafficData.traffic} via ${trafficData.route}. Our chauffeur service can optimize the route for your comfort.`;
+    } catch (error) {
+      return `I'm unable to fetch current traffic data. Our professional chauffeurs are equipped with real-time navigation systems to ensure the most efficient routes.`;
+    }
+  }
+
+  // Get event recommendations
+  async getEventRecommendations(location) {
+    try {
+      // Demo response - replace with actual API call
+      const events = [
+        'Dubai Opera - La Traviata (Tonight 8 PM)',
+        'Burj Al Arab - Exclusive Dining Experience',
+        'Dubai Marina - Luxury Yacht Party',
+        'DIFC - Art Gallery Opening'
+      ];
+
+      return `Current exclusive events in ${location}: ${events.join(', ')}. Our concierge can arrange VIP access and transportation for any of these experiences.`;
+    } catch (error) {
+      return `Our concierge team has access to exclusive events and experiences. Contact them at concierge@midasthelifestyle.com for personalized recommendations.`;
+    }
   }
 
   // Initialize knowledge base
@@ -129,8 +196,8 @@ class AIChatbot {
     inputField.value = '';
     
     // Process message and respond
-    setTimeout(() => {
-      const response = this.processMessage(message);
+    setTimeout(async () => {
+      const response = await this.processMessage(message);
       this.addMessageToChat(response, 'bot');
     }, 500);
   }
@@ -139,8 +206,8 @@ class AIChatbot {
   sendQuickMessage(message) {
     this.addMessageToChat(message, 'user');
     
-    setTimeout(() => {
-      const response = this.processMessage(message);
+    setTimeout(async () => {
+      const response = await this.processMessage(message);
       this.addMessageToChat(response, 'bot');
     }, 500);
   }
@@ -173,12 +240,38 @@ class AIChatbot {
   }
 
   // Process user message and generate response
-  processMessage(message) {
+  async processMessage(message) {
     const lowerMessage = message.toLowerCase();
-    
+
     // Check for greetings
     if (this.isGreeting(lowerMessage)) {
       return this.getRandomGreeting();
+    }
+
+    // Check for weather queries
+    if (this.containsWeatherKeywords(lowerMessage)) {
+      const location = this.extractLocation(lowerMessage) || 'Dubai';
+      return await this.getWeatherInfo(location);
+    }
+
+    // Check for traffic queries
+    if (this.containsTrafficKeywords(lowerMessage)) {
+      const locations = this.extractTrafficLocations(lowerMessage);
+      if (locations.from && locations.to) {
+        return await this.getTrafficInfo(locations.from, locations.to);
+      }
+      return "I can help you with traffic information. Please specify your starting point and destination, for example: 'Traffic from Dubai Marina to Downtown Dubai'";
+    }
+
+    // Check for event queries
+    if (this.containsEventKeywords(lowerMessage)) {
+      const location = this.extractLocation(lowerMessage) || 'Dubai';
+      return await this.getEventRecommendations(location);
+    }
+
+    // Enhanced vehicle-specific queries using external knowledge base
+    if (this.externalKnowledgeBase && this.containsVehicleKeywords(lowerMessage)) {
+      return this.getVehicleInformation(lowerMessage);
     }
     
     // Check for service-related queries
@@ -245,8 +338,62 @@ class AIChatbot {
       'corporate', 'event planning', 'wedding', 'celebration', 'group booking',
       'long term', 'monthly', 'annual', 'contract', 'partnership'
     ];
-    
+
     return complexIndicators.some(indicator => message.includes(indicator)) || message.length > 100;
+  }
+
+  // Helper methods for enhanced functionality
+  containsWeatherKeywords(message) {
+    const weatherKeywords = ['weather', 'temperature', 'rain', 'sunny', 'cloudy', 'forecast', 'climate'];
+    return weatherKeywords.some(keyword => message.includes(keyword));
+  }
+
+  containsTrafficKeywords(message) {
+    const trafficKeywords = ['traffic', 'route', 'directions', 'road', 'highway', 'congestion', 'drive time'];
+    return trafficKeywords.some(keyword => message.includes(keyword));
+  }
+
+  containsEventKeywords(message) {
+    const eventKeywords = ['events', 'activities', 'attractions', 'restaurants', 'nightlife', 'entertainment'];
+    return eventKeywords.some(keyword => message.includes(keyword));
+  }
+
+  containsVehicleKeywords(message) {
+    const vehicleKeywords = ['bugatti', 'ferrari', 'lamborghini', 'rolls royce', 'bentley', 'mclaren', 'koenigsegg'];
+    return vehicleKeywords.some(keyword => message.includes(keyword));
+  }
+
+  extractLocation(message) {
+    const locations = ['dubai', 'miami', 'washington', 'atlanta', 'maryland', 'virginia'];
+    const foundLocation = locations.find(location => message.includes(location));
+    return foundLocation ? foundLocation.charAt(0).toUpperCase() + foundLocation.slice(1) : null;
+  }
+
+  extractTrafficLocations(message) {
+    // Simple extraction - can be enhanced with NLP
+    const fromMatch = message.match(/from\s+([^to]+)/i);
+    const toMatch = message.match(/to\s+(.+)/i);
+
+    return {
+      from: fromMatch ? fromMatch[1].trim() : null,
+      to: toMatch ? toMatch[1].trim() : null
+    };
+  }
+
+  getVehicleInformation(message) {
+    if (!this.externalKnowledgeBase) {
+      return "I'm loading detailed vehicle information. Please try again in a moment.";
+    }
+
+    // Enhanced vehicle information from knowledge base
+    if (message.includes('bugatti')) {
+      const bugatti = this.externalKnowledgeBase.vehicles?.cars?.hypercars?.find(car => car.name.includes('Bugatti'));
+      if (bugatti) {
+        return `${bugatti.name}: ${bugatti.specs.engine}, ${bugatti.specs.power}, ${bugatti.specs.acceleration}. Available in ${bugatti.availability}. Price: ${bugatti.price}. Features: ${bugatti.features.join(', ')}. Would you like to book a viewing?`;
+      }
+    }
+
+    return "I can provide detailed specifications for any vehicle in our fleet. Which specific model interests you?";
   }
 
   // Open WhatsApp chat

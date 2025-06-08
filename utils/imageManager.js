@@ -8,7 +8,91 @@ class ImageManager {
         this.fallbackImages = new Map();
         this.imageQualities = ['webp', 'jpg', 'png'];
         this.imageSizes = ['thumbnail', 'medium', 'large', 'hero'];
+        this.professionalImages = this.initializeProfessionalImages();
         this.init();
+    }
+
+    // Initialize professional image database
+    initializeProfessionalImages() {
+        return {
+            vehicles: {
+                cars: {
+                    'bugatti-chiron': {
+                        hero: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                        gallery: [
+                            'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                            'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                            'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                        ],
+                        thumbnail: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                    },
+                    'koenigsegg-jesko': {
+                        hero: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                        gallery: [
+                            'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                            'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                        ],
+                        thumbnail: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400&h=300&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                    },
+                    'rolls-royce-phantom': {
+                        hero: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                        gallery: [
+                            'https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                            'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                        ],
+                        thumbnail: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=400&h=300&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                    }
+                },
+                yachts: {
+                    'lurssen-90m': {
+                        hero: 'https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                        gallery: [
+                            'https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                            'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                            'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                        ],
+                        thumbnail: 'https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=400&h=300&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                    },
+                    'azimut-grande-35m': {
+                        hero: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                        gallery: [
+                            'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                            'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                        ],
+                        thumbnail: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                    }
+                },
+                jets: {
+                    'gulfstream-g700': {
+                        hero: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                        gallery: [
+                            'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                            'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                        ],
+                        thumbnail: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=400&h=300&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                    }
+                }
+            },
+            properties: {
+                'dubai-marina-penthouse': {
+                    hero: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                    gallery: [
+                        'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                        'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                        'https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                    ],
+                    thumbnail: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=400&h=300&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                },
+                'palm-jumeirah-villa': {
+                    hero: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                    gallery: [
+                        'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3',
+                        'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                    ],
+                    thumbnail: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3'
+                }
+            }
+        };
     }
 
     init() {

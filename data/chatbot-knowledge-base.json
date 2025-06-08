@@ -1,0 +1,154 @@
+{
+  "vehicles": {
+    "cars": {
+      "hypercars": [
+        {
+          "name": "Bugatti Chiron",
+          "price": "AED 20,000/day",
+          "specs": {
+            "engine": "8.0L W16 Quad-Turbo",
+            "power": "1,479 hp",
+            "topSpeed": "420 km/h",
+            "acceleration": "0-100 km/h in 2.4s"
+          },
+          "availability": "Available in Dubai, Miami",
+          "features": ["Carbon fiber body", "Luxury interior", "Advanced aerodynamics"]
+        },
+        {
+          "name": "Koenigsegg Jesko",
+          "price": "AED 22,000/day",
+          "specs": {
+            "engine": "5.0L V8 Twin-Turbo",
+            "power": "1,600 hp",
+            "topSpeed": "480+ km/h",
+            "acceleration": "0-100 km/h in 2.5s"
+          },
+          "availability": "Available in Dubai",
+          "features": ["Track-focused design", "Active aerodynamics", "Lightweight construction"]
+        }
+      ],
+      "luxury_sedans": [
+        {
+          "name": "Rolls-Royce Phantom",
+          "price": "AED 9,000/day",
+          "specs": {
+            "engine": "6.75L V12 Twin-Turbo",
+            "power": "563 hp",
+            "features": ["Starlight headliner", "Whisper-quiet cabin", "Bespoke interior"]
+          },
+          "availability": "Available in all locations"
+        }
+      ]
+    },
+    "yachts": {
+      "motor_yachts": [
+        {
+          "name": "Azimut Grande 35M",
+          "price": "AED 15,000/day",
+          "specs": {
+            "length": "35 meters",
+            "guests": "12",
+            "crew": "6",
+            "speed": "28 knots"
+          },
+          "amenities": ["Jacuzzi", "Water toys", "Gourmet kitchen", "Master suite"],
+          "availability": "Dubai Marina, Miami"
+        }
+      ],
+      "superyachts": [
+        {
+          "name": "Lürssen 90M",
+          "price": "AED 80,000/day",
+          "specs": {
+            "length": "90 meters",
+            "guests": "20",
+            "crew": "25",
+            "speed": "16 knots"
+          },
+          "amenities": ["Helicopter pad", "Swimming pool", "Spa", "Cinema", "Beach club"],
+          "availability": "Mediterranean, Caribbean"
+        }
+      ]
+    },
+    "jets": [
+      {
+        "name": "Gulfstream G700",
+        "price": "$20,000/trip",
+        "specs": {
+          "range": "7,500 nautical miles",
+          "passengers": "19",
+          "speed": "Mach 0.925"
+        },
+        "features": ["Ultra-long range", "Luxury cabin", "Advanced avionics"],
+        "availability": "Global coverage"
+      }
+    ]
+  },
+  "booking_procedures": {
+    "steps": [
+      "1. Browse our luxury fleet online or speak with a concierge",
+      "2. Select your preferred vehicle/yacht/jet and dates",
+      "3. Provide identification and payment information",
+      "4. Complete booking confirmation and contract",
+      "5. Receive delivery details and briefing schedule"
+    ],
+    "requirements": {
+      "cars": ["Valid international driving license", "Minimum age 25", "Security deposit"],
+      "yachts": ["Captain license or professional crew", "Insurance coverage", "Port fees"],
+      "jets": ["Passenger manifest", "Customs documentation", "Flight plan approval"]
+    },
+    "cancellation_policy": "48-hour notice for full refund, 24-hour notice for 50% refund"
+  },
+  "locations": {
+    "dubai": {
+      "services": ["Car rentals", "Yacht charters", "Jet charters", "Concierge"],
+      "delivery_areas": ["Dubai Marina", "Downtown Dubai", "Palm Jumeirah", "DIFC"],
+      "contact": "concierge@midasthelifestyle.com",
+      "phone": "+971-4-XXX-XXXX"
+    },
+    "miami": {
+      "services": ["Car rentals", "Yacht charters", "Jet charters"],
+      "delivery_areas": ["South Beach", "Brickell", "Key Biscayne", "Aventura"],
+      "contact": "concierge@midasthelifestyle.com",
+      "phone": "+1-305-XXX-XXXX"
+    },
+    "washington_dc": {
+      "services": ["Car rentals", "Transportation services"],
+      "delivery_areas": ["Georgetown", "Dupont Circle", "Capitol Hill", "Arlington"],
+      "contact": "concierge@midasthelifestyle.com",
+      "phone": "+1-202-XXX-XXXX"
+    }
+  },
+  "insurance_safety": {
+    "coverage": {
+      "comprehensive": "Full damage and theft protection",
+      "liability": "Third-party coverage up to $5M",
+      "personal": "Personal accident insurance included"
+    },
+    "safety_protocols": {
+      "vehicles": ["Pre-delivery inspection", "GPS tracking", "24/7 roadside assistance"],
+      "yachts": ["Safety equipment check", "Crew briefing", "Emergency protocols"],
+      "jets": ["Pre-flight inspection", "Certified pilots", "Weather monitoring"]
+    }
+  },
+  "concierge_services": {
+    "available_24_7": true,
+    "services": [
+      "Restaurant reservations",
+      "Event planning",
+      "Personal shopping",
+      "Travel arrangements",
+      "Security services",
+      "Photography services",
+      "Custom itineraries"
+    ],
+    "contact_methods": ["Phone", "WhatsApp", "Email", "Live chat"]
+  },
+  "pricing_packages": {
+    "daily_rates": "Standard pricing for 24-hour periods",
+    "weekly_discounts": "15% discount for 7+ day rentals",
+    "monthly_rates": "25% discount for 30+ day rentals",
+    "seasonal_pricing": "Peak season rates apply during holidays and events",
+    "group_packages": "Special rates for multiple vehicle bookings"
+  }
+}

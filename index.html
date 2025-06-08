@@ -69,7 +69,7 @@
             <div class="space-x-6 hidden md:flex">
                 <a href="#home" class="hover:text-[#D4AF37] transition-colors">Home</a>
                 <a href="#cars" class="hover:text-[#D4AF37] transition-colors">Luxury Cars</a>
-                <a href="#yachts" class="hover:text-[#D4AF37] transition-colors">Superyachts</a>
+                <a href="#yachts" class="hover:text-[#D4AF37] transition-colors">Yachts</a>
                 <a href="#planes" class="hover:text-[#D4AF37] transition-colors">Private Jets</a>
                 <a href="#properties" class="hover:text-[#D4AF37] transition-colors">Estates</a>
                 <a href="#transportation" class="hover:text-[#D4AF37] transition-colors">Transportation</a>
@@ -89,7 +89,7 @@
             <div class="px-4 py-2 space-y-2">
                 <a href="#home" class="block py-2 hover:text-[#D4AF37] transition-colors">Home</a>
                 <a href="#cars" class="block py-2 hover:text-[#D4AF37] transition-colors">Luxury Cars</a>
-                <a href="#yachts" class="block py-2 hover:text-[#D4AF37] transition-colors">Superyachts</a>
+                <a href="#yachts" class="block py-2 hover:text-[#D4AF37] transition-colors">Yachts</a>
                 <a href="#planes" class="block py-2 hover:text-[#D4AF37] transition-colors">Private Jets</a>
                 <a href="#properties" class="block py-2 hover:text-[#D4AF37] transition-colors">Estates</a>
                 <a href="#transportation" class="block py-2 hover:text-[#D4AF37] transition-colors">Transportation</a>
@@ -132,8 +132,8 @@
             </p>
 
             <!-- Car Categories Overview -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                <div class="premium-card hover-lift gradient-overlay-luxury">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 stagger-children">
+                <div class="premium-card hover-lift gradient-overlay-luxury fade-in">
                     <div class="text-center mb-4">
                         <div class="text-4xl mb-3 micro-rotate">🏎️</div>
                         <h3 class="text-xl font-bold gold-accent mb-2">Hypercars</h3>
@@ -382,36 +382,194 @@
     <!-- Yacht Rentals Section -->
     <section id="yachts" class="py-20 section-bg parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3');">
         <div class="container mx-auto px-4 fade-in">
-            <h2 class="text-4xl font-bold text-center mb-12 gold-accent">Superyacht Charters</h2>
-            <div class="flex justify-center mb-8 space-x-4">
-                <button class="filter-btn px-6 py-3 bg-black rounded-lg text-white border border-[#D4AF37]" data-type="all">All</button>
-                <button class="filter-btn px-6 py-3 bg-black rounded-lg text-white border border-[#D4AF37]" data-type="motor">Motor Yacht</button>
-                <button class="filter-btn px-6 py-3 bg-black rounded-lg text-white border border-[#D4AF37]" data-type="mega">Mega Yacht</button>
+            <h2 class="text-4xl font-bold text-center mb-8 luxury-heading">Luxury Yacht Charters</h2>
+            <p class="text-lg text-white text-center max-w-3xl mx-auto mb-12">
+                From intimate luxury motor yachts to magnificent superyachts, experience the ultimate in maritime luxury across the world's most exclusive destinations.
+            </p>
+
+            <!-- Yacht Categories Overview -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 stagger-children">
+                <div class="premium-card hover-lift gradient-overlay-luxury luxury-reveal">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3 micro-rotate">🛥️</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Luxury Motor Yachts</h3>
+                        <p class="text-gray-300 text-sm">40-80 feet of pure elegance</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Azimut Grande 35M</li>
+                        <li>• Princess Y85</li>
+                        <li>• Sunseeker Predator 74</li>
+                        <li>• Ferretti 720</li>
+                        <li>• Pershing 8X</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">From AED 8,000/day</div>
+                        <button onclick="document.querySelector('[data-type=motor]').click();" class="luxury-button micro-bounce text-sm">
+                            View Fleet
+                        </button>
+                    </div>
+                </div>
+
+                <div class="premium-card hover-lift gradient-overlay-luxury">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3 micro-rotate">🚢</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Superyachts</h3>
+                        <p class="text-gray-300 text-sm">80+ feet of ultimate luxury</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Lürssen 90M</li>
+                        <li>• Benetti FB703</li>
+                        <li>• Feadship 101M</li>
+                        <li>• Oceanco Y719</li>
+                        <li>• Amels 242</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">From AED 50,000/day</div>
+                        <button onclick="document.querySelector('[data-type=superyacht]').click();" class="luxury-button micro-bounce text-sm">
+                            View Fleet
+                        </button>
+                    </div>
+                </div>
+
+                <div class="premium-card hover-lift gradient-overlay-luxury">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3 micro-rotate">⛵</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Sailing Yachts</h3>
+                        <p class="text-gray-300 text-sm">Premium sailing experiences</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Oyster 885</li>
+                        <li>• Swan 120</li>
+                        <li>• Wally 93</li>
+                        <li>• Baltic 142</li>
+                        <li>• Southern Wind 105</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">From AED 12,000/day</div>
+                        <button onclick="document.querySelector('[data-type=sailing]').click();" class="luxury-button micro-bounce text-sm">
+                            View Fleet
+                        </button>
+                    </div>
+                </div>
+
+                <div class="premium-card hover-lift gradient-overlay-luxury">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3 micro-rotate">🎣</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Sport Fishing</h3>
+                        <p class="text-gray-300 text-sm">High-performance fishing yachts</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Viking 92 Convertible</li>
+                        <li>• Hatteras GT70</li>
+                        <li>• Bertram 61</li>
+                        <li>• Spencer 94</li>
+                        <li>• Release 88</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">From AED 6,000/day</div>
+                        <button onclick="document.querySelector('[data-type=fishing]').click();" class="luxury-button micro-bounce text-sm">
+                            View Fleet
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yacht Fleet -->
+            <h3 class="text-3xl font-bold text-center mb-8 gold-accent">Our Exclusive Yacht Fleet</h3>
+            <div class="flex justify-center mb-8 space-x-2 flex-wrap gap-2">
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="all">All</button>
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="motor">Motor Yacht</button>
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="superyacht">Superyacht</button>
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="sailing">Sailing</button>
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="fishing">Sport Fishing</button>
             </div>
             <div class="swiper yacht-slider">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide card" data-type="mega">
-                        <img src="https://source.unsplash.com/random/600x400?superyacht,dubai" alt="Icon 280 Superyacht">
+                    <!-- Motor Yachts -->
+                    <div class="swiper-slide card" data-type="motor">
+                        <img src="https://source.unsplash.com/random/600x400?azimut-yacht" alt="Azimut Grande 35M">
                         <div class="p-6">
-                            <h3 class="text-2xl font-semibold gold-accent">Icon 280 Superyacht</h3>
-                            <p class="text-white">AED 50,000/day | $13,500/day</p>
-                            <button onclick="openModal('Icon 280 Superyacht')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                            <h3 class="text-2xl font-semibold gold-accent">Azimut Grande 35M</h3>
+                            <p class="text-white">AED 15,000/day | $4,100/day</p>
+                            <button onclick="openModal('Azimut Grande 35M')" class="text-[#D4AF37] hover:underline">Charter Now</button>
                         </div>
                     </div>
                     <div class="swiper-slide card" data-type="motor">
-                        <img src="https://source.unsplash.com/random/600x400?yacht,miami" alt="Azimut Grande 35">
+                        <img src="https://source.unsplash.com/random/600x400?princess-yacht" alt="Princess Y85">
                         <div class="p-6">
-                            <h3 class="text-2xl font-semibold gold-accent">Azimut Grande 35</h3>
-                            <p class="text-white">AED 15,000/day | $4,000/day</p>
-                            <button onclick="openModal('Azimut Grande 35')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                            <h3 class="text-2xl font-semibold gold-accent">Princess Y85</h3>
+                            <p class="text-white">AED 12,000/day | $3,300/day</p>
+                            <button onclick="openModal('Princess Y85')" class="text-[#D4AF37] hover:underline">Charter Now</button>
                         </div>
                     </div>
-                    <div class="swiper-slide card" data-type="mega">
-                        <img src="https://source.unsplash.com/random/600x400?luxury-yacht" alt="Lürssen 90m">
+                    <div class="swiper-slide card" data-type="motor">
+                        <img src="https://source.unsplash.com/random/600x400?sunseeker-yacht" alt="Sunseeker Predator 74">
                         <div class="p-6">
-                            <h3 class="text-2xl font-semibold gold-accent">Lürssen 90m</h3>
+                            <h3 class="text-2xl font-semibold gold-accent">Sunseeker Predator 74</h3>
+                            <p class="text-white">AED 10,000/day | $2,700/day</p>
+                            <button onclick="openModal('Sunseeker Predator 74')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Superyachts -->
+                    <div class="swiper-slide card" data-type="superyacht">
+                        <img src="https://source.unsplash.com/random/600x400?lurssen-yacht" alt="Lürssen 90M">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Lürssen 90M</h3>
                             <p class="text-white">AED 80,000/day | $22,000/day</p>
-                            <button onclick="openModal('Lürssen 90m')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                            <button onclick="openModal('Lürssen 90M')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="superyacht">
+                        <img src="https://source.unsplash.com/random/600x400?benetti-yacht" alt="Benetti FB703">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Benetti FB703</h3>
+                            <p class="text-white">AED 65,000/day | $18,000/day</p>
+                            <button onclick="openModal('Benetti FB703')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="superyacht">
+                        <img src="https://source.unsplash.com/random/600x400?feadship-yacht" alt="Feadship 101M">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Feadship 101M</h3>
+                            <p class="text-white">AED 95,000/day | $26,000/day</p>
+                            <button onclick="openModal('Feadship 101M')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Sailing Yachts -->
+                    <div class="swiper-slide card" data-type="sailing">
+                        <img src="https://source.unsplash.com/random/600x400?oyster-sailing-yacht" alt="Oyster 885">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Oyster 885</h3>
+                            <p class="text-white">AED 18,000/day | $5,000/day</p>
+                            <button onclick="openModal('Oyster 885')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="sailing">
+                        <img src="https://source.unsplash.com/random/600x400?swan-sailing-yacht" alt="Swan 120">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Swan 120</h3>
+                            <p class="text-white">AED 22,000/day | $6,000/day</p>
+                            <button onclick="openModal('Swan 120')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Sport Fishing Yachts -->
+                    <div class="swiper-slide card" data-type="fishing">
+                        <img src="https://source.unsplash.com/random/600x400?viking-fishing-yacht" alt="Viking 92 Convertible">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Viking 92 Convertible</h3>
+                            <p class="text-white">AED 8,000/day | $2,200/day</p>
+                            <button onclick="openModal('Viking 92 Convertible')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="fishing">
+                        <img src="https://source.unsplash.com/random/600x400?hatteras-fishing-yacht" alt="Hatteras GT70">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Hatteras GT70</h3>
+                            <p class="text-white">AED 7,000/day | $1,900/day</p>
+                            <button onclick="openModal('Hatteras GT70')" class="text-[#D4AF37] hover:underline">Charter Now</button>
                         </div>
                     </div>
                 </div>
@@ -747,6 +905,155 @@
         </div>
     </section>
 
+    <!-- Trust and Credibility Section -->
+    <section id="trust" class="py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div class="container mx-auto px-4">
+            <!-- Customer Testimonials -->
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold mb-8 luxury-heading">Trusted by Elite Clientele Worldwide</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Join thousands of discerning clients who trust Midas The Lifestyle for their luxury experiences
+                </p>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16 stagger-children">
+                <div class="premium-card hover-lift">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Client testimonial" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-white">Alexander M.</h4>
+                            <p class="text-sm text-gray-400">CEO, Tech Fortune 500</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-3">
+                        <span class="text-[#D4AF37]">★★★★★</span>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "Exceptional service and attention to detail. The Bugatti Chiron experience was flawless from booking to return. Truly world-class luxury."
+                    </p>
+                </div>
+
+                <div class="premium-card hover-lift">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Client testimonial" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-white">Sophia R.</h4>
+                            <p class="text-sm text-gray-400">Investment Banking Director</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-3">
+                        <span class="text-[#D4AF37]">★★★★★</span>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "The superyacht charter in Monaco exceeded all expectations. Professional crew, impeccable service, and unforgettable memories."
+                    </p>
+                </div>
+
+                <div class="premium-card hover-lift">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Client testimonial" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-white">Marcus K.</h4>
+                            <p class="text-sm text-gray-400">Real Estate Mogul</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-3">
+                        <span class="text-[#D4AF37]">★★★★★</span>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "Private jet service to Aspen was seamless. The Gulfstream G700 and professional crew made our family vacation perfect."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Trust Signals -->
+            <div class="grid md:grid-cols-4 gap-8 mb-16 text-center stagger-children">
+                <div class="fade-in">
+                    <div class="text-4xl mb-4">🏆</div>
+                    <h4 class="font-bold text-white mb-2">Industry Awards</h4>
+                    <p class="text-sm text-gray-400">Luxury Travel Awards 2023<br>Best Concierge Service</p>
+                </div>
+                <div class="fade-in">
+                    <div class="text-4xl mb-4">🔒</div>
+                    <h4 class="font-bold text-white mb-2">Fully Insured</h4>
+                    <p class="text-sm text-gray-400">$50M Comprehensive Coverage<br>Lloyd's of London</p>
+                </div>
+                <div class="fade-in">
+                    <div class="text-4xl mb-4">✅</div>
+                    <h4 class="font-bold text-white mb-2">Certified Partners</h4>
+                    <p class="text-sm text-gray-400">IATA Certified<br>ISO 9001 Quality Standards</p>
+                </div>
+                <div class="fade-in">
+                    <div class="text-4xl mb-4">🌍</div>
+                    <h4 class="font-bold text-white mb-2">Global Network</h4>
+                    <p class="text-sm text-gray-400">50+ Cities Worldwide<br>24/7 Concierge Support</p>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-2xl p-8 mb-16 fade-in">
+                <h3 class="text-2xl font-bold text-center mb-8 gold-accent">Live Activity</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="border-l-2 border-[#D4AF37] pl-4">
+                        <div class="text-2xl font-bold text-[#D4AF37]">247</div>
+                        <div class="text-sm text-gray-400">Bookings This Month</div>
+                    </div>
+                    <div class="border-l-2 border-[#D4AF37] pl-4">
+                        <div class="text-2xl font-bold text-[#D4AF37]">98.7%</div>
+                        <div class="text-sm text-gray-400">Client Satisfaction</div>
+                    </div>
+                    <div class="border-l-2 border-[#D4AF37] pl-4">
+                        <div class="text-2xl font-bold text-[#D4AF37]">15min</div>
+                        <div class="text-sm text-gray-400">Avg Response Time</div>
+                    </div>
+                    <div class="border-l-2 border-[#D4AF37] pl-4">
+                        <div class="text-2xl font-bold text-[#D4AF37]">5,000+</div>
+                        <div class="text-sm text-gray-400">Elite Members</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Team -->
+            <div class="text-center mb-16 fade-in">
+                <h3 class="text-3xl font-bold mb-8 gold-accent">Meet Our Expert Team</h3>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center hover-lift">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Team member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-[#D4AF37]">
+                        <h4 class="font-bold text-white">James Mitchell</h4>
+                        <p class="text-sm text-gray-400">Chief Concierge Officer</p>
+                        <p class="text-xs text-gray-500 mt-2">15+ years luxury hospitality</p>
+                    </div>
+                    <div class="text-center hover-lift">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Team member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-[#D4AF37]">
+                        <h4 class="font-bold text-white">Sarah Chen</h4>
+                        <p class="text-sm text-gray-400">Fleet Operations Director</p>
+                        <p class="text-xs text-gray-500 mt-2">Former Ferrari specialist</p>
+                    </div>
+                    <div class="text-center hover-lift">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Team member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-[#D4AF37]">
+                        <h4 class="font-bold text-white">Captain Rodriguez</h4>
+                        <p class="text-sm text-gray-400">Marine Operations</p>
+                        <p class="text-xs text-gray-500 mt-2">Master Mariner License</p>
+                    </div>
+                    <div class="text-center hover-lift">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Team member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-[#D4AF37]">
+                        <h4 class="font-bold text-white">David Thompson</h4>
+                        <p class="text-sm text-gray-400">Aviation Director</p>
+                        <p class="text-xs text-gray-500 mt-2">Commercial pilot, 20+ years</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="py-20 section-bg">
         <div class="container mx-auto px-4 fade-in">
@@ -1023,6 +1330,7 @@
     <script src="utils/paymentSystem.js"></script>
     <script src="utils/userAuth.js"></script>
     <script src="utils/aiChatbot.js"></script>
+    <script src="utils/advancedAnimations.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
