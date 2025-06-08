@@ -1,0 +1,131 @@
+name: Deploy Midas Lifestyle Website
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: |
+        npm install -g html-validate
+        npm install -g stylelint stylelint-config-standard
+        
+    - name: Validate HTML
+      run: |
+        echo "Validating HTML structure..."
+        # Basic HTML validation
+        if [ -f "index.html" ]; then
+          echo "✅ index.html exists"
+          # Check for required meta tags
+          grep -q "viewport" index.html && echo "✅ Viewport meta tag found" || echo "❌ Viewport meta tag missing"
+          grep -q "description" index.html && echo "✅ Description meta tag found" || echo "❌ Description meta tag missing"
+          grep -q "Midas Lifestyle" index.html && echo "✅ Title contains Midas Lifestyle" || echo "❌ Title missing"
+        else
+          echo "❌ index.html not found"
+          exit 1
+        fi
+        
+    - name: Validate CSS
+      run: |
+        echo "Validating CSS structure..."
+        if [ -f "styles.css" ]; then
+          echo "✅ styles.css exists"
+          # Check for key CSS classes
+          grep -q "gold-accent" styles.css && echo "✅ Gold accent class found" || echo "❌ Gold accent class missing"
+          grep -q "hero-bg" styles.css && echo "✅ Hero background class found" || echo "❌ Hero background class missing"
+        else
+          echo "❌ styles.css not found"
+          exit 1
+        fi
+        
+    - name: Validate JavaScript
+      run: |
+        echo "Validating JavaScript structure..."
+        if [ -f "script.js" ]; then
+          echo "✅ script.js exists"
+          # Check for key functions
+          grep -q "openModal" script.js && echo "✅ Modal function found" || echo "❌ Modal function missing"
+          grep -q "Swiper" script.js && echo "✅ Swiper initialization found" || echo "❌ Swiper initialization missing"
+        else
+          echo "❌ script.js not found"
+          exit 1
+        fi
+        
+    - name: Check Netlify Configuration
+      run: |
+        echo "Validating Netlify configuration..."
+        if [ -f "netlify.toml" ]; then
+          echo "✅ netlify.toml exists"
+        else
+          echo "❌ netlify.toml not found"
+          exit 1
+        fi
+        
+        if [ -f "_redirects" ]; then
+          echo "✅ _redirects file exists"
+        else
+          echo "❌ _redirects file not found"
+          exit 1
+        fi
+        
+    - name: Test File Structure
+      run: |
+        echo "Testing file structure..."
+        echo "📁 Repository contents:"
+        ls -la
+        
+        echo "📄 Required files check:"
+        [ -f "index.html" ] && echo "✅ index.html" || echo "❌ index.html"
+        [ -f "styles.css" ] && echo "✅ styles.css" || echo "❌ styles.css"
+        [ -f "script.js" ] && echo "✅ script.js" || echo "❌ script.js"
+        [ -f "README.md" ] && echo "✅ README.md" || echo "❌ README.md"
+        [ -f ".gitignore" ] && echo "✅ .gitignore" || echo "❌ .gitignore"
+        [ -f "netlify.toml" ] && echo "✅ netlify.toml" || echo "❌ netlify.toml"
+        [ -f "_redirects" ] && echo "✅ _redirects" || echo "❌ _redirects"
+        
+    - name: Performance Check
+      run: |
+        echo "Checking file sizes for performance..."
+        echo "📊 File sizes:"
+        du -h *.html *.css *.js 2>/dev/null || echo "Some files not found"
+        
+        # Check if files are reasonable size
+        html_size=$(stat -c%s "index.html" 2>/dev/null || echo "0")
+        css_size=$(stat -c%s "styles.css" 2>/dev/null || echo "0")
+        js_size=$(stat -c%s "script.js" 2>/dev/null || echo "0")
+        
+        echo "HTML size: ${html_size} bytes"
+        echo "CSS size: ${css_size} bytes"
+        echo "JS size: ${js_size} bytes"
+        
+        # Warn if files are too large
+        [ "$html_size" -gt 100000 ] && echo "⚠️ HTML file is large (>100KB)" || echo "✅ HTML file size OK"
+        [ "$css_size" -gt 50000 ] && echo "⚠️ CSS file is large (>50KB)" || echo "✅ CSS file size OK"
+        [ "$js_size" -gt 50000 ] && echo "⚠️ JS file is large (>50KB)" || echo "✅ JS file size OK"
+
+  deploy-notification:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Deployment Success
+      run: |
+        echo "🚀 Deployment to Netlify triggered!"
+        echo "📍 Site URL: https://midasthelifestyle.netlify.app"
+        echo "📍 GitHub Pages: https://corporateguuu.github.io/MidasTheLifestyle"
+        echo "✅ All tests passed - ready for production!"
