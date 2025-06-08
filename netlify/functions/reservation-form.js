@@ -1,17 +1,18 @@
 // Netlify Function for Reservation Form Processing
 // Handles modal reservation submissions for specific luxury items
 
-const nodemailer = require('nodemailer');
+// const nodemailer = require('nodemailer'); // Temporarily disabled for testing
 
-// Email configuration
+// Email configuration (temporarily disabled for testing)
 const createTransporter = () => {
-  return nodemailer.createTransporter({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    }
-  });
+  // return nodemailer.createTransporter({
+  //   service: 'gmail',
+  //   auth: {
+  //     user: process.env.EMAIL_USER,
+  //     pass: process.env.EMAIL_PASS
+  //   }
+  // });
+  return null; // Temporarily disabled
 };
 
 // Validate reservation submission
@@ -251,27 +252,31 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Create email transporter
-    const transporter = createTransporter();
-    
-    // Send priority notification to concierge team
+    // Create email transporter (temporarily disabled for testing)
+    // const transporter = createTransporter();
+
+    // Send priority notification to concierge team (temporarily disabled)
     const emailContent = formatReservationEmail(formData);
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: 'concierge@midaslifestyle.com',
-      subject: emailContent.subject,
-      html: emailContent.html,
-      priority: 'high'
-    });
-    
-    // Send confirmation to customer
+    console.log('Would send priority email to concierge:', emailContent.subject);
+
+    // await transporter.sendMail({
+    //   from: process.env.EMAIL_USER,
+    //   to: 'concierge@midaslifestyle.com',
+    //   subject: emailContent.subject,
+    //   html: emailContent.html,
+    //   priority: 'high'
+    // });
+
+    // Send confirmation to customer (temporarily disabled)
     const autoReply = formatReservationAutoReply(formData);
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: formData.email,
-      subject: autoReply.subject,
-      html: autoReply.html
-    });
+    console.log('Would send confirmation to:', formData.email);
+
+    // await transporter.sendMail({
+    //   from: process.env.EMAIL_USER,
+    //   to: formData.email,
+    //   subject: autoReply.subject,
+    //   html: autoReply.html
+    // });
 
     // Log reservation (in production, save to database)
     console.log('Reservation processed:', {

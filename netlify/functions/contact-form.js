@@ -1,17 +1,18 @@
 // Netlify Function for Contact Form Processing
 // Handles contact form submissions for Midas Lifestyle
 
-const nodemailer = require('nodemailer');
+// const nodemailer = require('nodemailer'); // Temporarily disabled for testing
 
-// Email configuration
+// Email configuration (temporarily disabled for testing)
 const createTransporter = () => {
-  return nodemailer.createTransporter({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    }
-  });
+  // return nodemailer.createTransporter({
+  //   service: 'gmail',
+  //   auth: {
+  //     user: process.env.EMAIL_USER,
+  //     pass: process.env.EMAIL_PASS
+  //   }
+  // });
+  return null; // Temporarily disabled
 };
 
 // Spam protection - simple honeypot and rate limiting
@@ -188,26 +189,30 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Create email transporter
-    const transporter = createTransporter();
-    
-    // Send notification to concierge team
+    // Create email transporter (temporarily disabled for testing)
+    // const transporter = createTransporter();
+
+    // Send notification to concierge team (temporarily disabled)
     const emailContent = formatEmailContent(formData);
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: 'concierge@midaslifestyle.com',
-      subject: emailContent.subject,
-      html: emailContent.html
-    });
-    
-    // Send auto-reply to customer
+    console.log('Would send email to concierge:', emailContent.subject);
+
+    // await transporter.sendMail({
+    //   from: process.env.EMAIL_USER,
+    //   to: 'concierge@midaslifestyle.com',
+    //   subject: emailContent.subject,
+    //   html: emailContent.html
+    // });
+
+    // Send auto-reply to customer (temporarily disabled)
     const autoReply = formatAutoReply(formData);
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: formData.email,
-      subject: autoReply.subject,
-      html: autoReply.html
-    });
+    console.log('Would send auto-reply to:', formData.email);
+
+    // await transporter.sendMail({
+    //   from: process.env.EMAIL_USER,
+    //   to: formData.email,
+    //   subject: autoReply.subject,
+    //   html: autoReply.html
+    // });
 
     // Log submission (in production, save to database)
     console.log('Form submission processed:', {
