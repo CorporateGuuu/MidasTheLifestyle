@@ -1,0 +1,27 @@
+# Netlify redirects file for Midas Lifestyle website
+
+# Redirect all 404s to index.html for single-page application behavior
+/* /index.html 200
+
+# Force HTTPS redirects
+http://midasthelifestyle.netlify.app/* https://midasthelifestyle.netlify.app/:splat 301!
+
+# Redirect common variations to main site
+/home /index.html 200
+/main /index.html 200
+
+# Section-specific redirects (optional)
+/cars /index.html#cars 200
+/yachts /index.html#yachts 200
+/planes /index.html#planes 200
+/jets /index.html#planes 200
+/properties /index.html#properties 200
+/estates /index.html#properties 200
+/contact /index.html#contact 200
+/about /index.html#about 200
+
+# API endpoints (for future backend integration)
+/api/* https://api.midaslifestyle.com/:splat 200
+
+# Legacy URL redirects (if migrating from another site)
+/old-site/* /index.html 301

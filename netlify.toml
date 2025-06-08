@@ -1,0 +1,94 @@
+[build]
+  # No build command needed for static HTML site
+  command = ""
+  # Publish the root directory
+  publish = "."
+  # Base directory (leave empty for root)
+  base = ""
+
+[build.environment]
+  # Node.js version (if needed for future enhancements)
+  NODE_VERSION = "18"
+
+# Redirect rules for SPA-like behavior
+[[redirects]]
+  # Handle client-side routing (if needed)
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["admin"]}
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Performance headers
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    # HTML files should not be cached as aggressively
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    # CSS files can be cached longer
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    # JavaScript files can be cached longer
+    Cache-Control = "public, max-age=31536000"
+
+# Form handling (for contact forms)
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = false
+  minify = true
+
+[build.processing.js]
+  bundle = false
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+# Environment variables (if needed)
+[context.production.environment]
+  HUGO_VERSION = "0.58.2"
+  HUGO_ENV = "production"
+  HUGO_ENABLEGITINFO = "true"
+
+[context.split1]
+  command = "echo 'split1 context'"
+
+[context.split1.environment]
+  HUGO_VERSION = "0.58.2"
+  HUGO_ENV = "production"
+
+[context.deploy-preview]
+  command = "echo 'deploy-preview context'"
+
+[context.deploy-preview.environment]
+  HUGO_VERSION = "0.58.2"
+
+[context.branch-deploy]
+  command = "echo 'branch-deploy context'"
+
+[context.branch-deploy.environment]
+  HUGO_VERSION = "0.58.2"
+
+# Custom domain settings (will be configured in Netlify dashboard)
+# Site name: midasthelifestyle
+# Custom domain: midasthelifestyle.netlify.app
