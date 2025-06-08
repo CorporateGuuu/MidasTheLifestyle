@@ -104,7 +104,7 @@ const formatCustomerConfirmation = (booking) => {
             <p style="color: #D4AF37; font-weight: bold; margin: 0;">Need immediate assistance?</p>
             <p style="color: #fff; margin: 10px 0;">
               📞 +971 123 456 789<br>
-              📧 concierge@midas.com
+              📧 concierge@midasthelifestyle.com
             </p>
           </div>
           
@@ -267,7 +267,7 @@ exports.handler = async (event, context) => {
 
     // await transporter.sendMail({
     //   from: process.env.EMAIL_USER,
-    //   to: 'concierge@midas.com',
+    //   to: 'concierge@midasthelifestyle.com',
     //   subject: conciergeEmail.subject,
     //   html: conciergeEmail.html
     // });

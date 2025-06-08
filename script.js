@@ -14,22 +14,85 @@ const heroSwiper = new Swiper('.hero-slider', {
     }
 });
 
-// Initialize Swiper for Car Slider
-const carSwiper = new Swiper('.car-slider', {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    navigation: {
-        nextEl: '.car-slider .swiper-button-next',
-        prevEl: '.car-slider .swiper-button-prev',
-    },
-    pagination: {
-        el: '.car-slider .swiper-pagination',
-        clickable: true,
-    },
-    breakpoints: {
-        640: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
-    },
+// Initialize Swiper for Car Slider (will be reinitialized by carInventoryManager)
+let carSwiper = null;
+
+// Initialize car swiper function
+function initializeCarSwiper() {
+    if (carSwiper && carSwiper.destroy) {
+        carSwiper.destroy(true, true);
+    }
+
+    carSwiper = new Swiper('.car-slider', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        navigation: {
+            nextEl: '.car-slider .swiper-button-next',
+            prevEl: '.car-slider .swiper-button-prev',
+        },
+        pagination: {
+            el: '.car-slider .swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+        },
+    });
+
+    return carSwiper;
+}
+
+// Mobile Menu Functionality
+function setupMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+
+            // Update button icon
+            const icon = mobileMenuBtn.querySelector('svg path');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            } else {
+                icon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            }
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                const icon = mobileMenuBtn.querySelector('svg path');
+                icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+                const icon = mobileMenuBtn.querySelector('svg path');
+                icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            }
+        });
+    }
+}
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', () => {
+    // Setup mobile menu
+    setupMobileMenu();
+
+    // Delay initialization to allow carInventoryManager to load first
+    setTimeout(() => {
+        if (!window.carInventoryManager) {
+            initializeCarSwiper();
+        }
+    }, 500);
 });
 
 // Initialize Swiper for Yacht Slider
@@ -122,11 +185,20 @@ function setupFilters(sectionId, swiperInstance) {
     }
 }
 
-// Setup filters for all sections
-setupFilters('cars', carSwiper);
+// Setup filters for all sections (cars will be handled by carInventoryManager)
 setupFilters('yachts', yachtSwiper);
 setupFilters('planes', planeSwiper);
 setupFilters('properties', propertySwiper);
+
+// Setup car filters separately to integrate with inventory manager
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        if (!window.carInventoryManager) {
+            // Fallback if carInventoryManager fails to load
+            setupFilters('cars', carSwiper);
+        }
+    }, 1000);
+});
 
 // Modal Functionality - Enhanced with Booking Calendar Integration
 function openModal(itemName = '') {

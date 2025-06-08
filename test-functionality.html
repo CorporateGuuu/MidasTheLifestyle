@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midas The Lifestyle - Functionality Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .test-pass { background-color: #10B981; color: white; }
+        .test-fail { background-color: #EF4444; color: white; }
+        .test-pending { background-color: #F59E0B; color: white; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-yellow-400 mb-8">Midas The Lifestyle - Functionality Test Suite</h1>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl font-bold mb-4 text-yellow-400">Core System Tests</h2>
+                <div id="core-tests"></div>
+                <button onclick="runCoreTests()" class="bg-blue-600 text-white px-4 py-2 rounded mt-4">Run Core Tests</button>
+            </div>
+            
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl font-bold mb-4 text-yellow-400">Advanced Feature Tests</h2>
+                <div id="advanced-tests"></div>
+                <button onclick="runAdvancedTests()" class="bg-green-600 text-white px-4 py-2 rounded mt-4">Run Advanced Tests</button>
+            </div>
+            
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl font-bold mb-4 text-yellow-400">Performance Tests</h2>
+                <div id="performance-tests"></div>
+                <button onclick="runPerformanceTests()" class="bg-purple-600 text-white px-4 py-2 rounded mt-4">Run Performance Tests</button>
+            </div>
+            
+            <div class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-xl font-bold mb-4 text-yellow-400">Integration Tests</h2>
+                <div id="integration-tests"></div>
+                <button onclick="runIntegrationTests()" class="bg-red-600 text-white px-4 py-2 rounded mt-4">Run Integration Tests</button>
+            </div>
+        </div>
+        
+        <div class="mt-8 bg-gray-800 p-6 rounded-lg">
+            <h2 class="text-xl font-bold mb-4 text-yellow-400">Test Summary</h2>
+            <div id="test-summary" class="text-lg"></div>
+            <button onclick="runAllTests()" class="bg-yellow-600 text-black px-6 py-3 rounded mt-4 font-bold">Run All Tests</button>
+        </div>
+    </div>
+
+    <script>
+        let testResults = {
+            passed: 0,
+            failed: 0,
+            total: 0
+        };
+
+        function addTestResult(container, testName, passed, details = '') {
+            const div = document.createElement('div');
+            div.className = `test-result ${passed ? 'test-pass' : 'test-fail'}`;
+            div.innerHTML = `
+                <strong>${testName}</strong>: ${passed ? 'PASS' : 'FAIL'}
+                ${details ? `<br><small>${details}</small>` : ''}
+            `;
+            document.getElementById(container).appendChild(div);
+            
+            testResults.total++;
+            if (passed) testResults.passed++;
+            else testResults.failed++;
+            
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const summary = document.getElementById('test-summary');
+            const passRate = testResults.total > 0 ? (testResults.passed / testResults.total * 100).toFixed(1) : 0;
+            summary.innerHTML = `
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div class="bg-green-600 p-3 rounded">
+                        <div class="text-2xl font-bold">${testResults.passed}</div>
+                        <div class="text-sm">Passed</div>
+                    </div>
+                    <div class="bg-red-600 p-3 rounded">
+                        <div class="text-2xl font-bold">${testResults.failed}</div>
+                        <div class="text-sm">Failed</div>
+                    </div>
+                    <div class="bg-blue-600 p-3 rounded">
+                        <div class="text-2xl font-bold">${passRate}%</div>
+                        <div class="text-sm">Pass Rate</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function runCoreTests() {
+            document.getElementById('core-tests').innerHTML = '';
+            
+            // Test 1: Inventory JSON Loading
+            try {
+                const response = await fetch('/data/inventory.json');
+                const data = await response.json();
+                addTestResult('core-tests', 'Inventory JSON Loading', 
+                    response.ok && data.categories && data.categories.cars,
+                    `Loaded ${data.categories.cars.items.length} vehicles`);
+            } catch (error) {
+                addTestResult('core-tests', 'Inventory JSON Loading', false, error.message);
+            }
+
+            // Test 2: Car Inventory Manager Initialization
+            const carManagerExists = typeof window.carInventoryManager !== 'undefined';
+            addTestResult('core-tests', 'Car Inventory Manager', carManagerExists,
+                carManagerExists ? 'Manager initialized successfully' : 'Manager not found');
+
+            // Test 3: Performance Optimizer
+            const perfOptimizerExists = typeof window.performanceOptimizer !== 'undefined';
+            addTestResult('core-tests', 'Performance Optimizer', perfOptimizerExists,
+                perfOptimizerExists ? 'Optimizer loaded successfully' : 'Optimizer not found');
+
+            // Test 4: Service Worker Registration
+            const swSupported = 'serviceWorker' in navigator;
+            addTestResult('core-tests', 'Service Worker Support', swSupported,
+                swSupported ? 'Service Worker API available' : 'Service Worker not supported');
+
+            // Test 5: Local Storage
+            try {
+                localStorage.setItem('test', 'value');
+                const testValue = localStorage.getItem('test');
+                localStorage.removeItem('test');
+                addTestResult('core-tests', 'Local Storage', testValue === 'value',
+                    'Local storage read/write successful');
+            } catch (error) {
+                addTestResult('core-tests', 'Local Storage', false, error.message);
+            }
+        }
+
+        async function runAdvancedTests() {
+            document.getElementById('advanced-tests').innerHTML = '';
+
+            // Test 1: Search Functionality
+            const searchInput = document.getElementById('car-search');
+            addTestResult('advanced-tests', 'Search Input Element', !!searchInput,
+                searchInput ? 'Search input found' : 'Search input missing');
+
+            // Test 2: Filter Buttons
+            const filterButtons = document.querySelectorAll('.filter-btn[data-type]');
+            addTestResult('advanced-tests', 'Filter Buttons', filterButtons.length >= 5,
+                `Found ${filterButtons.length} filter buttons`);
+
+            // Test 3: Advanced Controls
+            const advancedControls = document.querySelector('.advanced-controls');
+            addTestResult('advanced-tests', 'Advanced Controls Panel', !!advancedControls,
+                advancedControls ? 'Controls panel present' : 'Controls panel missing');
+
+            // Test 4: Comparison System
+            const compareBtn = document.getElementById('compare-vehicles');
+            addTestResult('advanced-tests', 'Comparison Button', !!compareBtn,
+                compareBtn ? 'Comparison system available' : 'Comparison system missing');
+
+            // Test 5: Favorites System
+            if (window.carInventoryManager) {
+                const favoritesCount = window.carInventoryManager.favorites.length;
+                addTestResult('advanced-tests', 'Favorites System', true,
+                    `${favoritesCount} favorites stored`);
+            } else {
+                addTestResult('advanced-tests', 'Favorites System', false, 'Car manager not available');
+            }
+        }
+
+        async function runPerformanceTests() {
+            document.getElementById('performance-tests').innerHTML = '';
+
+            // Test 1: Page Load Performance
+            const navigation = performance.getEntriesByType('navigation')[0];
+            const loadTime = navigation ? navigation.loadEventEnd - navigation.fetchStart : 0;
+            addTestResult('performance-tests', 'Page Load Time', loadTime < 5000,
+                `Load time: ${loadTime.toFixed(0)}ms`);
+
+            // Test 2: Image Lazy Loading
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            addTestResult('performance-tests', 'Lazy Loading Images', lazyImages.length > 0,
+                `${lazyImages.length} images with lazy loading`);
+
+            // Test 3: Cache Performance
+            if (window.performanceOptimizer) {
+                const metrics = window.performanceOptimizer.getPerformanceMetrics();
+                addTestResult('performance-tests', 'Image Cache', metrics.imagesCached >= 0,
+                    `${metrics.imagesCached} images cached`);
+            } else {
+                addTestResult('performance-tests', 'Image Cache', false, 'Performance optimizer not available');
+            }
+
+            // Test 4: Memory Usage
+            if (performance.memory) {
+                const memoryUsage = performance.memory.usedJSHeapSize / 1048576; // MB
+                addTestResult('performance-tests', 'Memory Usage', memoryUsage < 50,
+                    `${memoryUsage.toFixed(1)} MB used`);
+            } else {
+                addTestResult('performance-tests', 'Memory Usage', true, 'Memory API not available');
+            }
+
+            // Test 5: Resource Loading
+            const resources = performance.getEntriesByType('resource');
+            const slowResources = resources.filter(r => r.duration > 1000);
+            addTestResult('performance-tests', 'Resource Loading', slowResources.length === 0,
+                `${slowResources.length} slow resources (>1s)`);
+        }
+
+        async function runIntegrationTests() {
+            document.getElementById('integration-tests').innerHTML = '';
+
+            // Test 1: Booking Calendar Integration
+            const bookingCalendar = window.bookingCalendar;
+            addTestResult('integration-tests', 'Booking Calendar', !!bookingCalendar,
+                bookingCalendar ? 'Booking calendar available' : 'Booking calendar missing');
+
+            // Test 2: Payment System Integration
+            const paymentSystem = window.paymentSystem;
+            addTestResult('integration-tests', 'Payment System', !!paymentSystem,
+                paymentSystem ? 'Payment system available' : 'Payment system missing');
+
+            // Test 3: User Authentication
+            const userAuth = window.userAuth;
+            addTestResult('integration-tests', 'User Authentication', !!userAuth,
+                userAuth ? 'User auth available' : 'User auth missing');
+
+            // Test 4: AI Chatbot
+            const aiChatbot = document.getElementById('ai-chatbot');
+            addTestResult('integration-tests', 'AI Chatbot', !!aiChatbot,
+                aiChatbot ? 'Chatbot element present' : 'Chatbot element missing');
+
+            // Test 5: Swiper Integration
+            const swiperElements = document.querySelectorAll('.swiper');
+            addTestResult('integration-tests', 'Swiper Sliders', swiperElements.length > 0,
+                `${swiperElements.length} swiper instances found`);
+        }
+
+        async function runAllTests() {
+            testResults = { passed: 0, failed: 0, total: 0 };
+            document.getElementById('test-summary').innerHTML = '<div class="text-center">Running all tests...</div>';
+            
+            await runCoreTests();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            await runAdvancedTests();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            await runPerformanceTests();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            await runIntegrationTests();
+            
+            console.log('All tests completed:', testResults);
+        }
+
+        // Auto-run core tests on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(runCoreTests, 1000);
+        });
+    </script>
+</body>
+</html>

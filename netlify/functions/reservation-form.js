@@ -189,7 +189,7 @@ const formatReservationAutoReply = (formData) => {
           <p>For immediate assistance:</p>
           <p style="color: #D4AF37;">
             📞 +971 123 456 789<br>
-            📧 concierge@midas.com<br>
+            📧 concierge@midasthelifestyle.com<br>
             💬 WhatsApp: +971 123 456 789
           </p>
           
@@ -261,7 +261,7 @@ exports.handler = async (event, context) => {
 
     // await transporter.sendMail({
     //   from: process.env.EMAIL_USER,
-    //   to: 'concierge@midas.com',
+    //   to: 'concierge@midasthelifestyle.com',
     //   subject: emailContent.subject,
     //   html: emailContent.html,
     //   priority: 'high'

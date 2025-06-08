@@ -68,7 +68,7 @@ class AIChatbot {
       
       contact: {
         keywords: ['contact', 'phone', 'email', 'support', 'help', 'concierge'],
-        response: "You can reach our VVIP concierge team 24/7 at +971 123 456 789 or concierge@midas.com. For immediate assistance, I'm here to help, or you can use our WhatsApp chat. What would you prefer?"
+        response: "You can reach our VVIP concierge team 24/7 at +971 123 456 789 or concierge@midasthelifestyle.com. For immediate assistance, I'm here to help, or you can use our WhatsApp chat. What would you prefer?"
       }
     };
   }
@@ -219,7 +219,7 @@ class AIChatbot {
     
     // Handle complex queries that might need human assistance
     if (this.isComplexQuery(lowerMessage)) {
-      return "This is a detailed inquiry that would benefit from our human concierge expertise. I can connect you with our VVIP team immediately via WhatsApp (+971 123 456 789) or email (concierge@midas.com). They'll provide personalized assistance within minutes. Would you prefer WhatsApp or email contact?";
+      return "This is a detailed inquiry that would benefit from our human concierge expertise. I can connect you with our VVIP team immediately via WhatsApp (+971 123 456 789) or email (concierge@midasthelifestyle.com). They'll provide personalized assistance within minutes. Would you prefer WhatsApp or email contact?";
     }
     
     // Default response for unrecognized queries

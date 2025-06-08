@@ -139,6 +139,6 @@ Currently using Unsplash random images. Replace with actual luxury vehicle/prope
 ## Contact
 
 For inquiries about this website:
-- Email: concierge@midas.com
+- Email: concierge@midasthelifestyle.com
 - Phone: +971 123 456 789
 - Locations: Dubai | Washington DC | Atlanta | Maryland | Northern Virginia

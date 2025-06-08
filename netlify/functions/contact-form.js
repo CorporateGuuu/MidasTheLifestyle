@@ -86,7 +86,7 @@ const formatEmailContent = (formData) => {
         <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333;">
           <p style="color: #888; font-size: 12px;">
             Midas The Lifestyle | Dubai | Washington DC | Atlanta | Maryland | Northern Virginia<br>
-            Phone: +971 123 456 789 | Email: concierge@midas.com
+            Phone: +971 123 456 789 | Email: concierge@midasthelifestyle.com
           </p>
         </div>
       </div>
@@ -127,7 +127,7 @@ const formatAutoReply = (formData) => {
           <p>For immediate assistance, please contact us:</p>
           <p style="color: #D4AF37;">
             📞 +971 123 456 789<br>
-            📧 concierge@midas.com
+            📧 concierge@midasthelifestyle.com
           </p>
           
           <p style="margin-top: 30px;">
@@ -198,7 +198,7 @@ exports.handler = async (event, context) => {
 
     // await transporter.sendMail({
     //   from: process.env.EMAIL_USER,
-    //   to: 'concierge@midas.com',
+    //   to: 'concierge@midasthelifestyle.com',
     //   subject: emailContent.subject,
     //   html: emailContent.html
     // });

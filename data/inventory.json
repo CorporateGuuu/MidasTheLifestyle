@@ -12,7 +12,7 @@
     "cars": {
       "title": "Exotic Car Rentals",
       "description": "Experience the pinnacle of automotive excellence with our curated collection of hypercars and luxury vehicles.",
-      "filters": ["all", "hypercar", "suv"],
+      "filters": ["all", "hypercar", "suv", "sedan", "convertible"],
       "items": [
         {
           "id": "bugatti-chiron-001",
@@ -81,6 +81,213 @@
           "images": {
             "hero": "/assets/images/cars/rolls-royce-cullinan/hero.jpg",
             "thumbnail": "/assets/images/cars/rolls-royce-cullinan/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "ferrari-sf90-stradale-001",
+          "name": "Ferrari SF90 Stradale",
+          "category": "hypercar",
+          "brand": "Ferrari",
+          "pricing": {
+            "daily": { "aed": 18000, "usd": 4900 }
+          },
+          "specifications": {
+            "engine": "4.0L Twin-Turbo V8 + Electric Motors",
+            "horsepower": 986,
+            "topSpeed": "340 km/h"
+          },
+          "features": ["Hybrid powertrain", "Carbon fiber body", "Advanced traction control"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/ferrari-sf90/hero.jpg",
+            "thumbnail": "/assets/images/cars/ferrari-sf90/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "lamborghini-huracan-evo-001",
+          "name": "Lamborghini Huracán EVO",
+          "category": "hypercar",
+          "brand": "Lamborghini",
+          "pricing": {
+            "daily": { "aed": 15000, "usd": 4100 }
+          },
+          "specifications": {
+            "engine": "5.2L Naturally Aspirated V10",
+            "horsepower": 630,
+            "topSpeed": "325 km/h"
+          },
+          "features": ["All-wheel drive", "Dynamic steering", "Performance traction control"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Atlanta", "Maryland"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/lamborghini-huracan/hero.jpg",
+            "thumbnail": "/assets/images/cars/lamborghini-huracan/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "mclaren-720s-001",
+          "name": "McLaren 720S",
+          "category": "hypercar",
+          "brand": "McLaren",
+          "pricing": {
+            "daily": { "aed": 16000, "usd": 4400 }
+          },
+          "specifications": {
+            "engine": "4.0L Twin-Turbo V8",
+            "horsepower": 710,
+            "topSpeed": "341 km/h"
+          },
+          "features": ["Carbon fiber monocoque", "Active aerodynamics", "Proactive chassis control"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Northern Virginia"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/mclaren-720s/hero.jpg",
+            "thumbnail": "/assets/images/cars/mclaren-720s/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "bentley-continental-gt-001",
+          "name": "Bentley Continental GT",
+          "category": "convertible",
+          "brand": "Bentley",
+          "pricing": {
+            "daily": { "aed": 7000, "usd": 1900 }
+          },
+          "specifications": {
+            "engine": "6.0L Twin-Turbo W12",
+            "horsepower": 626,
+            "topSpeed": "333 km/h"
+          },
+          "features": ["Handcrafted interior", "Diamond-quilted leather", "Rotating display"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/bentley-continental/hero.jpg",
+            "thumbnail": "/assets/images/cars/bentley-continental/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "rolls-royce-phantom-001",
+          "name": "Rolls-Royce Phantom",
+          "category": "sedan",
+          "brand": "Rolls-Royce",
+          "pricing": {
+            "daily": { "aed": 9000, "usd": 2450 }
+          },
+          "specifications": {
+            "engine": "6.75L Twin-Turbo V12",
+            "horsepower": 563,
+            "topSpeed": "250 km/h"
+          },
+          "features": ["Starlight headliner", "Whisper-quiet cabin", "Bespoke interior"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/rolls-royce-phantom/hero.jpg",
+            "thumbnail": "/assets/images/cars/rolls-royce-phantom/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "aston-martin-db11-001",
+          "name": "Aston Martin DB11",
+          "category": "convertible",
+          "brand": "Aston Martin",
+          "pricing": {
+            "daily": { "aed": 6500, "usd": 1800 }
+          },
+          "specifications": {
+            "engine": "5.2L Twin-Turbo V12",
+            "horsepower": 630,
+            "topSpeed": "322 km/h"
+          },
+          "features": ["British craftsmanship", "Aeroblade technology", "Luxurious interior"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/aston-martin-db11/hero.jpg",
+            "thumbnail": "/assets/images/cars/aston-martin-db11/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "bentley-bentayga-001",
+          "name": "Bentley Bentayga",
+          "category": "suv",
+          "brand": "Bentley",
+          "pricing": {
+            "daily": { "aed": 7500, "usd": 2050 }
+          },
+          "specifications": {
+            "engine": "6.0L Twin-Turbo W12",
+            "horsepower": 600,
+            "topSpeed": "301 km/h"
+          },
+          "features": ["Mulliner interior", "Naim audio system", "All-terrain capability"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/bentley-bentayga/hero.jpg",
+            "thumbnail": "/assets/images/cars/bentley-bentayga/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "lamborghini-urus-001",
+          "name": "Lamborghini Urus",
+          "category": "suv",
+          "brand": "Lamborghini",
+          "pricing": {
+            "daily": { "aed": 8500, "usd": 2300 }
+          },
+          "specifications": {
+            "engine": "4.0L Twin-Turbo V8",
+            "horsepower": 641,
+            "topSpeed": "305 km/h"
+          },
+          "features": ["Super SUV performance", "Carbon ceramic brakes", "Sport exhaust"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Atlanta", "Maryland"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/lamborghini-urus/hero.jpg",
+            "thumbnail": "/assets/images/cars/lamborghini-urus/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "mercedes-maybach-s680-001",
+          "name": "Mercedes-Maybach S680",
+          "category": "sedan",
+          "brand": "Mercedes-Maybach",
+          "pricing": {
+            "daily": { "aed": 5500, "usd": 1500 }
+          },
+          "specifications": {
+            "engine": "6.0L Twin-Turbo V12",
+            "horsepower": 621,
+            "topSpeed": "250 km/h"
+          },
+          "features": ["Executive rear seating", "Champagne flutes", "Massage seats"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/mercedes-maybach-s680/hero.jpg",
+            "thumbnail": "/assets/images/cars/mercedes-maybach-s680/thumbnail.jpg"
           }
         }
       ]
