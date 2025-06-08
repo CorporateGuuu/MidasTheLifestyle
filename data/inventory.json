@@ -29,7 +29,7 @@
           },
           "features": ["Carbon fiber body", "Luxury leather interior", "Advanced aerodynamics"],
           "availability": {
-            "locations": ["Dubai", "Abu Dhabi"],
+            "locations": ["Dubai", "Washington DC", "Atlanta", "Maryland", "Northern Virginia"],
             "status": "available"
           },
           "images": {
@@ -52,7 +52,7 @@
           },
           "features": ["Active aerodynamics", "Carbon fiber construction", "Track-focused suspension"],
           "availability": {
-            "locations": ["Dubai"],
+            "locations": ["Dubai", "Washington DC", "Atlanta"],
             "status": "available"
           },
           "images": {
@@ -75,7 +75,7 @@
           },
           "features": ["Starlight headliner", "Massage seats", "Champagne cooler"],
           "availability": {
-            "locations": ["Dubai", "Abu Dhabi"],
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia"],
             "status": "available"
           },
           "images": {
@@ -105,7 +105,7 @@
           },
           "features": ["Helicopter landing pad", "Swimming pool", "Spa and wellness center"],
           "availability": {
-            "locations": ["Dubai Marina"],
+            "locations": ["Dubai Marina", "Washington DC Waterfront", "Atlanta Harbor"],
             "status": "available"
           },
           "images": {
@@ -135,7 +135,7 @@
           },
           "features": ["Ultra-high-speed WiFi", "Master suite with shower", "Gourmet galley"],
           "availability": {
-            "locations": ["Dubai International"],
+            "locations": ["Dubai International", "Ronald Reagan Washington National", "Hartsfield-Jackson Atlanta International"],
             "status": "available"
           },
           "images": {
@@ -165,7 +165,7 @@
           },
           "features": ["Private beach access", "Infinity pool", "Home cinema"],
           "availability": {
-            "locations": ["Palm Jumeirah"],
+            "locations": ["Palm Jumeirah", "Georgetown Waterfront", "Buckhead Atlanta", "Potomac Maryland"],
             "status": "available"
           },
           "images": {

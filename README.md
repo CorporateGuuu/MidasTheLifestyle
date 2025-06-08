@@ -1,4 +1,4 @@
-# Midas Lifestyle - Bespoke Luxury Rentals
+# Mida - Bespoke Luxury Rentals
 
 A premium luxury rental website featuring exotic cars, superyachts, private jets, and exclusive estates. Built with modern web technologies and designed for the world's elite.
 
@@ -25,7 +25,9 @@ A premium luxury rental website featuring exotic cars, superyachts, private jets
 ### 🏖️ Exclusive Estates
 - Dubai Marina Penthouse
 - Palm Jumeirah Villa
-- Miami Beach Penthouse
+- Georgetown Waterfront Penthouse
+- Buckhead Atlanta Estate
+- Potomac Maryland Villa
 - Filter by Villa/Penthouse
 
 ## Technology Stack
@@ -132,11 +134,11 @@ Currently using Unsplash random images. Replace with actual luxury vehicle/prope
 
 ## License
 
-© 2025 Midas Lifestyle. All rights reserved.
+© 2025 Mida. All rights reserved.
 
 ## Contact
 
 For inquiries about this website:
-- Email: concierge@midaslifestyle.com
+- Email: concierge@mida.com
 - Phone: +971 123 456 789
-- Address: Office #22, JAC Building, Al Quoz 1, Dubai
+- Locations: Dubai | Washington DC | Atlanta | Maryland | Northern Virginia

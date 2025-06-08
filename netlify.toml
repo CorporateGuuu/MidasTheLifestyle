@@ -95,5 +95,5 @@
   HUGO_VERSION = "0.58.2"
 
 # Custom domain settings (will be configured in Netlify dashboard)
-# Site name: midasthelifestyle
-# Custom domain: midasthelifestyle.netlify.app
+# Site name: mida
+# Custom domain: mida.netlify.app

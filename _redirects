@@ -1,10 +1,10 @@
-# Netlify redirects file for Midas Lifestyle website
+# Netlify redirects file for Mida website
 
 # Redirect all 404s to index.html for single-page application behavior
 /* /index.html 200
 
 # Force HTTPS redirects
-http://midasthelifestyle.netlify.app/* https://midasthelifestyle.netlify.app/:splat 301!
+http://mida.netlify.app/* https://mida.netlify.app/:splat 301!
 
 # Redirect common variations to main site
 /home /index.html 200
@@ -21,7 +21,7 @@ http://midasthelifestyle.netlify.app/* https://midasthelifestyle.netlify.app/:sp
 /about /index.html#about 200
 
 # API endpoints (for future backend integration)
-/api/* https://api.midaslifestyle.com/:splat 200
+/api/* https://api.mida.com/:splat 200
 
 # Legacy URL redirects (if migrating from another site)
 /old-site/* /index.html 301

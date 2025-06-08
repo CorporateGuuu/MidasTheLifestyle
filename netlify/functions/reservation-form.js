@@ -76,11 +76,11 @@ const formatReservationEmail = (formData) => {
   const itemDetails = getItemDetails(item);
   
   return {
-    subject: `🏆 URGENT: ${itemDetails.category} Reservation - ${item} | Midas Lifestyle`,
+    subject: `🏆 URGENT: ${itemDetails.category} Reservation - ${item} | Mida`,
     html: `
       <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background: #000; color: #fff; padding: 20px;">
         <div style="text-align: center; border-bottom: 2px solid #D4AF37; padding-bottom: 20px; margin-bottom: 30px;">
-          <h1 style="color: #D4AF37; font-size: 28px; margin: 0;">Midas Lifestyle</h1>
+          <h1 style="color: #D4AF37; font-size: 28px; margin: 0;">Mida</h1>
           <p style="color: #fff; margin: 5px 0;">VVIP Reservation Request</p>
         </div>
         
@@ -138,7 +138,7 @@ const formatReservationEmail = (formData) => {
         
         <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333;">
           <p style="color: #888; font-size: 12px;">
-            Midas Lifestyle VVIP Concierge | +971 123 456 789
+            Mida VVIP Concierge | +971 123 456 789
           </p>
         </div>
       </div>
@@ -152,11 +152,11 @@ const formatReservationAutoReply = (formData) => {
   const itemDetails = getItemDetails(item);
   
   return {
-    subject: `🏆 Reservation Confirmed - ${item} | Midas Lifestyle`,
+    subject: `🏆 Reservation Confirmed - ${item} | Mida`,
     html: `
       <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background: #000; color: #fff; padding: 20px;">
         <div style="text-align: center; border-bottom: 2px solid #D4AF37; padding-bottom: 20px; margin-bottom: 30px;">
-          <h1 style="color: #D4AF37; font-size: 28px; margin: 0;">Midas Lifestyle</h1>
+          <h1 style="color: #D4AF37; font-size: 28px; margin: 0;">Mida</h1>
           <p style="color: #fff; margin: 5px 0;">Reservation Confirmation</p>
         </div>
         
@@ -189,7 +189,7 @@ const formatReservationAutoReply = (formData) => {
           <p>For immediate assistance:</p>
           <p style="color: #D4AF37;">
             📞 +971 123 456 789<br>
-            📧 concierge@midaslifestyle.com<br>
+            📧 concierge@mida.com<br>
             💬 WhatsApp: +971 123 456 789
           </p>
           
@@ -200,7 +200,7 @@ const formatReservationAutoReply = (formData) => {
         
         <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333;">
           <p style="color: #888; font-size: 12px;">
-            Midas Lifestyle | Office #22, JAC Building, Al Quoz 1, Dubai
+            Mida | Dubai | Washington DC | Atlanta | Maryland | Northern Virginia
           </p>
         </div>
       </div>
@@ -261,7 +261,7 @@ exports.handler = async (event, context) => {
 
     // await transporter.sendMail({
     //   from: process.env.EMAIL_USER,
-    //   to: 'concierge@midaslifestyle.com',
+    //   to: 'concierge@mida.com',
     //   subject: emailContent.subject,
     //   html: emailContent.html,
     //   priority: 'high'

@@ -48,11 +48,11 @@ const formatEmailContent = (formData) => {
   const { name, email, phone, service, message } = formData;
   
   return {
-    subject: `🏆 New VVIP Inquiry - ${service} | Midas Lifestyle`,
+    subject: `🏆 New VVIP Inquiry - ${service} | Mida`,
     html: `
       <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background: #000; color: #fff; padding: 20px;">
         <div style="text-align: center; border-bottom: 2px solid #D4AF37; padding-bottom: 20px; margin-bottom: 30px;">
-          <h1 style="color: #D4AF37; font-size: 28px; margin: 0;">Midas Lifestyle</h1>
+          <h1 style="color: #D4AF37; font-size: 28px; margin: 0;">Mida</h1>
           <p style="color: #fff; margin: 5px 0;">Bespoke Luxury Rentals</p>
         </div>
         
@@ -78,15 +78,15 @@ const formatEmailContent = (formData) => {
             <p style="color: #D4AF37; font-weight: bold;">⏰ Response Time: Within 2 hours for VVIP clients</p>
             <p style="font-size: 12px; color: #888;">
               Submitted: ${new Date().toLocaleString()}<br>
-              Source: Midas Lifestyle Website
+              Source: Mida Website
             </p>
           </div>
         </div>
         
         <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333;">
           <p style="color: #888; font-size: 12px;">
-            Midas Lifestyle | Office #22, JAC Building, Al Quoz 1, Dubai<br>
-            Phone: +971 123 456 789 | Email: concierge@midaslifestyle.com
+            Mida | Dubai | Washington DC | Atlanta | Maryland | Northern Virginia<br>
+            Phone: +971 123 456 789 | Email: concierge@mida.com
           </p>
         </div>
       </div>
@@ -99,11 +99,11 @@ const formatAutoReply = (formData) => {
   const { name, service } = formData;
   
   return {
-    subject: `🏆 Thank you for your inquiry - Midas Lifestyle`,
+    subject: `🏆 Thank you for your inquiry - Mida`,
     html: `
       <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background: #000; color: #fff; padding: 20px;">
         <div style="text-align: center; border-bottom: 2px solid #D4AF37; padding-bottom: 20px; margin-bottom: 30px;">
-          <h1 style="color: #D4AF37; font-size: 28px; margin: 0;">Midas Lifestyle</h1>
+          <h1 style="color: #D4AF37; font-size: 28px; margin: 0;">Mida</h1>
           <p style="color: #fff; margin: 5px 0;">Bespoke Luxury Rentals</p>
         </div>
         
@@ -127,7 +127,7 @@ const formatAutoReply = (formData) => {
           <p>For immediate assistance, please contact us:</p>
           <p style="color: #D4AF37;">
             📞 +971 123 456 789<br>
-            📧 concierge@midaslifestyle.com
+            📧 concierge@mida.com
           </p>
           
           <p style="margin-top: 30px;">
@@ -137,7 +137,7 @@ const formatAutoReply = (formData) => {
         
         <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333;">
           <p style="color: #888; font-size: 12px;">
-            Midas Lifestyle | Office #22, JAC Building, Al Quoz 1, Dubai
+            Mida | Dubai | Washington DC | Atlanta | Maryland | Northern Virginia
           </p>
         </div>
       </div>
@@ -198,7 +198,7 @@ exports.handler = async (event, context) => {
 
     // await transporter.sendMail({
     //   from: process.env.EMAIL_USER,
-    //   to: 'concierge@midaslifestyle.com',
+    //   to: 'concierge@mida.com',
     //   subject: emailContent.subject,
     //   html: emailContent.html
     // });
