@@ -1,4 +1,4 @@
-# Mida - Bespoke Luxury Rentals
+# Midas The Lifestyle - Bespoke Luxury Rentals
 
 A premium luxury rental website featuring exotic cars, superyachts, private jets, and exclusive estates. Built with modern web technologies and designed for the world's elite.
 
@@ -134,11 +134,11 @@ Currently using Unsplash random images. Replace with actual luxury vehicle/prope
 
 ## License
 
-© 2025 Mida. All rights reserved.
+© 2025 Midas. All rights reserved.
 
 ## Contact
 
 For inquiries about this website:
-- Email: concierge@mida.com
+- Email: concierge@midas.com
 - Phone: +971 123 456 789
 - Locations: Dubai | Washington DC | Atlanta | Maryland | Northern Virginia

@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mida - Bespoke luxury rentals of exotic cars, superyachts, private jets, and exclusive estates in Dubai, Washington DC, Atlanta, and beyond. Curated for the elite.">
+    <meta name="description" content="Midas The Lifestyle - Bespoke luxury rentals of exotic cars, superyachts, private jets, and exclusive estates in Dubai, Washington DC, Atlanta, and beyond. Curated for the elite.">
     <meta name="keywords" content="luxury rentals, exotic cars, superyachts, private jets, exclusive estates, Dubai, Washington DC, Atlanta, Maryland, Northern Virginia, Bugatti, yacht charter, luxury lifestyle">
-    <meta name="author" content="Mida">
+    <meta name="author" content="Midas The Lifestyle">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://midasthelifestyle.netlify.app/">
-    <meta property="og:title" content="Mida - Bespoke Luxury Rentals">
+    <meta property="og:title" content="Midas The Lifestyle - Bespoke Luxury Rentals">
     <meta property="og:description" content="Curated rentals of exotic cars, superyachts, private jets, and exclusive estates for the world's elite.">
     <meta property="og:image" content="https://midasthelifestyle.netlify.app/og-image.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://midasthelifestyle.netlify.app/">
-    <meta property="twitter:title" content="Mida - Bespoke Luxury Rentals">
+    <meta property="twitter:title" content="Midas The Lifestyle - Bespoke Luxury Rentals">
     <meta property="twitter:description" content="Curated rentals of exotic cars, superyachts, private jets, and exclusive estates for the world's elite.">
     <meta property="twitter:image" content="https://midasthelifestyle.netlify.app/og-image.jpg">
 
@@ -26,7 +26,7 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-    <title>Mida - Bespoke Luxury Rentals</title>
+    <title>Midas The Lifestyle - Bespoke Luxury Rentals</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -36,13 +36,15 @@
     <!-- Navigation -->
     <nav class="bg-black text-white p-4 sticky top-0 z-50 backdrop-blur-md">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold font-['Playfair_Display'] gold-accent">Mida</a>
+            <a href="#" class="text-3xl font-bold font-['Playfair_Display'] gold-accent">Midas The Lifestyle</a>
             <div class="space-x-6">
                 <a href="#home" class="hover:text-[#D4AF37] transition-colors">Home</a>
+                <a href="#car-rentals" class="hover:text-[#D4AF37] transition-colors">Car Rentals</a>
                 <a href="#cars" class="hover:text-[#D4AF37] transition-colors">Exotic Cars</a>
                 <a href="#yachts" class="hover:text-[#D4AF37] transition-colors">Superyachts</a>
                 <a href="#planes" class="hover:text-[#D4AF37] transition-colors">Private Jets</a>
                 <a href="#properties" class="hover:text-[#D4AF37] transition-colors">Estates</a>
+                <a href="#transportation" class="hover:text-[#D4AF37] transition-colors">Transportation</a>
                 <a href="#contact" class="hover:text-[#D4AF37] transition-colors">Concierge</a>
             </div>
         </div>
@@ -67,7 +69,7 @@
             </div>
         </div>
         <div class="container mx-auto text-center hero-content z-10">
-            <h1 class="text-6xl font-bold mb-4">Mida: Touch of Gold</h1>
+            <h1 class="text-6xl font-bold mb-4">Midas The Lifestyle: Touch of Gold</h1>
             <p class="text-2xl mb-8 max-w-2xl mx-auto">Curated rentals of exotic cars, superyachts, private jets, and exclusive estates for the world's elite.</p>
             <button onclick="openModal()" class="bg-[#D4AF37] text-black px-8 py-4 rounded-lg hover:bg-[#E8C96A] transition-colors text-lg">Request a VVIP Consultation</button>
         </div>
@@ -245,12 +247,206 @@
         </div>
     </section>
 
+    <!-- Luxury Car Rentals Section -->
+    <section id="car-rentals" class="py-20 bg-gradient-to-b from-black to-gray-900">
+        <div class="container mx-auto px-4 fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 gold-accent">Luxury Car Rentals</h2>
+            <p class="text-lg text-white text-center max-w-3xl mx-auto mb-16">
+                Experience the pinnacle of automotive excellence with our curated collection of the world's most exclusive vehicles.
+            </p>
+
+            <!-- Car Categories -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-lg border border-[#D4AF37]">
+                    <div class="text-center mb-6">
+                        <div class="text-5xl mb-4">🏎️</div>
+                        <h3 class="text-2xl font-bold gold-accent mb-3">Hypercars</h3>
+                        <p class="text-gray-300">Ultimate performance machines</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-2 mb-6">
+                        <li>• Bugatti Chiron</li>
+                        <li>• Koenigsegg Jesko</li>
+                        <li>• McLaren P1</li>
+                        <li>• Pagani Huayra</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-4">From AED 20,000/day</div>
+                        <button onclick="openModal('Hypercar Collection')" class="bg-[#D4AF37] text-black px-6 py-2 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all">
+                            Explore Collection
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-lg border border-[#D4AF37]">
+                    <div class="text-center mb-6">
+                        <div class="text-5xl mb-4">🚗</div>
+                        <h3 class="text-2xl font-bold gold-accent mb-3">Luxury Sedans</h3>
+                        <p class="text-gray-300">Sophisticated elegance</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-2 mb-6">
+                        <li>• Rolls-Royce Phantom</li>
+                        <li>• Bentley Mulsanne</li>
+                        <li>• Mercedes-Maybach S680</li>
+                        <li>• BMW 760Li</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-4">From AED 3,000/day</div>
+                        <button onclick="openModal('Luxury Sedan Collection')" class="bg-[#D4AF37] text-black px-6 py-2 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all">
+                            Explore Collection
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-lg border border-[#D4AF37]">
+                    <div class="text-center mb-6">
+                        <div class="text-5xl mb-4">🚙</div>
+                        <h3 class="text-2xl font-bold gold-accent mb-3">Luxury SUVs</h3>
+                        <p class="text-gray-300">Power meets prestige</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-2 mb-6">
+                        <li>• Rolls-Royce Cullinan</li>
+                        <li>• Bentley Bentayga</li>
+                        <li>• Lamborghini Urus</li>
+                        <li>• Range Rover Autobiography</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-4">From AED 2,500/day</div>
+                        <button onclick="openModal('Luxury SUV Collection')" class="bg-[#D4AF37] text-black px-6 py-2 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all">
+                            Explore Collection
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rental Features -->
+            <div class="grid md:grid-cols-4 gap-6 text-center">
+                <div class="bg-black p-6 rounded-lg border border-gray-800">
+                    <div class="text-3xl mb-3">🔑</div>
+                    <h4 class="text-lg font-semibold gold-accent mb-2">White Glove Delivery</h4>
+                    <p class="text-gray-300 text-sm">Vehicle delivered to your location</p>
+                </div>
+                <div class="bg-black p-6 rounded-lg border border-gray-800">
+                    <div class="text-3xl mb-3">🛡️</div>
+                    <h4 class="text-lg font-semibold gold-accent mb-2">Full Insurance</h4>
+                    <p class="text-gray-300 text-sm">Comprehensive coverage included</p>
+                </div>
+                <div class="bg-black p-6 rounded-lg border border-gray-800">
+                    <div class="text-3xl mb-3">⚡</div>
+                    <h4 class="text-lg font-semibold gold-accent mb-2">Instant Booking</h4>
+                    <p class="text-gray-300 text-sm">Reserve in minutes online</p>
+                </div>
+                <div class="bg-black p-6 rounded-lg border border-gray-800">
+                    <div class="text-3xl mb-3">🌟</div>
+                    <h4 class="text-lg font-semibold gold-accent mb-2">24/7 Concierge</h4>
+                    <p class="text-gray-300 text-sm">Round-the-clock support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transportation Services Section -->
+    <section id="transportation" class="py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div class="container mx-auto px-4 fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 gold-accent">Luxury Transportation Services</h2>
+            <p class="text-lg text-white text-center max-w-3xl mx-auto mb-16">
+                Professional chauffeur services and estate transportation solutions across our prestigious locations.
+            </p>
+
+            <!-- Service Categories -->
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <!-- Dubai Chauffeur Services -->
+                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-lg border border-[#D4AF37]">
+                    <div class="text-center mb-8">
+                        <div class="text-6xl mb-4">🚗</div>
+                        <h3 class="text-3xl font-bold gold-accent mb-4">Dubai Chauffeur Services</h3>
+                        <p class="text-gray-300">Premium luxury vehicle fleet with professional chauffeurs</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-black p-6 rounded-lg">
+                            <h4 class="text-xl font-semibold gold-accent mb-3">Mercedes S-Class Fleet</h4>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>• Mercedes S580 4MATIC</li>
+                                <li>• Mercedes S63 AMG</li>
+                                <li>• Mercedes-Maybach S680</li>
+                            </ul>
+                            <div class="mt-4 text-[#D4AF37] font-semibold">
+                                From AED 500/hour | $135/hour
+                            </div>
+                        </div>
+
+                        <div class="bg-black p-6 rounded-lg">
+                            <h4 class="text-xl font-semibold gold-accent mb-3">BMW 7 Series Fleet</h4>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>• BMW 750i xDrive</li>
+                                <li>• BMW M760i</li>
+                                <li>• BMW 745Le Hybrid</li>
+                            </ul>
+                            <div class="mt-4 text-[#D4AF37] font-semibold">
+                                From AED 450/hour | $120/hour
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-8">
+                        <button onclick="openTransportationModal('dubai-chauffeur')" class="bg-[#D4AF37] text-black px-8 py-3 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all">
+                            Book Dubai Chauffeur
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Estate Transportation Services -->
+                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-lg border border-[#D4AF37]">
+                    <div class="text-center mb-8">
+                        <div class="text-6xl mb-4">🏛️</div>
+                        <h3 class="text-3xl font-bold gold-accent mb-4">Estate Transportation</h3>
+                        <p class="text-gray-300">Exclusive transportation for property viewings and client transfers</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-black p-6 rounded-lg">
+                            <h4 class="text-xl font-semibold gold-accent mb-3">Service Locations</h4>
+                            <div class="grid grid-cols-1 gap-3 text-gray-300">
+                                <div class="flex justify-between">
+                                    <span>Dubai & UAE</span>
+                                    <span class="text-[#D4AF37]">Full Coverage</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Washington DC Metro</span>
+                                    <span class="text-[#D4AF37]">50-mile radius</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Northern Virginia</span>
+                                    <span class="text-[#D4AF37]">Full Coverage</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Maryland</span>
+                                    <span class="text-[#D4AF37]">Full Coverage</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Atlanta Metro</span>
+                                    <span class="text-[#D4AF37]">30-mile radius</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-8">
+                        <button onclick="openTransportationModal('estate-transport')" class="bg-[#D4AF37] text-black px-8 py-3 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all">
+                            Book Estate Transport
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="about" class="py-20 section-bg">
         <div class="container mx-auto px-4 fade-in">
-            <h2 class="text-4xl font-bold text-center mb-12 gold-accent">About Mida</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 gold-accent">About Midas The Lifestyle</h2>
             <p class="text-lg text-white max-w-3xl mx-auto">
-                Mida redefines luxury with bespoke rentals of exotic cars, superyachts, private jets, and exclusive estates. Operating in Dubai, Washington DC, Maryland, Northern Virginia, Atlanta, and beyond, our VVIP concierge team crafts unparalleled experiences for the world's elite, where every detail glimmers with the touch of gold.
+                Midas The Lifestyle redefines luxury with bespoke rentals of exotic cars, superyachts, private jets, and exclusive estates. Operating in Dubai, Washington DC, Maryland, Northern Virginia, Atlanta, and beyond, our VVIP concierge team crafts unparalleled experiences for the world's elite, where every detail glimmers with the touch of gold.
             </p>
         </div>
     </section>
@@ -290,9 +486,9 @@
                 <input type="text" name="honeypot" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off">
             </form>
             <div class="mt-12 text-center">
-                <p class="text-white">Mida - Luxury Rentals</p>
+                <p class="text-white">Midas The Lifestyle - Luxury Rentals</p>
                 <p class="text-white">Dubai | Washington DC | Atlanta | Maryland | Northern Virginia</p>
-                <p class="text-white">Phone: +971 123 456 789 | Email: concierge@mida.com</p>
+                <p class="text-white">Phone: +971 123 456 789 | Email: concierge@midas.com</p>
             </div>
         </div>
     </section>
@@ -329,13 +525,68 @@
         </div>
     </div>
 
+    <!-- WhatsApp Chat Button -->
+    <div id="whatsapp-chat" class="whatsapp-chat">
+        <button onclick="openWhatsAppChat()" class="whatsapp-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.384"/>
+            </svg>
+            <span>WhatsApp</span>
+        </button>
+    </div>
+
+    <!-- AI Chatbot -->
+    <div id="ai-chatbot" class="ai-chatbot">
+        <div id="chatbot-toggle" class="chatbot-toggle" onclick="toggleChatbot()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3.04 1.05 4.36L1 22l5.64-2.05C8.96 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.31 0-2.59-.29-3.73-.85L7 20l.85-1.27C6.29 17.59 6 16.31 6 15c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6z"/>
+                <circle cx="9" cy="12" r="1"/>
+                <circle cx="12" cy="12" r="1"/>
+                <circle cx="15" cy="12" r="1"/>
+            </svg>
+            <span>AI Assistant</span>
+        </div>
+
+        <div id="chatbot-window" class="chatbot-window">
+            <div class="chatbot-header">
+                <h3>Midas AI Concierge</h3>
+                <button onclick="toggleChatbot()" class="chatbot-close">×</button>
+            </div>
+
+            <div id="chatbot-messages" class="chatbot-messages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        Welcome to Midas The Lifestyle! I'm your AI concierge. How may I assist you with our luxury services today?
+                    </div>
+                    <div class="message-time">Just now</div>
+                </div>
+            </div>
+
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input-field" placeholder="Type your message..." onkeypress="handleChatbotKeypress(event)">
+                <button onclick="sendChatbotMessage()" class="send-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="chatbot-quick-actions">
+                <button onclick="sendQuickMessage('I want to rent a luxury car')" class="quick-action-btn">🚗 Car Rental</button>
+                <button onclick="sendQuickMessage('Tell me about yacht charters')" class="quick-action-btn">🛥️ Yacht Charter</button>
+                <button onclick="sendQuickMessage('I need a private jet')" class="quick-action-btn">✈️ Private Jet</button>
+                <button onclick="sendQuickMessage('Show me luxury properties')" class="quick-action-btn">🏛️ Properties</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-black text-white p-6">
         <div class="container mx-auto text-center">
-            <p class="text-white">© 2025 Mida. All rights reserved.</p>
+            <p class="text-white">© 2025 Midas. All rights reserved.</p>
             <div class="mt-4">
-                <a href="#" class="text-[#D4AF37] hover:underline mx-3">Facebook</a>
-                <a href="#" class="text-[#D4AF37] hover:underline mx-3">Instagram</a>
+                <a href="https://www.instagram.com/midasthelifestyle/" target="_blank" class="text-[#D4AF37] hover:underline mx-3">Instagram</a>
+                <a href="https://www.youtube.com/@MidasLifestyle" target="_blank" class="text-[#D4AF37] hover:underline mx-3">YouTube</a>
                 <a href="#" class="text-[#D4AF37] hover:underline mx-3">LinkedIn</a>
             </div>
         </div>
@@ -347,13 +598,14 @@
     <!-- Swiper.js for sliders -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    <!-- Mida Luxury Systems -->
+    <!-- Midas The Lifestyle Luxury Systems -->
     <script src="utils/placeholderGenerator.js"></script>
     <script src="utils/imageOptimizer.js"></script>
     <script src="utils/contentManager.js"></script>
     <script src="utils/bookingCalendar.js"></script>
     <script src="utils/paymentSystem.js"></script>
     <script src="utils/userAuth.js"></script>
+    <script src="utils/aiChatbot.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

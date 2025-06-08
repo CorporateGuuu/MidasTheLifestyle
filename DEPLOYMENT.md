@@ -1,4 +1,4 @@
-# Mida - Deployment Guide
+# Midas The Lifestyle - Deployment Guide
 
 ## 🚀 Backend Integration Setup
 
@@ -61,12 +61,12 @@ The following serverless functions are automatically deployed:
 ### 4. Email Templates
 
 #### Contact Form Notifications:
-- **Subject**: `🏆 New VVIP Inquiry - [Service] | Mida`
+- **Subject**: `🏆 New VVIP Inquiry - [Service] | Midas The Lifestyle`
 - **Priority**: Standard (2-hour response time)
 - **Content**: Client details, service interest, requirements
 
 #### Reservation Notifications:
-- **Subject**: `🏆 URGENT: [Category] Reservation - [Item] | Mida`
+- **Subject**: `🏆 URGENT: [Category] Reservation - [Item] | Midas The Lifestyle`
 - **Priority**: HIGH (1-hour response time)
 - **Content**: Item details, booking dates, client information
 

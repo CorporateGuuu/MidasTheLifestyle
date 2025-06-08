@@ -162,6 +162,305 @@ function showItemDetails(itemId) {
     }
 }
 
+// Transportation Modal Functionality
+function openTransportationModal(serviceType) {
+    // Create transportation modal if it doesn't exist
+    if (!document.getElementById('transportation-modal')) {
+        const transportationHTML = `
+            <div id="transportation-modal" class="modal transportation-modal">
+                <div class="modal-content">
+                    <button class="modal-close" onclick="closeTransportationModal()">×</button>
+
+                    <div class="modal-header">
+                        <h2 class="gold-accent">Luxury Transportation Booking</h2>
+                        <p id="transportation-service-description"></p>
+                    </div>
+
+                    <form id="transportation-form" class="transportation-form">
+                        <div class="service-selection">
+                            <div class="service-option" data-service="chauffeur">
+                                <h4>Chauffeur Service</h4>
+                                <p>Professional driver with luxury vehicle</p>
+                            </div>
+                            <div class="service-option" data-service="airport">
+                                <h4>Airport Transfer</h4>
+                                <p>Premium airport pickup/dropoff</p>
+                            </div>
+                            <div class="service-option" data-service="estate">
+                                <h4>Estate Transport</h4>
+                                <p>Property viewing transportation</p>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="transport-name">Full Name</label>
+                                <input type="text" id="transport-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="transport-phone">Phone Number</label>
+                                <input type="tel" id="transport-phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transport-email">Email Address</label>
+                            <input type="email" id="transport-email" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="transport-pickup">Pickup Location</label>
+                                <input type="text" id="transport-pickup" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="transport-destination">Destination</label>
+                                <input type="text" id="transport-destination" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="transport-date">Service Date</label>
+                                <input type="date" id="transport-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="transport-time">Service Time</label>
+                                <input type="time" id="transport-time" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transport-location">Service Location</label>
+                            <select id="transport-location" required>
+                                <option value="">Select Location</option>
+                                <option value="dubai">Dubai & UAE</option>
+                                <option value="washington-dc">Washington DC</option>
+                                <option value="maryland">Maryland</option>
+                                <option value="northern-virginia">Northern Virginia</option>
+                                <option value="atlanta">Atlanta, GA</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transport-vehicle">Preferred Vehicle</label>
+                            <select id="transport-vehicle">
+                                <option value="">Any Available</option>
+                                <option value="mercedes-s-class">Mercedes S-Class</option>
+                                <option value="mercedes-maybach">Mercedes-Maybach S680</option>
+                                <option value="bmw-7-series">BMW 7 Series</option>
+                                <option value="bmw-m760i">BMW M760i</option>
+                                <option value="rolls-royce">Rolls-Royce (Premium)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transport-duration">Service Duration</label>
+                            <select id="transport-duration">
+                                <option value="1">1 Hour</option>
+                                <option value="2">2 Hours</option>
+                                <option value="3">3 Hours</option>
+                                <option value="4">4 Hours</option>
+                                <option value="8">Half Day (8 Hours)</option>
+                                <option value="12">Full Day (12 Hours)</option>
+                                <option value="custom">Custom Duration</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transport-special">Special Requirements</label>
+                            <textarea id="transport-special" rows="3" placeholder="Any special requests, child seats, accessibility needs, etc."></textarea>
+                        </div>
+
+                        <div class="pricing-estimate">
+                            <h3 class="gold-accent">Estimated Pricing</h3>
+                            <div id="transport-pricing">
+                                <p>Select service options to see pricing estimate</p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary">Request Transportation Booking</button>
+                    </form>
+                </div>
+            </div>
+        `;
+
+        document.body.insertAdjacentHTML('beforeend', transportationHTML);
+
+        // Add event listeners
+        document.getElementById('transportation-form').addEventListener('submit', handleTransportationSubmit);
+
+        // Service selection
+        document.querySelectorAll('.service-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                updateTransportationPricing();
+            });
+        });
+
+        // Update pricing when inputs change
+        ['transport-location', 'transport-vehicle', 'transport-duration'].forEach(id => {
+            document.getElementById(id).addEventListener('change', updateTransportationPricing);
+        });
+    }
+
+    // Set service type and description
+    const descriptions = {
+        'dubai-chauffeur': 'Professional chauffeur services in Dubai with luxury Mercedes and BMW vehicles',
+        'estate-transport': 'Exclusive transportation for property viewings and client transfers'
+    };
+
+    document.getElementById('transportation-service-description').textContent = descriptions[serviceType] || 'Luxury transportation services';
+
+    // Pre-select appropriate service
+    if (serviceType === 'dubai-chauffeur') {
+        document.querySelector('[data-service="chauffeur"]').classList.add('selected');
+        document.getElementById('transport-location').value = 'dubai';
+    } else if (serviceType === 'estate-transport') {
+        document.querySelector('[data-service="estate"]').classList.add('selected');
+    }
+
+    // Show modal
+    document.getElementById('transportation-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    updateTransportationPricing();
+}
+
+function closeTransportationModal() {
+    document.getElementById('transportation-modal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+function updateTransportationPricing() {
+    const location = document.getElementById('transport-location').value;
+    const vehicle = document.getElementById('transport-vehicle').value;
+    const duration = document.getElementById('transport-duration').value;
+    const selectedService = document.querySelector('.service-option.selected');
+
+    if (!location || !duration || !selectedService) {
+        document.getElementById('transport-pricing').innerHTML = '<p>Select service options to see pricing estimate</p>';
+        return;
+    }
+
+    // Base pricing (simplified for demo)
+    const basePricing = {
+        'dubai': { base: 500, currency: 'AED' },
+        'washington-dc': { base: 150, currency: 'USD' },
+        'maryland': { base: 150, currency: 'USD' },
+        'northern-virginia': { base: 150, currency: 'USD' },
+        'atlanta': { base: 120, currency: 'USD' }
+    };
+
+    const vehicleMultipliers = {
+        'mercedes-s-class': 1.0,
+        'mercedes-maybach': 1.5,
+        'bmw-7-series': 0.9,
+        'bmw-m760i': 1.3,
+        'rolls-royce': 2.0
+    };
+
+    const serviceMultipliers = {
+        'chauffeur': 1.0,
+        'airport': 0.8,
+        'estate': 1.2
+    };
+
+    const locationPricing = basePricing[location];
+    const vehicleMultiplier = vehicleMultipliers[vehicle] || 1.0;
+    const serviceType = selectedService.dataset.service;
+    const serviceMultiplier = serviceMultipliers[serviceType] || 1.0;
+
+    const basePrice = locationPricing.base;
+    const totalPrice = Math.round(basePrice * vehicleMultiplier * serviceMultiplier * parseInt(duration));
+
+    document.getElementById('transport-pricing').innerHTML = `
+        <div class="pricing-breakdown">
+            <div class="price-row">
+                <span>Base Rate (${duration} hour${duration > 1 ? 's' : ''}):</span>
+                <span>${locationPricing.currency} ${(basePrice * parseInt(duration)).toLocaleString()}</span>
+            </div>
+            <div class="price-row">
+                <span>Service Type:</span>
+                <span>${serviceType.charAt(0).toUpperCase() + serviceType.slice(1)}</span>
+            </div>
+            <div class="price-row">
+                <span>Vehicle Selection:</span>
+                <span>${vehicle ? vehicle.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Standard'}</span>
+            </div>
+            <div class="price-row total">
+                <span>Estimated Total:</span>
+                <span class="gold-accent">${locationPricing.currency} ${totalPrice.toLocaleString()}</span>
+            </div>
+        </div>
+        <p class="pricing-note">*Final pricing may vary based on specific requirements and availability</p>
+    `;
+}
+
+async function handleTransportationSubmit(e) {
+    e.preventDefault();
+
+    const formData = {
+        serviceType: document.querySelector('.service-option.selected')?.dataset.service,
+        name: document.getElementById('transport-name').value,
+        phone: document.getElementById('transport-phone').value,
+        email: document.getElementById('transport-email').value,
+        pickup: document.getElementById('transport-pickup').value,
+        destination: document.getElementById('transport-destination').value,
+        date: document.getElementById('transport-date').value,
+        time: document.getElementById('transport-time').value,
+        location: document.getElementById('transport-location').value,
+        vehicle: document.getElementById('transport-vehicle').value,
+        duration: document.getElementById('transport-duration').value,
+        special: document.getElementById('transport-special').value
+    };
+
+    try {
+        // Submit to backend (using existing reservation form endpoint for now)
+        const response = await fetch('/.netlify/functions/reservation-form', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                ...formData,
+                item: `${formData.serviceType} Transportation Service`,
+                service: 'Transportation'
+            })
+        });
+
+        if (response.ok) {
+            closeTransportationModal();
+            showSuccessMessage('Transportation booking request submitted successfully! Our concierge team will contact you within 2 hours.');
+        } else {
+            throw new Error('Failed to submit booking request');
+        }
+    } catch (error) {
+        console.error('Transportation booking error:', error);
+        alert('There was an error submitting your request. Please try again or contact us directly.');
+    }
+}
+
+function showSuccessMessage(message) {
+    const successDiv = document.createElement('div');
+    successDiv.className = 'success-notification';
+    successDiv.innerHTML = `
+        <div class="success-content">
+            <div class="success-icon">✅</div>
+            <h3>Booking Request Submitted!</h3>
+            <p>${message}</p>
+            <button onclick="this.parentElement.parentElement.remove()">Close</button>
+        </div>
+    `;
+
+    document.body.appendChild(successDiv);
+
+    setTimeout(() => {
+        successDiv.remove();
+    }, 10000);
+}
+
 function closeModal() {
     const modal = document.getElementById('booking-modal');
     modal.classList.remove('active');

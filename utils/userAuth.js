@@ -332,9 +332,134 @@ class UserAuth {
     document.getElementById('register-modal').classList.add('active');
   }
 
-  // Show forgot password (placeholder)
+  // Show forgot password modal
   showForgotPassword() {
-    alert('Password reset functionality would be implemented here. Please contact support at concierge@mida.com');
+    this.closeAuthModal();
+
+    // Create forgot password modal if it doesn't exist
+    if (!document.getElementById('forgot-password-modal')) {
+      const forgotPasswordHTML = `
+        <div id="forgot-password-modal" class="modal auth-modal">
+          <div class="modal-content auth-content">
+            <button class="modal-close" onclick="userAuth.closeAuthModal()">×</button>
+
+            <div class="auth-header">
+              <h2 class="gold-accent">Reset Password</h2>
+              <p>Enter your email address and we'll send you a reset link</p>
+            </div>
+
+            <form id="forgot-password-form" class="auth-form">
+              <div class="form-group">
+                <label for="forgot-email">Email Address</label>
+                <input type="email" id="forgot-email" required>
+              </div>
+
+              <button type="submit" class="btn-primary auth-btn">Send Reset Link</button>
+
+              <div class="auth-links">
+                <a href="#" onclick="userAuth.showLogin()">Back to Sign In</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      `;
+
+      document.body.insertAdjacentHTML('beforeend', forgotPasswordHTML);
+
+      // Add event listener for forgot password form
+      document.getElementById('forgot-password-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        this.handleForgotPassword();
+      });
+    }
+
+    document.getElementById('forgot-password-modal').classList.add('active');
+  }
+
+  // Handle forgot password
+  async handleForgotPassword() {
+    const email = document.getElementById('forgot-email').value;
+
+    try {
+      // Check if user exists
+      if (!this.users.has(email)) {
+        throw new Error('No account found with this email address');
+      }
+
+      // Generate reset token (in production, this would be done securely on the server)
+      const resetToken = this.generateResetToken();
+      const resetExpiry = Date.now() + (60 * 60 * 1000); // 1 hour expiry
+
+      // Store reset token (in production, store in secure database)
+      const resetData = {
+        email: email,
+        token: resetToken,
+        expiry: resetExpiry,
+        used: false
+      };
+
+      // Store in localStorage for demo (use secure server storage in production)
+      localStorage.setItem(`reset_${resetToken}`, JSON.stringify(resetData));
+
+      // Send reset email (simulate for demo)
+      await this.sendPasswordResetEmail(email, resetToken);
+
+      // Show success message
+      this.showPasswordResetSuccess(email);
+
+    } catch (error) {
+      this.showNotification(error.message, 'error');
+    }
+  }
+
+  // Generate reset token
+  generateResetToken() {
+    return 'reset_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+  }
+
+  // Send password reset email (simulated)
+  async sendPasswordResetEmail(email, resetToken) {
+    // In production, this would call your backend to send actual email
+    console.log(`Password reset email would be sent to: ${email}`);
+    console.log(`Reset link: ${window.location.origin}/reset-password?token=${resetToken}`);
+
+    // Simulate API call
+    return new Promise(resolve => setTimeout(resolve, 1000));
+  }
+
+  // Show password reset success
+  showPasswordResetSuccess(email) {
+    this.closeAuthModal();
+
+    const successHTML = `
+      <div id="reset-success-modal" class="modal auth-modal active">
+        <div class="modal-content auth-content">
+          <div class="auth-header">
+            <div class="text-6xl mb-4">📧</div>
+            <h2 class="gold-accent">Check Your Email</h2>
+            <p>We've sent a password reset link to:</p>
+            <p class="text-[#D4AF37] font-semibold">${email}</p>
+          </div>
+
+          <div class="reset-instructions">
+            <h3 class="gold-accent mb-4">Next Steps:</h3>
+            <ol class="text-left text-gray-300 space-y-2">
+              <li>1. Check your email inbox (and spam folder)</li>
+              <li>2. Click the reset link in the email</li>
+              <li>3. Create a new password</li>
+              <li>4. Sign in with your new password</li>
+            </ol>
+          </div>
+
+          <div class="auth-links mt-6">
+            <a href="#" onclick="this.closest('.modal').remove(); userAuth.showLogin()">Back to Sign In</a>
+            <a href="#" onclick="userAuth.resendResetEmail('${email}')">Didn't receive email? Resend</a>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', successHTML);
   }
 
   // Close auth modals

@@ -48,11 +48,11 @@ const formatCustomerConfirmation = (booking) => {
   const currencySymbol = currency === 'aed' ? 'AED' : '$';
   
   return {
-    subject: `🏆 Booking Confirmed - ${itemName} | Mida`,
+    subject: `🏆 Booking Confirmed - ${itemName} | Midas The Lifestyle`,
     html: `
       <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background: #000; color: #fff; padding: 20px;">
         <div style="text-align: center; border-bottom: 2px solid #D4AF37; padding-bottom: 20px; margin-bottom: 30px;">
-          <h1 style="color: #D4AF37; font-size: 28px; margin: 0;">Mida</h1>
+          <h1 style="color: #D4AF37; font-size: 28px; margin: 0;">Midas The Lifestyle</h1>
           <p style="color: #fff; margin: 5px 0;">Bespoke Luxury Rentals</p>
         </div>
         
@@ -104,20 +104,20 @@ const formatCustomerConfirmation = (booking) => {
             <p style="color: #D4AF37; font-weight: bold; margin: 0;">Need immediate assistance?</p>
             <p style="color: #fff; margin: 10px 0;">
               📞 +971 123 456 789<br>
-              📧 concierge@mida.com
+              📧 concierge@midas.com
             </p>
           </div>
           
           <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333;">
             <p style="color: #D4AF37; font-style: italic; margin: 0;">
-              Experience luxury. Experience Mida.
+              Experience luxury. Experience Midas The Lifestyle.
             </p>
           </div>
         </div>
         
         <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333;">
           <p style="color: #888; font-size: 12px;">
-            Mida | Dubai | Washington DC | Atlanta | Maryland | Northern Virginia
+            Midas The Lifestyle | Dubai | Washington DC | Atlanta | Maryland | Northern Virginia
           </p>
         </div>
       </div>
@@ -131,11 +131,11 @@ const formatConciergeNotification = (booking) => {
   const currencySymbol = currency === 'aed' ? 'AED' : '$';
   
   return {
-    subject: `🚨 NEW BOOKING CONFIRMED - ${itemName} | Mida`,
+    subject: `🚨 NEW BOOKING CONFIRMED - ${itemName} | Midas The Lifestyle`,
     html: `
       <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background: #000; color: #fff; padding: 20px;">
         <div style="text-align: center; border-bottom: 2px solid #D4AF37; padding-bottom: 20px; margin-bottom: 30px;">
-          <h1 style="color: #D4AF37; font-size: 28px; margin: 0;">Mida</h1>
+          <h1 style="color: #D4AF37; font-size: 28px; margin: 0;">Midas The Lifestyle</h1>
           <p style="color: #fff; margin: 5px 0;">VVIP Concierge Alert</p>
         </div>
         
@@ -194,7 +194,7 @@ const formatConciergeNotification = (booking) => {
             <p style="color: #D4AF37; font-weight: bold;">⏰ Response Time: Within 2 hours for VVIP clients</p>
             <p style="font-size: 12px; color: #888;">
               Booking confirmed: ${new Date().toLocaleString()}<br>
-              Source: Mida Website - Automated Booking System
+              Source: Midas The Lifestyle Website - Automated Booking System
             </p>
           </div>
         </div>
@@ -267,7 +267,7 @@ exports.handler = async (event, context) => {
 
     // await transporter.sendMail({
     //   from: process.env.EMAIL_USER,
-    //   to: 'concierge@mida.com',
+    //   to: 'concierge@midas.com',
     //   subject: conciergeEmail.subject,
     //   html: conciergeEmail.html
     // });

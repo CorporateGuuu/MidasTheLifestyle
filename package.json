@@ -1,7 +1,7 @@
 {
-  "name": "mida-website",
-  "version": "1.2.1",
-  "description": "Mida - Bespoke luxury rentals website with backend form processing",
+  "name": "midas-the-lifestyle-website",
+  "version": "2.0.1",
+  "description": "Midas The Lifestyle - Bespoke luxury rentals website with advanced business features",
   "main": "index.html",
   "scripts": {
     "dev": "netlify dev",
@@ -32,7 +32,7 @@
     "netlify",
     "serverless"
   ],
-  "author": "Mida",
+  "author": "Midas The Lifestyle",
   "license": "MIT",
   "repository": {
     "type": "git",
