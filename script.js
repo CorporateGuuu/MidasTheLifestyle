@@ -128,19 +128,38 @@ setupFilters('yachts', yachtSwiper);
 setupFilters('planes', planeSwiper);
 setupFilters('properties', propertySwiper);
 
-// Modal Functionality
+// Modal Functionality - Enhanced with Booking Calendar Integration
 function openModal(itemName = '') {
+    // Try to find item and open booking calendar
+    if (itemName && window.contentManager && window.contentManager.inventory) {
+        for (const category of Object.values(window.contentManager.inventory.categories)) {
+            const item = category.items.find(item => item.name === itemName);
+            if (item && window.bookingCalendar) {
+                window.bookingCalendar.openCalendar(item.id);
+                return;
+            }
+        }
+    }
+
+    // Fallback to original modal for general inquiries
     const modal = document.getElementById('booking-modal');
     const title = document.getElementById('modal-title');
-    
+
     if (itemName) {
         title.textContent = `Reserve ${itemName}`;
     } else {
         title.textContent = 'Request VVIP Consultation';
     }
-    
+
     modal.classList.add('active');
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+// Show item details function for enhanced cards
+function showItemDetails(itemId) {
+    if (window.contentManager) {
+        window.contentManager.showItemDetails(itemId);
+    }
 }
 
 function closeModal() {
