@@ -1,0 +1,179 @@
+{
+  "metadata": {
+    "lastUpdated": "2025-06-08T20:00:00Z",
+    "version": "1.0.0",
+    "currency": {
+      "primary": "AED",
+      "secondary": "USD",
+      "exchangeRate": 3.67
+    }
+  },
+  "categories": {
+    "cars": {
+      "title": "Exotic Car Rentals",
+      "description": "Experience the pinnacle of automotive excellence with our curated collection of hypercars and luxury vehicles.",
+      "filters": ["all", "hypercar", "suv"],
+      "items": [
+        {
+          "id": "bugatti-chiron-001",
+          "name": "Bugatti Chiron",
+          "category": "hypercar",
+          "brand": "Bugatti",
+          "pricing": {
+            "daily": { "aed": 20000, "usd": 5500 }
+          },
+          "specifications": {
+            "engine": "8.0L Quad-Turbo W16",
+            "horsepower": 1479,
+            "topSpeed": "420 km/h"
+          },
+          "features": ["Carbon fiber body", "Luxury leather interior", "Advanced aerodynamics"],
+          "availability": {
+            "locations": ["Dubai", "Abu Dhabi"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/bugatti-chiron/hero.jpg",
+            "thumbnail": "/assets/images/cars/bugatti-chiron/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "koenigsegg-jesko-001",
+          "name": "Koenigsegg Jesko",
+          "category": "hypercar",
+          "brand": "Koenigsegg",
+          "pricing": {
+            "daily": { "aed": 22000, "usd": 6000 }
+          },
+          "specifications": {
+            "engine": "5.0L Twin-Turbo V8",
+            "horsepower": 1600,
+            "topSpeed": "480+ km/h"
+          },
+          "features": ["Active aerodynamics", "Carbon fiber construction", "Track-focused suspension"],
+          "availability": {
+            "locations": ["Dubai"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/koenigsegg-jesko/hero.jpg",
+            "thumbnail": "/assets/images/cars/koenigsegg-jesko/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "rolls-royce-cullinan-001",
+          "name": "Rolls-Royce Cullinan",
+          "category": "suv",
+          "brand": "Rolls-Royce",
+          "pricing": {
+            "daily": { "aed": 8000, "usd": 2200 }
+          },
+          "specifications": {
+            "engine": "6.75L Twin-Turbo V12",
+            "horsepower": 563,
+            "topSpeed": "250 km/h"
+          },
+          "features": ["Starlight headliner", "Massage seats", "Champagne cooler"],
+          "availability": {
+            "locations": ["Dubai", "Abu Dhabi"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/rolls-royce-cullinan/hero.jpg",
+            "thumbnail": "/assets/images/cars/rolls-royce-cullinan/thumbnail.jpg"
+          }
+        }
+      ]
+    },
+    "yachts": {
+      "title": "Superyacht Charters",
+      "description": "Sail the azure waters in unparalleled luxury aboard our fleet of world-class superyachts.",
+      "filters": ["all", "motor", "mega"],
+      "items": [
+        {
+          "id": "icon-280-superyacht-001",
+          "name": "Icon 280 Superyacht",
+          "category": "mega",
+          "brand": "Icon Yachts",
+          "pricing": {
+            "daily": { "aed": 50000, "usd": 13500 }
+          },
+          "specifications": {
+            "length": "85 meters",
+            "guests": "12 guests, 14 crew",
+            "speed": "16 knots cruise"
+          },
+          "features": ["Helicopter landing pad", "Swimming pool", "Spa and wellness center"],
+          "availability": {
+            "locations": ["Dubai Marina"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/yachts/icon-280/hero.jpg",
+            "thumbnail": "/assets/images/yachts/icon-280/thumbnail.jpg"
+          }
+        }
+      ]
+    },
+    "jets": {
+      "title": "Private Jet Charters",
+      "description": "Soar above the clouds in ultimate comfort with our exclusive fleet of private jets.",
+      "filters": ["all", "light", "heavy"],
+      "items": [
+        {
+          "id": "gulfstream-g700-001",
+          "name": "Gulfstream G700",
+          "category": "heavy",
+          "brand": "Gulfstream",
+          "pricing": {
+            "trip": { "aed": 73000, "usd": 20000 }
+          },
+          "specifications": {
+            "range": "7,500 nautical miles",
+            "passengers": "Up to 19 passengers",
+            "speed": "Mach 0.925"
+          },
+          "features": ["Ultra-high-speed WiFi", "Master suite with shower", "Gourmet galley"],
+          "availability": {
+            "locations": ["Dubai International"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/jets/gulfstream-g700/hero.jpg",
+            "thumbnail": "/assets/images/jets/gulfstream-g700/thumbnail.jpg"
+          }
+        }
+      ]
+    },
+    "properties": {
+      "title": "Exclusive Estates",
+      "description": "Reside in architectural masterpieces that redefine luxury living.",
+      "filters": ["all", "villa", "penthouse"],
+      "items": [
+        {
+          "id": "palm-jumeirah-villa-001",
+          "name": "Palm Jumeirah Villa",
+          "category": "villa",
+          "location": "Palm Jumeirah, Dubai",
+          "pricing": {
+            "nightly": { "aed": 12800, "usd": 3500 }
+          },
+          "specifications": {
+            "bedrooms": "7 bedrooms",
+            "area": "12,000 sq ft",
+            "floors": "3 levels"
+          },
+          "features": ["Private beach access", "Infinity pool", "Home cinema"],
+          "availability": {
+            "locations": ["Palm Jumeirah"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/properties/palm-jumeirah-villa/hero.jpg",
+            "thumbnail": "/assets/images/properties/palm-jumeirah-villa/thumbnail.jpg"
+          }
+        }
+      ]
+    }
+  }
+}
