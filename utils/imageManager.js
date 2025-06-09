@@ -9,6 +9,15 @@ class ImageManager {
         this.imageQualities = ['webp', 'jpg', 'png'];
         this.imageSizes = ['thumbnail', 'medium', 'large', 'hero'];
         this.professionalImages = this.initializeProfessionalImages();
+
+        // Mobile optimization properties
+        this.devicePixelRatio = window.devicePixelRatio || 1;
+        this.isMobile = window.innerWidth <= 768;
+        this.isRetina = this.devicePixelRatio > 1;
+        this.connectionSpeed = this.getConnectionSpeed();
+        this.webpSupported = false;
+        this.lazyImageObserver = null;
+
         this.init();
     }
 
@@ -96,11 +105,88 @@ class ImageManager {
     }
 
     init() {
+        this.detectWebPSupport();
         this.setupImagePaths();
         this.setupFallbacks();
         this.setupLazyLoading();
+        this.setupMobileOptimization();
         this.preloadCriticalImages();
-        console.log('🖼️ Image Manager initialized');
+        this.setupProgressiveLoading();
+        console.log('🖼️ Enhanced Image Manager with mobile optimization initialized');
+    }
+
+    // Detect WebP support
+    detectWebPSupport() {
+        const webpTestImage = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+        const img = new Image();
+        img.onload = img.onerror = () => {
+            this.webpSupported = img.height === 2;
+        };
+        img.src = webpTestImage;
+    }
+
+    // Get connection speed estimation
+    getConnectionSpeed() {
+        if ('connection' in navigator) {
+            const connection = navigator.connection;
+            if (connection.effectiveType) {
+                switch (connection.effectiveType) {
+                    case 'slow-2g':
+                    case '2g':
+                        return 'slow';
+                    case '3g':
+                        return 'medium';
+                    case '4g':
+                        return 'fast';
+                    default:
+                        return 'medium';
+                }
+            }
+        }
+        return 'medium';
+    }
+
+    // Setup mobile optimization
+    setupMobileOptimization() {
+        // Listen for orientation changes
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                this.isMobile = window.innerWidth <= 768;
+                this.updateImageSizes();
+            }, 100);
+        });
+
+        // Listen for resize events
+        window.addEventListener('resize', this.debounce(() => {
+            this.isMobile = window.innerWidth <= 768;
+            this.updateImageSizes();
+        }, 250));
+    }
+
+    // Setup progressive loading
+    setupProgressiveLoading() {
+        this.progressiveLoadingEnabled = this.connectionSpeed === 'slow' || this.isMobile;
+    }
+
+    // Debounce utility
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // Update image sizes based on device
+    updateImageSizes() {
+        const images = document.querySelectorAll('img[data-responsive="true"]');
+        images.forEach(img => {
+            this.updateImageSrc(img);
+        });
     }
 
     setupImagePaths() {
@@ -325,18 +411,141 @@ class ImageManager {
     }
 
     getOptimizedImageUrl(src, imgElement) {
-        // If it's already an external URL, return as-is
-        if (src.startsWith('http')) return src;
+        // If it's already an external URL with parameters, optimize it
+        if (src.startsWith('http')) {
+            return this.optimizeExternalImageUrl(src, imgElement);
+        }
 
         const rect = imgElement.getBoundingClientRect();
         const devicePixelRatio = window.devicePixelRatio || 1;
-        
+
         const optimalWidth = Math.ceil(rect.width * devicePixelRatio);
         const optimalHeight = Math.ceil(rect.height * devicePixelRatio);
 
         // For local images, we'll implement responsive sizing later
         // For now, return the original path
         return src;
+    }
+
+    // Optimize external image URLs (Unsplash, etc.)
+    optimizeExternalImageUrl(src, imgElement) {
+        if (!src.includes('unsplash.com')) return src;
+
+        const rect = imgElement.getBoundingClientRect();
+        let targetWidth, targetHeight, quality;
+
+        // Determine optimal size based on device and connection
+        if (this.isMobile) {
+            targetWidth = Math.min(480, Math.ceil(rect.width * this.devicePixelRatio));
+            targetHeight = Math.ceil(targetWidth * 0.75); // 4:3 aspect ratio
+            quality = this.connectionSpeed === 'slow' ? 60 : 75;
+        } else {
+            targetWidth = Math.min(1920, Math.ceil(rect.width * this.devicePixelRatio));
+            targetHeight = Math.ceil(targetWidth * 0.6); // 16:10 aspect ratio
+            quality = this.connectionSpeed === 'slow' ? 70 : 85;
+        }
+
+        // Build optimized URL
+        const url = new URL(src);
+        url.searchParams.set('w', targetWidth);
+        url.searchParams.set('h', targetHeight);
+        url.searchParams.set('q', quality);
+        url.searchParams.set('fit', 'crop');
+        url.searchParams.set('crop', 'center');
+        url.searchParams.set('auto', 'format');
+
+        // Add WebP format if supported
+        if (this.webpSupported) {
+            url.searchParams.set('fm', 'webp');
+        }
+
+        return url.toString();
+    }
+
+    // Create responsive image with multiple sources
+    createResponsiveImageWithSources(baseSrc, alt, className = '') {
+        const picture = document.createElement('picture');
+
+        // WebP source for modern browsers
+        if (this.webpSupported) {
+            const webpSource = document.createElement('source');
+            webpSource.type = 'image/webp';
+            webpSource.srcset = this.generateSrcSet(baseSrc, 'webp');
+            webpSource.sizes = this.generateSizes();
+            picture.appendChild(webpSource);
+        }
+
+        // JPEG fallback
+        const jpegSource = document.createElement('source');
+        jpegSource.type = 'image/jpeg';
+        jpegSource.srcset = this.generateSrcSet(baseSrc, 'jpg');
+        jpegSource.sizes = this.generateSizes();
+        picture.appendChild(jpegSource);
+
+        // Fallback img element
+        const img = document.createElement('img');
+        img.src = this.optimizeExternalImageUrl(baseSrc, { getBoundingClientRect: () => ({ width: 800, height: 600 }) });
+        img.alt = alt;
+        img.className = className;
+        img.loading = 'lazy';
+        img.dataset.responsive = 'true';
+
+        // Progressive loading placeholder
+        if (this.progressiveLoadingEnabled) {
+            img.style.filter = 'blur(5px)';
+            img.style.transition = 'filter 0.3s ease';
+            img.onload = () => {
+                img.style.filter = 'none';
+            };
+        }
+
+        picture.appendChild(img);
+        return picture;
+    }
+
+    // Generate srcset for responsive images
+    generateSrcSet(baseSrc, format = 'jpg') {
+        const sizes = [480, 768, 1024, 1440, 1920];
+        const srcset = sizes.map(width => {
+            const url = new URL(baseSrc);
+            url.searchParams.set('w', width);
+            url.searchParams.set('q', this.getQualityForSize(width));
+            url.searchParams.set('fit', 'crop');
+            url.searchParams.set('crop', 'center');
+            url.searchParams.set('auto', 'format');
+
+            if (format === 'webp') {
+                url.searchParams.set('fm', 'webp');
+            }
+
+            return `${url.toString()} ${width}w`;
+        }).join(', ');
+
+        return srcset;
+    }
+
+    // Generate sizes attribute
+    generateSizes() {
+        return '(max-width: 480px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw';
+    }
+
+    // Get quality based on image size
+    getQualityForSize(width) {
+        if (width <= 480) return this.connectionSpeed === 'slow' ? 60 : 75;
+        if (width <= 768) return this.connectionSpeed === 'slow' ? 65 : 80;
+        if (width <= 1024) return this.connectionSpeed === 'slow' ? 70 : 85;
+        return this.connectionSpeed === 'slow' ? 75 : 90;
+    }
+
+    // Update image source for responsive images
+    updateImageSrc(imgElement) {
+        const originalSrc = imgElement.dataset.originalSrc || imgElement.src;
+        const optimizedSrc = this.getOptimizedImageUrl(originalSrc, imgElement);
+
+        if (imgElement.src !== optimizedSrc) {
+            imgElement.dataset.originalSrc = originalSrc;
+            imgElement.src = optimizedSrc;
+        }
     }
 
     getCarImage(carId, type = 'hero') {

@@ -7,6 +7,8 @@ class UserAuth {
     this.users = new Map(); // In production, use proper database
     this.bookingHistory = new Map();
     this.favorites = new Map();
+    this.googleAuth = null;
+    this.googleClientId = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com'; // Replace with actual Google Client ID
     this.init();
   }
 
@@ -16,7 +18,191 @@ class UserAuth {
     this.setupAuthUI();
     this.setupEventListeners();
     this.loadSampleData();
-    console.log('👤 User Authentication System initialized');
+    this.initializeGoogleAuth();
+    console.log('👤 User Authentication System with Google OAuth initialized');
+  }
+
+  // Initialize Google Authentication
+  initializeGoogleAuth() {
+    // Wait for Google API to load
+    if (typeof google !== 'undefined' && google.accounts) {
+      this.setupGoogleSignIn();
+    } else {
+      // Retry after a short delay if Google API isn't loaded yet
+      setTimeout(() => {
+        this.initializeGoogleAuth();
+      }, 1000);
+    }
+  }
+
+  // Setup Google Sign-In
+  setupGoogleSignIn() {
+    try {
+      google.accounts.id.initialize({
+        client_id: this.googleClientId,
+        callback: (response) => this.handleGoogleSignIn(response),
+        auto_select: false,
+        cancel_on_tap_outside: true
+      });
+
+      // Setup Google Sign-In buttons
+      this.setupGoogleButtons();
+      console.log('🔐 Google Authentication initialized');
+    } catch (error) {
+      console.warn('Google Authentication setup failed:', error);
+      this.showGoogleAuthError();
+    }
+  }
+
+  // Setup Google Sign-In buttons
+  setupGoogleButtons() {
+    const googleButtons = document.querySelectorAll('.google-btn');
+    googleButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.initiateGoogleSignIn();
+      });
+    });
+  }
+
+  // Initiate Google Sign-In
+  initiateGoogleSignIn() {
+    try {
+      google.accounts.id.prompt((notification) => {
+        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+          // Fallback to renderButton if prompt fails
+          this.renderGoogleButton();
+        }
+      });
+    } catch (error) {
+      console.error('Google Sign-In initiation failed:', error);
+      this.showGoogleAuthError();
+    }
+  }
+
+  // Render Google Sign-In button as fallback
+  renderGoogleButton() {
+    const buttonContainer = document.createElement('div');
+    buttonContainer.id = 'google-signin-button';
+
+    google.accounts.id.renderButton(buttonContainer, {
+      theme: 'filled_black',
+      size: 'large',
+      text: 'continue_with',
+      shape: 'rectangular',
+      logo_alignment: 'left'
+    });
+
+    // Replace existing Google button with rendered one
+    const existingButton = document.querySelector('.google-btn');
+    if (existingButton && existingButton.parentNode) {
+      existingButton.parentNode.replaceChild(buttonContainer, existingButton);
+    }
+  }
+
+  // Handle Google Sign-In response
+  handleGoogleSignIn(response) {
+    try {
+      // Decode the JWT token
+      const payload = this.decodeJWT(response.credential);
+
+      if (payload) {
+        const googleUser = {
+          id: payload.sub,
+          email: payload.email,
+          firstName: payload.given_name || '',
+          lastName: payload.family_name || '',
+          fullName: payload.name || '',
+          picture: payload.picture || '',
+          provider: 'google',
+          verified: payload.email_verified || false
+        };
+
+        this.processGoogleUser(googleUser);
+      }
+    } catch (error) {
+      console.error('Google Sign-In processing failed:', error);
+      this.showAuthError('Google authentication failed. Please try again.');
+    }
+  }
+
+  // Decode JWT token
+  decodeJWT(token) {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+
+      return JSON.parse(jsonPayload);
+    } catch (error) {
+      console.error('JWT decode failed:', error);
+      return null;
+    }
+  }
+
+  // Process Google user data
+  processGoogleUser(googleUser) {
+    // Check if user already exists
+    let existingUser = this.users.get(googleUser.email);
+
+    if (existingUser) {
+      // Update existing user with Google data
+      existingUser = {
+        ...existingUser,
+        picture: googleUser.picture,
+        provider: 'google',
+        lastLogin: new Date().toISOString()
+      };
+      this.users.set(googleUser.email, existingUser);
+    } else {
+      // Create new user from Google data
+      const newUser = {
+        id: `google_${googleUser.id}`,
+        email: googleUser.email,
+        firstName: googleUser.firstName,
+        lastName: googleUser.lastName,
+        fullName: googleUser.fullName,
+        picture: googleUser.picture,
+        phone: '',
+        preferences: [],
+        provider: 'google',
+        verified: googleUser.verified,
+        createdAt: new Date().toISOString(),
+        lastLogin: new Date().toISOString()
+      };
+
+      this.users.set(googleUser.email, newUser);
+
+      // Initialize empty booking history and favorites for new user
+      this.bookingHistory.set(newUser.id, []);
+      this.favorites.set(newUser.id, []);
+    }
+
+    // Set as current user and update UI
+    this.currentUser = this.users.get(googleUser.email);
+    this.saveUserToStorage();
+    this.updateUIForLoggedInUser();
+    this.closeAuthModal();
+
+    this.showSuccessMessage(`Welcome ${this.currentUser.firstName || this.currentUser.fullName}! You're now signed in.`);
+  }
+
+  // Show Google Auth error
+  showGoogleAuthError() {
+    const googleButtons = document.querySelectorAll('.google-btn');
+    googleButtons.forEach(button => {
+      button.innerHTML = `
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+        </svg>
+        Google Sign-In Unavailable
+      `;
+      button.disabled = true;
+      button.style.opacity = '0.6';
+      button.style.cursor = 'not-allowed';
+    });
   }
 
   // Load stored user from localStorage

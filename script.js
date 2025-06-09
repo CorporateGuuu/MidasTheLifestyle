@@ -1,5 +1,13 @@
 // Midas Lifestyle JavaScript Functionality
 
+// WhatsApp Chat Function
+function openWhatsAppChat() {
+    const phoneNumber = '+971585531029'; // UAE number
+    const message = encodeURIComponent('Hello! I am interested in your luxury rental services. Could you please provide more information?');
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappURL, '_blank');
+}
+
 // Initialize Swiper for Hero Slider
 const heroSwiper = new Swiper('.hero-slider', {
     slidesPerView: 1,
@@ -308,6 +316,7 @@ function openTransportationModal(serviceType) {
                                 <option value="">Select Location</option>
                                 <option value="dubai">Dubai & UAE</option>
                                 <option value="washington-dc">Washington DC</option>
+                                <option value="houston">Houston, TX</option>
                                 <option value="maryland">Maryland</option>
                                 <option value="northern-virginia">Northern Virginia</option>
                                 <option value="atlanta">Atlanta, GA</option>
@@ -420,6 +429,7 @@ function updateTransportationPricing() {
     const basePricing = {
         'dubai': { base: 500, currency: 'AED' },
         'washington-dc': { base: 150, currency: 'USD' },
+        'houston': { base: 140, currency: 'USD' },
         'maryland': { base: 150, currency: 'USD' },
         'northern-virginia': { base: 150, currency: 'USD' },
         'atlanta': { base: 120, currency: 'USD' }

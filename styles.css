@@ -10,12 +10,63 @@ h1, h2, h3 {
     font-family: 'Playfair Display', serif;
 }
 
-/* Hero Section Styles */
+/* Enhanced Luxury Hero Section */
 .hero-bg {
     position: relative;
     height: 100vh;
     overflow: hidden;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    background:
+        linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(26,26,26,0.5) 50%, rgba(0,0,0,0.8) 100%),
+        url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=2560&h=1440&fit=crop&crop=center&auto=format&q=90&ixlib=rb-4.0.3') center/cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(212, 175, 55, 0.1) 0%,
+        rgba(0, 0, 0, 0.3) 30%,
+        rgba(26, 26, 26, 0.6) 70%,
+        rgba(212, 175, 55, 0.05) 100%
+    );
+    backdrop-filter: blur(1px);
+    z-index: 1;
+}
+
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(212, 175, 55, 0.1) 0%,
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+    z-index: 2;
+}
+
+.hero-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
 
 .hero-slider img {
@@ -25,11 +76,58 @@ h1, h2, h3 {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1;
+    transition: opacity 1s ease-in-out, transform 8s ease-in-out;
+    transform: scale(1.05);
+}
+
+.hero-slider img:hover {
+    transform: scale(1.08);
 }
 
 .hero-content {
-    animation: fadeIn 1.5s ease-in-out;
+    position: relative;
+    z-index: 10;
+    animation: luxuryHeroEntrance 2s ease-out;
+    text-align: center;
+    max-width: 1200px;
+    padding: 0 2rem;
+}
+
+.hero-content h1 {
+    text-shadow:
+        0 0 20px rgba(212, 175, 55, 0.5),
+        2px 2px 4px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(212, 175, 55, 0.3);
+    margin-bottom: 1.5rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 1.1;
+}
+
+.hero-content p {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    margin-bottom: 2.5rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+@keyframes luxuryHeroEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+        filter: blur(5px);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(20px) scale(0.98);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
 }
 
 /* Parallax Background */
@@ -707,22 +805,71 @@ h1, h2, h3 {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* Responsive Design Adjustments */
+/* Enhanced Responsive Design */
 @media (max-width: 768px) {
+    .hero-bg {
+        background-attachment: scroll;
+        background-position: center center;
+        height: 100vh;
+        min-height: 600px;
+    }
+
+    .hero-bg::before {
+        background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.6) 0%,
+            rgba(26, 26, 26, 0.7) 50%,
+            rgba(0, 0, 0, 0.8) 100%
+        );
+    }
+
+    .hero-content {
+        padding: 0 1rem;
+        animation: mobileHeroEntrance 1.5s ease-out;
+    }
+
     .hero-content h1 {
-        font-size: 3rem;
+        font-size: clamp(2rem, 8vw, 3rem);
+        text-shadow:
+            0 0 15px rgba(212, 175, 55, 0.6),
+            2px 2px 6px rgba(0, 0, 0, 0.9);
+        margin-bottom: 1rem;
     }
-    
+
     .hero-content p {
-        font-size: 1.2rem;
+        font-size: clamp(1rem, 4vw, 1.25rem);
+        margin-bottom: 2rem;
+        line-height: 1.4;
     }
-    
+
     .card:hover {
         transform: scale(1.02);
     }
-    
+
     .parallax-bg {
         background-attachment: scroll;
+    }
+}
+
+@keyframes mobileHeroEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tablet specific adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-content h1 {
+        font-size: clamp(3rem, 6vw, 3.5rem);
+    }
+
+    .hero-content p {
+        font-size: clamp(1.2rem, 3vw, 1.4rem);
     }
 }
 
@@ -2466,6 +2613,1132 @@ img:not([src]) {
         flex-direction: column;
         gap: 12px;
         align-items: flex-start;
+    }
+}
+
+/* Enhanced Footer Phone Number Styling */
+.footer-phone-container {
+    transition: all 0.3s ease;
+}
+
+.footer-phone-container:hover {
+    transform: translateX(5px);
+}
+
+.footer-phone-container a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    position: relative;
+}
+
+.footer-phone-container a:hover {
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.footer-phone-container a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #D4AF37, #E8C96A);
+    transition: width 0.3s ease;
+}
+
+.footer-phone-container a:hover::after {
+    width: 100%;
+}
+
+.footer-location-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.footer-phone-container:hover .footer-location-label {
+    opacity: 1;
+    color: #D4AF37;
+}
+
+/* Mobile-specific phone number styling */
+@media (max-width: 768px) {
+    .footer-phone-container {
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    }
+
+    .footer-phone-container:last-child {
+        border-bottom: none;
+    }
+
+    .footer-phone-container a {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .footer-location-label {
+        font-size: 11px;
+        margin-top: 2px;
+    }
+}
+
+/* Comprehensive Booking System Styles */
+.booking-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+}
+
+.booking-content {
+    background: linear-gradient(145deg, #111, #1a1a1a);
+    border: 2px solid #D4AF37;
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 900px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    color: #fff;
+    box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+}
+
+.luxury-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #D4AF37;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10001;
+}
+
+.luxury-close:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: rotate(90deg);
+}
+
+/* Booking Progress Indicator */
+.booking-progress {
+    margin-bottom: 2rem;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #333;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+    border: 2px solid #333;
+}
+
+.step.active .step-number {
+    background: #D4AF37;
+    border-color: #D4AF37;
+    color: #000;
+    transform: scale(1.1);
+}
+
+.step.completed .step-number {
+    background: #28a745;
+    border-color: #28a745;
+}
+
+.step-label {
+    font-size: 0.875rem;
+    color: #ccc;
+    text-align: center;
+}
+
+.step.active .step-label {
+    color: #D4AF37;
+    font-weight: 600;
+}
+
+.progress-bar {
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #D4AF37, #E8C96A);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+    width: 25%;
+}
+
+/* Booking Steps */
+.booking-step {
+    display: none;
+    animation: fadeInSlide 0.5s ease-out;
+}
+
+.booking-step.active {
+    display: block;
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.booking-title {
+    font-size: 1.75rem;
+    color: #D4AF37;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Vehicle Selection Grid */
+.vehicle-selection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.vehicle-card {
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+    border: 2px solid #333;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.vehicle-card:hover {
+    border-color: #D4AF37;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
+
+.vehicle-card.selected {
+    border-color: #D4AF37;
+    background: linear-gradient(145deg, #2a2a1a, #3a3a2a);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+.vehicle-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.vehicle-info {
+    padding: 1rem;
+}
+
+.vehicle-info h3 {
+    color: #D4AF37;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.vehicle-price {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.vehicle-specs {
+    color: #ccc;
+    font-size: 0.875rem;
+}
+
+/* Calendar Styles */
+.date-selection-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.calendar-container {
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.calendar-header h3 {
+    color: #D4AF37;
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.calendar-nav {
+    background: none;
+    border: 1px solid #D4AF37;
+    color: #D4AF37;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.calendar-nav:hover {
+    background: #D4AF37;
+    color: #000;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: #333;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.calendar-day-header {
+    background: #2a2a2a;
+    padding: 0.75rem;
+    text-align: center;
+    font-weight: 600;
+    color: #D4AF37;
+    font-size: 0.875rem;
+}
+
+.calendar-day {
+    background: #1a1a1a;
+    padding: 0.75rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar-day:hover {
+    background: #333;
+}
+
+.calendar-day.today {
+    background: #D4AF37;
+    color: #000;
+    font-weight: bold;
+}
+
+.calendar-day.selected {
+    background: #28a745;
+    color: #fff;
+    font-weight: bold;
+}
+
+.calendar-day.past {
+    background: #2a2a2a;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.calendar-day.unavailable {
+    background: #dc3545;
+    color: #fff;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.calendar-day.unavailable::after {
+    content: '×';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+}
+
+.calendar-day.empty {
+    background: transparent;
+    cursor: default;
+}
+
+.time-selection {
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.time-selection h3 {
+    color: #D4AF37;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.luxury-select {
+    width: 100%;
+    padding: 0.75rem;
+    background: #2a2a2a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.luxury-select:focus {
+    border-color: #D4AF37;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+/* Luxury Form Styles */
+.luxury-form {
+    max-width: 100%;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    color: #D4AF37;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.luxury-input, .luxury-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background: #2a2a2a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.luxury-input:focus, .luxury-textarea:focus {
+    border-color: #D4AF37;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+.luxury-input.error, .luxury-textarea.error {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.checkbox-group {
+    margin: 1.5rem 0;
+}
+
+.luxury-checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+}
+
+.luxury-checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.luxury-checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    margin-right: 0.75rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.luxury-checkbox-label input[type="checkbox"]:checked + .luxury-checkmark {
+    background: #D4AF37;
+    border-color: #D4AF37;
+}
+
+.luxury-checkbox-label input[type="checkbox"]:checked + .luxury-checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-weight: bold;
+    font-size: 0.875rem;
+}
+
+.terms-link {
+    color: #D4AF37;
+    text-decoration: underline;
+}
+
+.terms-link:hover {
+    color: #E8C96A;
+}
+
+/* Booking Summary and Payment Styles */
+.booking-summary {
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.booking-summary h3 {
+    color: #D4AF37;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #333;
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-item.total {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #D4AF37;
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 2px solid #D4AF37;
+}
+
+.payment-methods h3 {
+    color: #D4AF37;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.payment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.payment-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    border: 2px solid #333;
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.payment-btn:hover {
+    border-color: #D4AF37;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+.payment-btn svg {
+    margin-right: 0.5rem;
+}
+
+.stripe-btn:hover {
+    background: linear-gradient(145deg, #635bff, #4f46e5);
+}
+
+.paypal-btn:hover {
+    background: linear-gradient(145deg, #0070ba, #005ea6);
+}
+
+/* Booking Navigation */
+.booking-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #333;
+}
+
+.nav-btn {
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 1rem;
+}
+
+.nav-btn.primary {
+    background: linear-gradient(135deg, #D4AF37, #E8C96A);
+    color: #000;
+}
+
+.nav-btn.primary:hover {
+    background: linear-gradient(135deg, #E8C96A, #D4AF37);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+.nav-btn.secondary {
+    background: transparent;
+    color: #D4AF37;
+    border: 2px solid #D4AF37;
+}
+
+.nav-btn.secondary:hover {
+    background: #D4AF37;
+    color: #000;
+}
+
+/* Booking Confirmation */
+.booking-confirmation {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.confirmation-icon {
+    margin-bottom: 1.5rem;
+}
+
+.booking-confirmation h2 {
+    color: #28a745;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.booking-confirmation p {
+    color: #ccc;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.confirmation-details {
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.confirmation-details p {
+    margin: 0.5rem 0;
+    color: #fff;
+}
+
+.confirmation-details strong {
+    color: #D4AF37;
+}
+
+/* Loading State */
+.loading-state {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.luxury-loader {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #333;
+    border-top: 4px solid #D4AF37;
+    border-radius: 50%;
+    animation: luxurySpinner 1s linear infinite;
+    margin: 0 auto 2rem;
+}
+
+@keyframes luxurySpinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-state p {
+    color: #D4AF37;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Mobile Responsive Booking Styles */
+@media (max-width: 768px) {
+    .booking-content {
+        width: 95%;
+        padding: 1.5rem;
+        max-height: 95vh;
+    }
+
+    .progress-steps {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .step {
+        flex: 0 0 calc(50% - 0.25rem);
+        margin-bottom: 1rem;
+    }
+
+    .step-number {
+        width: 35px;
+        height: 35px;
+        font-size: 0.875rem;
+    }
+
+    .step-label {
+        font-size: 0.75rem;
+    }
+
+    .vehicle-selection-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .date-selection-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .payment-options {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .booking-navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-btn {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .calendar-day {
+        padding: 0.5rem;
+        min-height: 35px;
+        font-size: 0.875rem;
+    }
+
+    .calendar-day-header {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Enhanced Vehicle Showcase Styles */
+.vehicle-showcase {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.vehicle-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.showcase-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+}
+
+.vehicle-display {
+    position: relative;
+}
+
+.vehicle-image-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.vehicle-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: all 0.5s ease;
+    transform: scale(1.05);
+}
+
+.vehicle-image:hover {
+    transform: scale(1.08);
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 2rem;
+    color: #fff;
+}
+
+.vehicle-category {
+    font-size: 0.875rem;
+    color: #D4AF37;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.vehicle-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.vehicle-price {
+    font-size: 1.25rem;
+    color: #D4AF37;
+    font-weight: 600;
+}
+
+.vehicle-info-panel {
+    color: #fff;
+    padding: 2rem;
+    background: linear-gradient(145deg, rgba(26, 26, 26, 0.8), rgba(42, 42, 42, 0.8));
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.specs-container,
+.features-container,
+.description-container {
+    margin-bottom: 2rem;
+}
+
+.specs-container h3,
+.features-container h3 {
+    color: #D4AF37;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.spec-item {
+    background: rgba(212, 175, 55, 0.1);
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.spec-label {
+    display: block;
+    font-size: 0.875rem;
+    color: #D4AF37;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.spec-value {
+    font-weight: 600;
+    color: #fff;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.feature-item::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #D4AF37;
+    font-weight: bold;
+}
+
+.feature-item:last-child {
+    border-bottom: none;
+}
+
+.vehicle-description {
+    font-style: italic;
+    color: #ccc;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.showcase-btn {
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 1rem;
+    flex: 1;
+}
+
+.showcase-btn.primary {
+    background: linear-gradient(135deg, #D4AF37, #E8C96A);
+    color: #000;
+}
+
+.showcase-btn.primary:hover {
+    background: linear-gradient(135deg, #E8C96A, #D4AF37);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+.showcase-btn.secondary {
+    background: transparent;
+    color: #D4AF37;
+    border: 2px solid #D4AF37;
+}
+
+.showcase-btn.secondary:hover {
+    background: #D4AF37;
+    color: #000;
+}
+
+.showcase-navigation {
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: rgba(26, 26, 26, 0.9);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.nav-arrow {
+    background: none;
+    border: 1px solid #D4AF37;
+    color: #D4AF37;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-arrow:hover {
+    background: #D4AF37;
+    color: #000;
+    transform: scale(1.1);
+}
+
+.vehicle-indicators {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: #D4AF37;
+    transform: scale(1.2);
+}
+
+.indicator:hover {
+    background: #D4AF37;
+}
+
+.autoplay-controls {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+}
+
+.autoplay-btn {
+    background: rgba(26, 26, 26, 0.9);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #D4AF37;
+    padding: 0.75rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.autoplay-btn:hover {
+    background: rgba(212, 175, 55, 0.2);
+    transform: scale(1.1);
+}
+
+/* Mobile Responsive Vehicle Showcase */
+@media (max-width: 768px) {
+    .vehicle-showcase {
+        padding: 2rem 0;
+    }
+
+    .showcase-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .vehicle-image {
+        height: 250px;
+    }
+
+    .image-overlay {
+        padding: 1rem;
+    }
+
+    .vehicle-name {
+        font-size: 1.5rem;
+    }
+
+    .vehicle-price {
+        font-size: 1rem;
+    }
+
+    .vehicle-info-panel {
+        padding: 1.5rem;
+    }
+
+    .specs-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .showcase-navigation {
+        position: static;
+        transform: none;
+        margin-top: 2rem;
+        justify-content: center;
+    }
+
+    .autoplay-controls {
+        position: static;
+        text-align: center;
+        margin-top: 1rem;
     }
 }
 
