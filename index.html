@@ -134,6 +134,71 @@
             box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
             border-color: #E8C96A;
         }
+
+        /* Additional Critical Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+        @media (max-width: 768px) {
+            .grid-cols-2, .grid-cols-3, .grid-cols-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-12 { margin-bottom: 3rem; }
+
+        .p-4 { padding: 1rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+
+        .rounded { border-radius: 0.5rem; }
+        .rounded-lg { border-radius: 0.75rem; }
+        .rounded-xl { border-radius: 1rem; }
+
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .opacity-90 { opacity: 0.9; }
+        .opacity-80 { opacity: 0.8; }
+
+        /* Ensure all sections have proper background */
+        section {
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+        }
+
+        /* Navigation fixes */
+        nav {
+            background: rgba(10, 10, 10, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Hero section fixes */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(26,26,26,0.8)) !important;
+            color: #FFFFFF !important;
+        }
     </style>
 </head>
 <body>

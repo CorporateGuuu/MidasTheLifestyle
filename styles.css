@@ -88,6 +88,103 @@ h1, h2, h3, h4, h5, h6 {
     border-color: var(--luxury-gold-light);
 }
 
+/* Navigation Styles */
+nav {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--luxury-gold);
+}
+
+nav a {
+    color: var(--luxury-white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--luxury-gold);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(26,26,26,0.6));
+    color: var(--luxury-white);
+    padding: 100px 0;
+}
+
+/* Service Cards */
+.service-card {
+    background: linear-gradient(145deg, var(--luxury-gray), var(--luxury-gray-light));
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 12px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    color: var(--luxury-white);
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+    border-color: var(--luxury-gold);
+}
+
+/* Vehicle Cards */
+.vehicle-card {
+    background: linear-gradient(145deg, var(--luxury-gray), var(--luxury-gray-light));
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    color: var(--luxury-white);
+}
+
+.vehicle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+    border-color: var(--luxury-gold);
+}
+
+/* Footer */
+footer {
+    background: var(--luxury-black);
+    border-top: 1px solid var(--luxury-gold);
+    color: var(--luxury-white);
+    padding: 60px 0 30px;
+}
+
+/* Text Styles */
+.text-luxury-gold {
+    color: var(--luxury-gold);
+}
+
+.text-luxury-white {
+    color: var(--luxury-white);
+}
+
+.bg-luxury-black {
+    background-color: var(--luxury-black);
+}
+
+.bg-luxury-gray {
+    background-color: var(--luxury-gray);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 60px 0;
+    }
+
+    .service-card, .vehicle-card {
+        margin-bottom: 20px;
+    }
+
+    .luxury-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
 /* Enhanced Luxury Hero Section */
 .hero-bg {
     position: relative;
