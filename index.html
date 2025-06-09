@@ -57,9 +57,84 @@
 
     <title>Midas The Lifestyle - Bespoke Luxury Rentals</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'luxury-gold': '#D4AF37',
+                        'luxury-gold-light': '#E8C96A',
+                        'luxury-black': '#0A0A0A',
+                        'luxury-gray': '#1A1A1A'
+                    },
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'montserrat': ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        /* Critical CSS for immediate styling */
+        body {
+            font-family: 'Inter', 'Montserrat', sans-serif;
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+        }
+
+        .luxury-heading {
+            font-family: 'Playfair Display', serif;
+            color: #D4AF37;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .gold-accent {
+            color: #D4AF37;
+        }
+
+        .luxury-button {
+            background: linear-gradient(135deg, #D4AF37, #E8C96A);
+            color: #000000;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .luxury-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .section-bg {
+            background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(26,26,26,0.8) 50%, rgba(0,0,0,0.9) 100%);
+            position: relative;
+        }
+
+        .premium-card {
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            border: 1px solid #D4AF37;
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .premium-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+            border-color: #E8C96A;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->

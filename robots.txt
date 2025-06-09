@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://midasthelifestyle.netlify.app/sitemap.xml
+
+# Allow luxury content
+Allow: /#cars
+Allow: /#yachts
+Allow: /#planes
+Allow: /#properties
+Allow: /#transportation
+Allow: /#contact
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.netlify/
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1

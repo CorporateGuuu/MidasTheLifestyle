@@ -212,3 +212,6 @@ Thumbs.db
 # Local development
 .local/
 .cache/
+
+# Local Netlify folder
+.netlify
