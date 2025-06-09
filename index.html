@@ -3,19 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Midas The Lifestyle - Bespoke luxury rentals of exotic cars, superyachts, private jets, and exclusive estates in Dubai, Washington, DC, Atlanta, and beyond. Curated for the elite.">
+    <meta name="keywords" content="luxury rentals, exotic cars, superyachts, private jets, exclusive estates, Dubai, Washington, DC, Houston TX, Atlanta, Maryland, Northern Virginia, Bugatti, yacht charter, luxury lifestyle">
+    <meta name="author" content="Midas The Lifestyle">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://midasthelifestyle.netlify.app/">
+    <meta property="og:title" content="Midas The Lifestyle - Bespoke Luxury Rentals">
+    <meta property="og:description" content="Curated rentals of exotic cars, superyachts, private jets, and exclusive estates for the world's elite.">
+    <meta property="og:image" content="https://midasthelifestyle.netlify.app/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://midasthelifestyle.netlify.app/">
+    <meta property="twitter:title" content="Midas The Lifestyle - Bespoke Luxury Rentals">
+    <meta property="twitter:description" content="Curated rentals of exotic cars, superyachts, private jets, and exclusive estates for the world's elite.">
+    <meta property="twitter:image" content="https://midasthelifestyle.netlify.app/og-image.jpg">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#D4AF37">
+    <meta name="background-color" content="#000000">
+
+    <!-- iOS PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Midas Luxury">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileColor" content="#D4AF37">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/icon-72x72.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/icon-16x16.png">
+
+    <!-- iOS Splash Screens -->
+    <link rel="apple-touch-startup-image" href="/images/splash/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)">
+    <link rel="apple-touch-startup-image" href="/images/splash/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)">
+    <link rel="apple-touch-startup-image" href="/images/splash/iphoneplus_splash.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)">
+    <link rel="apple-touch-startup-image" href="/images/splash/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)">
+    <link rel="apple-touch-startup-image" href="/images/splash/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)">
+    <link rel="apple-touch-startup-image" href="/images/splash/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)">
+    <link rel="apple-touch-startup-image" href="/images/splash/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)">
+    <link rel="apple-touch-startup-image" href="/images/splash/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)">
+    <link rel="apple-touch-startup-image" href="/images/splash/ipadpro3_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)">
+
     <title>Midas The Lifestyle - Bespoke Luxury Rentals</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'luxury-gold': '#D4AF37',
+                        'luxury-gold-light': '#E8C96A',
+                        'luxury-black': '#0A0A0A',
+                        'luxury-gray': '#1A1A1A'
+                    },
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'montserrat': ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./styles.css?v=2025-01-27">
     <style>
-        /* FORCE LUXURY THEME - IMMEDIATE APPLICATION */
+        /* CRITICAL LUXURY STYLING - IMMEDIATE APPLICATION */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         html, body {
-            font-family: 'Inter', sans-serif !important;
+            font-family: 'Inter', 'Montserrat', sans-serif !important;
             background-color: #0A0A0A !important;
             color: #FFFFFF !important;
             margin: 0 !important;
@@ -23,39 +95,47 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-        
+
+        /* Force luxury theme on all elements */
+        body * {
+            color: inherit;
+        }
+
+        /* LUXURY HEADINGS */
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif !important;
             color: #D4AF37 !important;
             font-weight: 700;
         }
-        
+
         .luxury-heading {
             font-family: 'Playfair Display', serif !important;
             color: #D4AF37 !important;
             text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
-        
+
         .gold-accent {
             color: #D4AF37 !important;
         }
-        
+
+        /* NAVIGATION STYLING */
         nav {
             background: rgba(10, 10, 10, 0.95) !important;
             backdrop-filter: blur(10px);
             border-bottom: 1px solid #D4AF37;
         }
-        
+
         nav a {
             color: #FFFFFF !important;
             text-decoration: none;
             transition: color 0.3s ease;
         }
-        
+
         nav a:hover {
             color: #D4AF37 !important;
         }
-        
+
+        /* LUXURY BUTTONS */
         .luxury-button, .btn-luxury, button {
             background: linear-gradient(135deg, #D4AF37, #E8C96A) !important;
             color: #000000 !important;
@@ -71,27 +151,25 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        
+
         .luxury-button:hover, .btn-luxury:hover, button:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
             background: linear-gradient(135deg, #E8C96A, #D4AF37) !important;
         }
-        
+
+        /* SECTIONS */
         section {
             background-color: #0A0A0A !important;
             color: #FFFFFF !important;
         }
-        
-        .hero-bg {
-            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(26,26,26,0.6)) !important;
-            color: #FFFFFF !important;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+        .section-bg {
+            background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(26,26,26,0.8) 50%, rgba(0,0,0,0.9) 100%) !important;
+            position: relative;
         }
-        
+
+        /* PREMIUM CARDS */
         .premium-card, .luxury-card, .card {
             background: linear-gradient(145deg, #1a1a1a, #2a2a2a) !important;
             border: 1px solid #D4AF37 !important;
@@ -100,140 +178,1445 @@
             transition: all 0.3s ease;
             color: #FFFFFF !important;
         }
-        
+
         .premium-card:hover, .luxury-card:hover, .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
             border-color: #E8C96A !important;
         }
-        
+
+        /* HERO SECTION */
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(26,26,26,0.6)) !important;
+            color: #FFFFFF !important;
+        }
+
+        /* FOOTER */
         footer {
             background: #0A0A0A !important;
             border-top: 1px solid #D4AF37;
             color: #FFFFFF !important;
         }
-        
-        /* Override Tailwind classes */
+
+        /* FORCE LUXURY THEME ON ALL TAILWIND CLASSES */
         .bg-black { background-color: #0A0A0A !important; }
         .bg-gray-900 { background-color: #1A1A1A !important; }
         .text-white { color: #FFFFFF !important; }
         .text-gray-300 { color: rgba(255, 255, 255, 0.7) !important; }
         .border-gray-800 { border-color: rgba(212, 175, 55, 0.3) !important; }
-        
+
+        /* Additional Critical Styles */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         .grid {
             display: grid;
             gap: 24px;
         }
-        
+
         .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
         .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
         .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
         .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
-        
+
         @media (max-width: 768px) {
             .grid-cols-2, .grid-cols-3, .grid-cols-4 {
                 grid-template-columns: 1fr;
             }
         }
-        
+
         .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+
         .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
         .mb-8 { margin-bottom: 2rem; }
         .mb-12 { margin-bottom: 3rem; }
+
+        .p-4 { padding: 1rem; }
         .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+
+        .rounded { border-radius: 0.5rem; }
         .rounded-lg { border-radius: 0.75rem; }
-        
-        /* Ensure all text is visible */
-        p, span, div, li {
-            color: #FFFFFF !important;
+        .rounded-xl { border-radius: 1rem; }
+
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
-        
-        .text-[#D4AF37] {
-            color: #D4AF37 !important;
+
+        .opacity-90 { opacity: 0.9; }
+        .opacity-80 { opacity: 0.8; }
+
+        /* Ensure all sections have proper background */
+        section {
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+        }
+
+        /* Navigation fixes */
+        nav {
+            background: rgba(10, 10, 10, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Hero section fixes */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(26,26,26,0.8)) !important;
+            color: #FFFFFF !important;
         }
     </style>
 </head>
-<body style="background-color: #0A0A0A !important; color: #FFFFFF !important;">
+<body style="background-color: #0A0A0A !important; color: #FFFFFF !important; font-family: 'Inter', 'Montserrat', sans-serif !important; margin: 0; padding: 0;">
     <!-- Navigation -->
-    <nav class="p-4 sticky top-0 z-50">
-        <div class="container flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold luxury-heading">Midas The Lifestyle</a>
+    <nav class="bg-black text-white p-4 sticky top-0 z-50 backdrop-blur-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold font-['Playfair_Display'] gold-accent">Midas The Lifestyle</a>
             <div class="space-x-6 hidden md:flex">
-                <a href="#home">Home</a>
-                <a href="#cars">Luxury Cars</a>
-                <a href="#yachts">Yachts</a>
-                <a href="#planes">Private Jets</a>
-                <a href="#properties">Estates</a>
-                <a href="#contact">Concierge</a>
+                <a href="#home" class="hover:text-[#D4AF37] transition-colors">Home</a>
+                <a href="#cars" class="hover:text-[#D4AF37] transition-colors">Luxury Cars</a>
+                <a href="#yachts" class="hover:text-[#D4AF37] transition-colors">Yachts</a>
+                <a href="#planes" class="hover:text-[#D4AF37] transition-colors">Private Jets</a>
+                <a href="#properties" class="hover:text-[#D4AF37] transition-colors">Estates</a>
+                <a href="#transportation" class="hover:text-[#D4AF37] transition-colors">Transportation</a>
+                <a href="#contact" class="hover:text-[#D4AF37] transition-colors">Concierge</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-[#D4AF37]">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#home" class="block py-2 hover:text-[#D4AF37] transition-colors">Home</a>
+                <a href="#cars" class="block py-2 hover:text-[#D4AF37] transition-colors">Luxury Cars</a>
+                <a href="#yachts" class="block py-2 hover:text-[#D4AF37] transition-colors">Yachts</a>
+                <a href="#planes" class="block py-2 hover:text-[#D4AF37] transition-colors">Private Jets</a>
+                <a href="#properties" class="block py-2 hover:text-[#D4AF37] transition-colors">Estates</a>
+                <a href="#transportation" class="block py-2 hover:text-[#D4AF37] transition-colors">Transportation</a>
+                <a href="#contact" class="block py-2 hover:text-[#D4AF37] transition-colors">Concierge</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg text-center">
-        <div class="container">
+    <section id="home" class="hero-bg flex items-center justify-center text-white">
+        <div class="swiper hero-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3" alt="Luxury Exotic Car" loading="eager">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3" alt="Luxury Superyacht" loading="lazy">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3" alt="Private Jet" loading="lazy">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3" alt="Luxury Estate" loading="lazy">
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto text-center hero-content z-10">
             <h1 class="text-6xl font-bold mb-4 luxury-heading">Midas The Lifestyle: Touch of Gold</h1>
             <p class="text-2xl mb-8 max-w-2xl mx-auto">Curated rentals of exotic cars, superyachts, private jets, and exclusive estates for the world's elite.</p>
-            <button class="luxury-button">Request a VVIP Consultation</button>
+            <button onclick="bookingSystem.openBookingModal()" class="luxury-button micro-bounce">Request a VVIP Consultation</button>
         </div>
     </section>
 
-    <!-- Quick Test Section -->
-    <section class="py-20">
-        <div class="container">
-            <h2 class="text-4xl font-bold text-center mb-8 luxury-heading">Luxury Services</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="premium-card text-center">
-                    <div class="text-4xl mb-4">🏎️</div>
-                    <h3 class="text-xl font-bold gold-accent mb-2">Exotic Cars</h3>
-                    <p class="mb-4">Ultimate luxury vehicles</p>
-                    <button class="luxury-button">View Collection</button>
+    <!-- Luxury Car Rentals Section -->
+    <section id="cars" class="py-20 section-bg parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3');">
+        <div class="container mx-auto px-4 fade-in">
+            <h2 class="text-4xl font-bold text-center mb-8 luxury-heading">Luxury Car Rentals</h2>
+            <p class="text-lg text-white text-center max-w-3xl mx-auto mb-12">
+                Experience the pinnacle of automotive excellence with our curated collection of the world's most exclusive vehicles.
+            </p>
+
+            <!-- Car Categories Overview -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 stagger-children">
+                <div class="premium-card hover-lift gradient-overlay-luxury fade-in">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3 micro-rotate">🏎️</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Hypercars</h3>
+                        <p class="text-gray-300 text-sm">Ultimate performance machines</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Bugatti Chiron</li>
+                        <li>• Ferrari SF90 Stradale</li>
+                        <li>• Lamborghini Huracán EVO</li>
+                        <li>• McLaren 720S</li>
+                        <li>• Koenigsegg Jesko</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">From AED 15,000/day</div>
+                        <button onclick="document.querySelector('[data-type=hypercar]').click();" class="luxury-button micro-bounce text-sm">
+                            View Collection
+                        </button>
+                    </div>
                 </div>
-                <div class="premium-card text-center">
-                    <div class="text-4xl mb-4">🛥️</div>
-                    <h3 class="text-xl font-bold gold-accent mb-2">Superyachts</h3>
-                    <p class="mb-4">Maritime luxury experiences</p>
-                    <button class="luxury-button">View Fleet</button>
+
+                <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-lg border border-[#D4AF37] hover:border-[#E8C96A] transition-all">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3">🚗</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Luxury Sedans</h3>
+                        <p class="text-gray-300 text-sm">Sophisticated elegance</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Rolls-Royce Phantom</li>
+                        <li>• Mercedes-Maybach S680</li>
+                        <li>• Bentley Flying Spur</li>
+                        <li>• BMW 760Li</li>
+                        <li>• Audi A8L</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">From AED 5,500/day</div>
+                        <button onclick="document.querySelector('[data-type=sedan]').click();" class="bg-[#D4AF37] text-black px-4 py-2 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all text-sm">
+                            View Collection
+                        </button>
+                    </div>
                 </div>
-                <div class="premium-card text-center">
-                    <div class="text-4xl mb-4">✈️</div>
-                    <h3 class="text-xl font-bold gold-accent mb-2">Private Jets</h3>
-                    <p class="mb-4">Aviation excellence</p>
-                    <button class="luxury-button">Charter Now</button>
+
+                <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-lg border border-[#D4AF37] hover:border-[#E8C96A] transition-all">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3">🚙</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Luxury SUVs</h3>
+                        <p class="text-gray-300 text-sm">Power meets prestige</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Rolls-Royce Cullinan</li>
+                        <li>• Bentley Bentayga</li>
+                        <li>• Lamborghini Urus</li>
+                        <li>• Range Rover Autobiography</li>
+                        <li>• Porsche Cayenne Turbo</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">From AED 7,500/day</div>
+                        <button onclick="document.querySelector('[data-type=suv]').click();" class="bg-[#D4AF37] text-black px-4 py-2 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all text-sm">
+                            View Collection
+                        </button>
+                    </div>
                 </div>
-                <div class="premium-card text-center">
-                    <div class="text-4xl mb-4">🏛️</div>
-                    <h3 class="text-xl font-bold gold-accent mb-2">Luxury Estates</h3>
-                    <p class="mb-4">Exclusive properties</p>
-                    <button class="luxury-button">Reserve Now</button>
+
+                <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-lg border border-[#D4AF37] hover:border-[#E8C96A] transition-all">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3">🏎️</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Convertibles</h3>
+                        <p class="text-gray-300 text-sm">Open-air luxury</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Bentley Continental GT</li>
+                        <li>• Aston Martin DB11</li>
+                        <li>• Ferrari Portofino</li>
+                        <li>• Porsche 911 Turbo S</li>
+                        <li>• Mercedes-AMG GT</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">From AED 6,500/day</div>
+                        <button onclick="document.querySelector('[data-type=convertible]').click();" class="bg-[#D4AF37] text-black px-4 py-2 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all text-sm">
+                            View Collection
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vehicle Collection -->
+            <h3 class="text-3xl font-bold text-center mb-8 gold-accent">Our Exclusive Fleet</h3>
+            <div class="flex justify-center mb-8 space-x-2 flex-wrap gap-2">
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="all">All</button>
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="hypercar">Hypercar</button>
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="suv">Luxury SUV</button>
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="sedan">Luxury Sedan</button>
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="convertible">Convertible</button>
+            </div>
+            <div class="swiper car-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide card" data-type="hypercar">
+                        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Bugatti Chiron - Ultimate luxury hypercar with 1,479 horsepower"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Bugatti Chiron</h3>
+                            <p class="text-white">AED 20,000/day | $5,500/day</p>
+                            <button onclick="bookingSystem.openBookingModal('bugatti-chiron')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="hypercar">
+                        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Koenigsegg Jesko - Swedish hypercar engineering excellence"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Koenigsegg Jesko</h3>
+                            <p class="text-white">AED 22,000/day | $6,000/day</p>
+                            <button onclick="bookingSystem.openBookingModal('koenigsegg-jesko')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="suv">
+                        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Rolls-Royce Cullinan - Ultra-luxury SUV with commanding presence"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Rolls-Royce Cullinan</h3>
+                            <p class="text-white">AED 8,000/day | $2,200/day</p>
+                            <button onclick="bookingSystem.openBookingModal('rolls-royce-cullinan')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="hypercar">
+                        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Ferrari SF90 Stradale - Hybrid supercar with 986 horsepower"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Ferrari SF90 Stradale</h3>
+                            <p class="text-white">AED 18,000/day | $4,900/day</p>
+                            <button onclick="bookingSystem.openBookingModal('ferrari-sf90-stradale')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="hypercar">
+                        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Lamborghini Huracán EVO - Italian supercar with naturally aspirated V10"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Lamborghini Huracán EVO</h3>
+                            <p class="text-white">AED 15,000/day | $4,100/day</p>
+                            <button onclick="bookingSystem.openBookingModal('lamborghini-huracan-evo')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="hypercar">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="McLaren 720S - British supercar with twin-turbo V8 engine"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">McLaren 720S</h3>
+                            <p class="text-white">AED 16,000/day | $4,400/day</p>
+                            <button onclick="bookingSystem.openBookingModal('mclaren-720s')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="convertible">
+                        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Bentley Continental GT - Luxury grand tourer with handcrafted interior"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Bentley Continental GT</h3>
+                            <p class="text-white">AED 7,000/day | $1,900/day</p>
+                            <button onclick="bookingSystem.openBookingModal('bentley-continental-gt')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="sedan">
+                        <img src="https://images.unsplash.com/photo-1631295868223-63265b40d9e4?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Rolls-Royce Phantom - The pinnacle of luxury automotive craftsmanship"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Rolls-Royce Phantom</h3>
+                            <p class="text-white">AED 9,000/day | $2,450/day</p>
+                            <button onclick="bookingSystem.openBookingModal('rolls-royce-phantom')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="convertible">
+                        <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Aston Martin DB11 - British grand tourer with twin-turbo V8"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Aston Martin DB11</h3>
+                            <p class="text-white">AED 6,500/day | $1,800/day</p>
+                            <button onclick="bookingSystem.openBookingModal('aston-martin-db11')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="suv">
+                        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Bentley Bentayga - Ultra-luxury SUV with handcrafted interior"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Bentley Bentayga</h3>
+                            <p class="text-white">AED 7,500/day | $2,050/day</p>
+                            <button onclick="bookingSystem.openBookingModal('bentley-bentayga')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="suv">
+                        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Lamborghini Urus - Super SUV with 641 horsepower V8 engine"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Lamborghini Urus</h3>
+                            <p class="text-white">AED 8,500/day | $2,300/day</p>
+                            <button onclick="bookingSystem.openBookingModal('lamborghini-urus')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="sedan">
+                        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Mercedes-Maybach S680 - Ultra-luxury sedan with V12 engine"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Mercedes-Maybach S680</h3>
+                            <p class="text-white">AED 5,500/day | $1,500/day</p>
+                            <button onclick="bookingSystem.openBookingModal('mercedes-maybach-s680')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next text-[#D4AF37]"></div>
+                <div class="swiper-button-prev text-[#D4AF37]"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <!-- Rental Features -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center mb-12 mt-16">
+                <div class="bg-black p-6 rounded-lg border border-gray-800 hover:border-[#D4AF37] transition-all">
+                    <div class="text-3xl mb-3">🔑</div>
+                    <h4 class="text-lg font-semibold gold-accent mb-2">White Glove Delivery</h4>
+                    <p class="text-gray-300 text-sm">Vehicle delivered to your location with professional briefing</p>
+                </div>
+                <div class="bg-black p-6 rounded-lg border border-gray-800 hover:border-[#D4AF37] transition-all">
+                    <div class="text-3xl mb-3">🛡️</div>
+                    <h4 class="text-lg font-semibold gold-accent mb-2">Full Insurance</h4>
+                    <p class="text-gray-300 text-sm">Comprehensive coverage and roadside assistance included</p>
+                </div>
+                <div class="bg-black p-6 rounded-lg border border-gray-800 hover:border-[#D4AF37] transition-all">
+                    <div class="text-3xl mb-3">⚡</div>
+                    <h4 class="text-lg font-semibold gold-accent mb-2">Instant Booking</h4>
+                    <p class="text-gray-300 text-sm">Reserve in minutes with real-time availability</p>
+                </div>
+                <div class="bg-black p-6 rounded-lg border border-gray-800 hover:border-[#D4AF37] transition-all">
+                    <div class="text-3xl mb-3">🌟</div>
+                    <h4 class="text-lg font-semibold gold-accent mb-2">24/7 Concierge</h4>
+                    <p class="text-gray-300 text-sm">Round-the-clock VIP support and assistance</p>
+                </div>
+            </div>
+
+            <!-- Additional Services -->
+            <div class="bg-gradient-to-r from-gray-900 to-black p-8 rounded-lg border border-[#D4AF37] text-center">
+                <h3 class="text-2xl font-bold gold-accent mb-4">Exclusive Services</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div>
+                        <div class="text-2xl mb-2">🏁</div>
+                        <h4 class="font-semibold text-white mb-2">Track Day Experiences</h4>
+                        <p class="text-gray-300 text-sm">Professional instruction on world-class racing circuits</p>
+                    </div>
+                    <div>
+                        <div class="text-2xl mb-2">🎯</div>
+                        <h4 class="font-semibold text-white mb-2">Bespoke Itineraries</h4>
+                        <p class="text-gray-300 text-sm">Custom routes and experiences tailored to your preferences</p>
+                    </div>
+                    <div>
+                        <div class="text-2xl mb-2">📸</div>
+                        <h4 class="font-semibold text-white mb-2">Professional Photography</h4>
+                        <p class="text-gray-300 text-sm">Capture your luxury experience with professional shoots</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12">
-        <div class="container text-center">
-            <h3 class="text-2xl font-bold luxury-heading mb-4">Midas The Lifestyle</h3>
-            <p class="mb-4">Bespoke luxury rentals for the world's elite</p>
-            <div class="flex justify-center space-x-8">
-                <span>Dubai, UAE</span>
-                <span>Washington DC</span>
-                <span>Houston, TX</span>
-                <span>Atlanta, GA</span>
+    <!-- Yacht Rentals Section -->
+    <section id="yachts" class="py-20 section-bg parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3');">
+        <div class="container mx-auto px-4 fade-in">
+            <h2 class="text-4xl font-bold text-center mb-8 luxury-heading">Luxury Yacht Charters</h2>
+            <p class="text-lg text-white text-center max-w-3xl mx-auto mb-12">
+                From intimate luxury motor yachts to magnificent superyachts, experience the ultimate in maritime luxury across the world's most exclusive destinations.
+            </p>
+
+            <!-- Yacht Categories Overview -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 stagger-children">
+                <div class="premium-card hover-lift gradient-overlay-luxury luxury-reveal">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3 micro-rotate">🛥️</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Luxury Motor Yachts</h3>
+                        <p class="text-gray-300 text-sm">40-80 feet of pure elegance</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Azimut Grande 35M</li>
+                        <li>• Princess Y85</li>
+                        <li>• Sunseeker Predator 74</li>
+                        <li>• Ferretti 720</li>
+                        <li>• Pershing 8X</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">From AED 8,000/day</div>
+                        <button onclick="document.querySelector('[data-type=motor]').click();" class="luxury-button micro-bounce text-sm">
+                            View Fleet
+                        </button>
+                    </div>
+                </div>
+
+                <div class="premium-card hover-lift gradient-overlay-luxury">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3 micro-rotate">🚢</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Superyachts</h3>
+                        <p class="text-gray-300 text-sm">80+ feet of ultimate luxury</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Lürssen 90M</li>
+                        <li>• Benetti FB703</li>
+                        <li>• Feadship 101M</li>
+                        <li>• Oceanco Y719</li>
+                        <li>• Amels 242</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">From AED 50,000/day</div>
+                        <button onclick="document.querySelector('[data-type=superyacht]').click();" class="luxury-button micro-bounce text-sm">
+                            View Fleet
+                        </button>
+                    </div>
+                </div>
+
+                <div class="premium-card hover-lift gradient-overlay-luxury">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3 micro-rotate">⛵</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Sailing Yachts</h3>
+                        <p class="text-gray-300 text-sm">Premium sailing experiences</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Oyster 885</li>
+                        <li>• Swan 120</li>
+                        <li>• Wally 93</li>
+                        <li>• Baltic 142</li>
+                        <li>• Southern Wind 105</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">From AED 12,000/day</div>
+                        <button onclick="document.querySelector('[data-type=sailing]').click();" class="luxury-button micro-bounce text-sm">
+                            View Fleet
+                        </button>
+                    </div>
+                </div>
+
+                <div class="premium-card hover-lift gradient-overlay-luxury">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3 micro-rotate">🎣</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Sport Fishing</h3>
+                        <p class="text-gray-300 text-sm">High-performance fishing yachts</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Viking 92 Convertible</li>
+                        <li>• Hatteras GT70</li>
+                        <li>• Bertram 61</li>
+                        <li>• Spencer 94</li>
+                        <li>• Release 88</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">From AED 6,000/day</div>
+                        <button onclick="document.querySelector('[data-type=fishing]').click();" class="luxury-button micro-bounce text-sm">
+                            View Fleet
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="mt-4">
-                <span class="gold-accent">+971 58 553 1029</span> | 
-                <span class="gold-accent">+1 240 351 0511</span>
+
+            <!-- Yacht Fleet -->
+            <h3 class="text-3xl font-bold text-center mb-8 gold-accent">Our Exclusive Yacht Fleet</h3>
+            <div class="flex justify-center mb-8 space-x-2 flex-wrap gap-2">
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="all">All</button>
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="motor">Motor Yacht</button>
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="superyacht">Superyacht</button>
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="sailing">Sailing</button>
+                <button class="filter-btn px-4 py-2 bg-black rounded-lg text-white border border-[#D4AF37] text-sm" data-type="fishing">Sport Fishing</button>
             </div>
-            <p class="mt-4">© 2025 Midas The Lifestyle. All rights reserved.</p>
+            <div class="swiper yacht-slider">
+                <div class="swiper-wrapper">
+                    <!-- Motor Yachts -->
+                    <div class="swiper-slide card" data-type="motor">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Azimut Grande 35M - Italian luxury motor yacht with elegant design"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Azimut Grande 35M</h3>
+                            <p class="text-white">AED 15,000/day | $4,100/day</p>
+                            <button onclick="openModal('Azimut Grande 35M')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="motor">
+                        <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Princess Y85 - British luxury yacht with sophisticated styling"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Princess Y85</h3>
+                            <p class="text-white">AED 12,000/day | $3,300/day</p>
+                            <button onclick="openModal('Princess Y85')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="motor">
+                        <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Sunseeker Predator 74 - High-performance luxury motor yacht"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Sunseeker Predator 74</h3>
+                            <p class="text-white">AED 10,000/day | $2,700/day</p>
+                            <button onclick="openModal('Sunseeker Predator 74')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Superyachts -->
+                    <div class="swiper-slide card" data-type="superyacht">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Lürssen 90M - German superyacht engineering excellence"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Lürssen 90M</h3>
+                            <p class="text-white">AED 80,000/day | $22,000/day</p>
+                            <button onclick="openModal('Lürssen 90M')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="superyacht">
+                        <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Benetti FB703 - Italian superyacht with custom luxury interiors"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Benetti FB703</h3>
+                            <p class="text-white">AED 65,000/day | $18,000/day</p>
+                            <button onclick="openModal('Benetti FB703')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="superyacht">
+                        <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Feadship 101M - Dutch superyacht with world-class craftsmanship"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Feadship 101M</h3>
+                            <p class="text-white">AED 95,000/day | $26,000/day</p>
+                            <button onclick="openModal('Feadship 101M')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Sailing Yachts -->
+                    <div class="swiper-slide card" data-type="sailing">
+                        <img src="https://source.unsplash.com/random/600x400?oyster-sailing-yacht" alt="Oyster 885">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Oyster 885</h3>
+                            <p class="text-white">AED 18,000/day | $5,000/day</p>
+                            <button onclick="openModal('Oyster 885')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="sailing">
+                        <img src="https://source.unsplash.com/random/600x400?swan-sailing-yacht" alt="Swan 120">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Swan 120</h3>
+                            <p class="text-white">AED 22,000/day | $6,000/day</p>
+                            <button onclick="openModal('Swan 120')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Sport Fishing Yachts -->
+                    <div class="swiper-slide card" data-type="fishing">
+                        <img src="https://source.unsplash.com/random/600x400?viking-fishing-yacht" alt="Viking 92 Convertible">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Viking 92 Convertible</h3>
+                            <p class="text-white">AED 8,000/day | $2,200/day</p>
+                            <button onclick="openModal('Viking 92 Convertible')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="fishing">
+                        <img src="https://source.unsplash.com/random/600x400?hatteras-fishing-yacht" alt="Hatteras GT70">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Hatteras GT70</h3>
+                            <p class="text-white">AED 7,000/day | $1,900/day</p>
+                            <button onclick="openModal('Hatteras GT70')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next text-[#D4AF37]"></div>
+                <div class="swiper-button-prev text-[#D4AF37]"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Private Plane Charters Section -->
+    <section id="planes" class="py-20 section-bg parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3');">
+        <div class="container mx-auto px-4 fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 gold-accent">Private Jet Charters</h2>
+            <div class="flex justify-center mb-8 space-x-4">
+                <button class="filter-btn px-6 py-3 bg-black rounded-lg text-white border border-[#D4AF37]" data-type="all">All</button>
+                <button class="filter-btn px-6 py-3 bg-black rounded-lg text-white border border-[#D4AF37]" data-type="light">Light Jet</button>
+                <button class="filter-btn px-6 py-3 bg-black rounded-lg text-white border border-[#D4AF37]" data-type="heavy">Heavy Jet</button>
+            </div>
+            <div class="swiper plane-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide card" data-type="light">
+                        <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Cessna Citation Longitude - Mid-size luxury business jet"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Cessna Citation Longitude</h3>
+                            <p class="text-white">$8,000/trip (Short-Haul)</p>
+                            <button onclick="openModal('Cessna Citation Longitude')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="heavy">
+                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Gulfstream G700 - Ultra-long-range luxury business jet"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Gulfstream G700</h3>
+                            <p class="text-white">$20,000/trip (Long-Haul)</p>
+                            <button onclick="openModal('Gulfstream G700')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="light">
+                        <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Bombardier Learjet 85 - Light luxury business jet"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Bombardier Learjet 85</h3>
+                            <p class="text-white">$9,000/trip (Short-Haul)</p>
+                            <button onclick="openModal('Bombardier Learjet 85')" class="text-[#D4AF37] hover:underline">Charter Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next text-[#D4AF37]"></div>
+                <div class="swiper-button-prev text-[#D4AF37]"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Rentals Section -->
+    <section id="properties" class="py-20 section-bg parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3');">
+        <div class="container mx-auto px-4 fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 gold-accent">Exclusive Estates</h2>
+            <div class="flex justify-center mb-8 space-x-4">
+                <button class="filter-btn px-6 py-3 bg-black rounded-lg text-white border border-[#D4AF37]" data-type="all">All</button>
+                <button class="filter-btn px-6 py-3 bg-black rounded-lg text-white border border-[#D4AF37]" data-type="villa">Villa</button>
+                <button class="filter-btn px-6 py-3 bg-black rounded-lg text-white border border-[#D4AF37]" data-type="penthouse">Penthouse</button>
+            </div>
+            <div class="swiper property-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide card" data-type="penthouse">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Dubai Marina Penthouse - Luxury waterfront living with panoramic views"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Dubai Marina Penthouse</h3>
+                            <p class="text-white">$2,000/night</p>
+                            <button onclick="openModal('Dubai Marina Penthouse')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="villa">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Palm Jumeirah Villa - Exclusive beachfront villa with private beach access"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Palm Jumeirah Villa</h3>
+                            <p class="text-white">$3,500/night</p>
+                            <button onclick="openModal('Palm Jumeirah Villa')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                    <div class="swiper-slide card" data-type="penthouse">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Miami Beach Penthouse - Ultra-luxury oceanfront penthouse with infinity pool"
+                             loading="lazy">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold gold-accent">Miami Beach Penthouse</h3>
+                            <p class="text-white">$2,500/night</p>
+                            <button onclick="openModal('Miami Beach Penthouse')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next text-[#D4AF37]"></div>
+                <div class="swiper-button-prev text-[#D4AF37]"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Transportation Services Section -->
+    <section id="transportation" class="py-20 section-bg parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3');">
+        <div class="container mx-auto px-4 fade-in">
+            <h2 class="text-4xl font-bold text-center mb-8 gold-accent">Luxury Transportation Services</h2>
+            <p class="text-lg text-white text-center max-w-3xl mx-auto mb-12">
+                Professional chauffeur services and estate transportation solutions across our prestigious locations.
+            </p>
+
+            <!-- Service Overview -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-lg border border-[#D4AF37] hover:border-[#E8C96A] transition-all">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3">🚗</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Chauffeur Services</h3>
+                        <p class="text-gray-300 text-sm">Professional drivers with luxury vehicles</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Mercedes S-Class Fleet</li>
+                        <li>• BMW 7 Series</li>
+                        <li>• Rolls-Royce Phantom</li>
+                        <li>• Bentley Flying Spur</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">From AED 500/hour</div>
+                        <button onclick="openModal('Chauffeur Services')" class="bg-[#D4AF37] text-black px-4 py-2 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all text-sm">
+                            Book Service
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-lg border border-[#D4AF37] hover:border-[#E8C96A] transition-all">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3">🏛️</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Estate Transport</h3>
+                        <p class="text-gray-300 text-sm">Property viewing transportation</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Dubai & UAE Coverage</li>
+                        <li>• Washington, DC Metro</li>
+                        <li>• Northern Virginia</li>
+                        <li>• Maryland & Atlanta</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">Custom Pricing</div>
+                        <button onclick="openModal('Estate Transport')" class="bg-[#D4AF37] text-black px-4 py-2 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all text-sm">
+                            Book Service
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-lg border border-[#D4AF37] hover:border-[#E8C96A] transition-all">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3">✈️</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Airport Transfers</h3>
+                        <p class="text-gray-300 text-sm">Seamless airport transportation</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Private jet terminals</li>
+                        <li>• Commercial airports</li>
+                        <li>• Meet & greet service</li>
+                        <li>• Luggage assistance</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">From AED 300/trip</div>
+                        <button onclick="openModal('Airport Transfer')" class="bg-[#D4AF37] text-black px-4 py-2 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all text-sm">
+                            Book Service
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-lg border border-[#D4AF37] hover:border-[#E8C96A] transition-all">
+                    <div class="text-center mb-4">
+                        <div class="text-4xl mb-3">🎯</div>
+                        <h3 class="text-xl font-bold gold-accent mb-2">Event Transport</h3>
+                        <p class="text-gray-300 text-sm">Special occasion transportation</p>
+                    </div>
+                    <ul class="text-gray-300 space-y-1 mb-4 text-sm">
+                        <li>• Wedding transportation</li>
+                        <li>• Corporate events</li>
+                        <li>• VIP occasions</li>
+                        <li>• Multi-vehicle coordination</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-[#D4AF37] font-semibold mb-3 text-sm">Custom Packages</div>
+                        <button onclick="openModal('Event Transport')" class="bg-[#D4AF37] text-black px-4 py-2 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all text-sm">
+                            Book Service
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Service Categories -->
+            <h3 class="text-3xl font-bold text-center mb-8 gold-accent">Our Fleet & Services</h3>
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <!-- Dubai Chauffeur Services -->
+                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-lg border border-[#D4AF37]">
+                    <div class="text-center mb-8">
+                        <div class="text-6xl mb-4">🚗</div>
+                        <h3 class="text-3xl font-bold gold-accent mb-4">Dubai Chauffeur Services</h3>
+                        <p class="text-gray-300">Premium luxury vehicle fleet with professional chauffeurs</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-black p-6 rounded-lg border border-gray-800 hover:border-[#D4AF37] transition-all">
+                            <h4 class="text-xl font-semibold gold-accent mb-3">Mercedes S-Class Fleet</h4>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>• Mercedes S580 4MATIC</li>
+                                <li>• Mercedes S63 AMG</li>
+                                <li>• Mercedes-Maybach S680</li>
+                            </ul>
+                            <div class="mt-4 text-[#D4AF37] font-semibold">
+                                From AED 500/hour | $135/hour
+                            </div>
+                        </div>
+
+                        <div class="bg-black p-6 rounded-lg border border-gray-800 hover:border-[#D4AF37] transition-all">
+                            <h4 class="text-xl font-semibold gold-accent mb-3">BMW 7 Series Fleet</h4>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>• BMW 750i xDrive</li>
+                                <li>• BMW M760i</li>
+                                <li>• BMW 745Le Hybrid</li>
+                            </ul>
+                            <div class="mt-4 text-[#D4AF37] font-semibold">
+                                From AED 450/hour | $120/hour
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-8">
+                        <button onclick="openTransportationModal('dubai-chauffeur')" class="bg-[#D4AF37] text-black px-8 py-3 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all">
+                            Book Dubai Chauffeur
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Estate Transportation Services -->
+                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-lg border border-[#D4AF37]">
+                    <div class="text-center mb-8">
+                        <div class="text-6xl mb-4">🏛️</div>
+                        <h3 class="text-3xl font-bold gold-accent mb-4">Estate Transportation</h3>
+                        <p class="text-gray-300">Exclusive transportation for property viewings and client transfers</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-black p-6 rounded-lg">
+                            <h4 class="text-xl font-semibold gold-accent mb-3">Service Locations</h4>
+                            <div class="grid grid-cols-1 gap-3 text-gray-300">
+                                <div class="flex justify-between">
+                                    <span>Dubai & UAE</span>
+                                    <span class="text-[#D4AF37]">Full Coverage</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Washington, DC Metro</span>
+                                    <span class="text-[#D4AF37]">50-mile radius</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Northern Virginia</span>
+                                    <span class="text-[#D4AF37]">Full Coverage</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Maryland</span>
+                                    <span class="text-[#D4AF37]">Full Coverage</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Atlanta Metro</span>
+                                    <span class="text-[#D4AF37]">30-mile radius</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-8">
+                        <button onclick="openTransportationModal('estate-transport')" class="bg-[#D4AF37] text-black px-8 py-3 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all">
+                            Book Estate Transport
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transportation Features -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center mb-12">
+                <div class="bg-black p-6 rounded-lg border border-gray-800 hover:border-[#D4AF37] transition-all">
+                    <div class="text-3xl mb-3">👨‍💼</div>
+                    <h4 class="text-lg font-semibold gold-accent mb-2">Professional Chauffeurs</h4>
+                    <p class="text-gray-300 text-sm">Experienced, licensed, and uniformed drivers</p>
+                </div>
+                <div class="bg-black p-6 rounded-lg border border-gray-800 hover:border-[#D4AF37] transition-all">
+                    <div class="text-3xl mb-3">🛡️</div>
+                    <h4 class="text-lg font-semibold gold-accent mb-2">Full Insurance</h4>
+                    <p class="text-gray-300 text-sm">Comprehensive coverage for all journeys</p>
+                </div>
+                <div class="bg-black p-6 rounded-lg border border-gray-800 hover:border-[#D4AF37] transition-all">
+                    <div class="text-3xl mb-3">📱</div>
+                    <h4 class="text-lg font-semibold gold-accent mb-2">Real-time Tracking</h4>
+                    <p class="text-gray-300 text-sm">Live GPS tracking and updates</p>
+                </div>
+                <div class="bg-black p-6 rounded-lg border border-gray-800 hover:border-[#D4AF37] transition-all">
+                    <div class="text-3xl mb-3">🌟</div>
+                    <h4 class="text-lg font-semibold gold-accent mb-2">24/7 Support</h4>
+                    <p class="text-gray-300 text-sm">Round-the-clock customer service</p>
+                </div>
+            </div>
+
+            <!-- Additional Transportation Services -->
+            <div class="bg-gradient-to-r from-gray-900 to-black p-8 rounded-lg border border-[#D4AF37] text-center">
+                <h3 class="text-2xl font-bold gold-accent mb-4">Premium Transportation Services</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div>
+                        <div class="text-2xl mb-2">🏨</div>
+                        <h4 class="font-semibold text-white mb-2">Hotel Transfers</h4>
+                        <p class="text-gray-300 text-sm">Luxury hotel pickup and drop-off services</p>
+                    </div>
+                    <div>
+                        <div class="text-2xl mb-2">🎭</div>
+                        <h4 class="font-semibold text-white mb-2">Event Transportation</h4>
+                        <p class="text-gray-300 text-sm">Special events and VIP occasion transport</p>
+                    </div>
+                    <div>
+                        <div class="text-2xl mb-2">🌍</div>
+                        <h4 class="font-semibold text-white mb-2">City Tours</h4>
+                        <p class="text-gray-300 text-sm">Guided luxury tours with professional drivers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 section-bg">
+        <div class="container mx-auto px-4 fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 gold-accent">About Midas The Lifestyle</h2>
+            <p class="text-lg text-white max-w-3xl mx-auto">
+                Midas The Lifestyle redefines luxury with bespoke rentals of exotic cars, superyachts, private jets, and exclusive estates. Operating in Dubai, Washington, DC, Houston TX, Maryland, Northern Virginia, Atlanta, and beyond, our VVIP concierge team crafts unparalleled experiences for the world's elite, where every detail glimmers with the touch of gold.
+            </p>
+        </div>
+    </section>
+
+    <!-- Trust and Credibility Section -->
+    <section id="trust" class="py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div class="container mx-auto px-4">
+            <!-- Customer Testimonials -->
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold mb-8 luxury-heading">Trusted by Elite Clientele Worldwide</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Join thousands of discerning clients who trust Midas The Lifestyle for their luxury experiences
+                </p>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16 stagger-children">
+                <div class="premium-card hover-lift">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Client testimonial" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-white">Alexander M.</h4>
+                            <p class="text-sm text-gray-400">CEO, Tech Fortune 500</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-3">
+                        <span class="text-[#D4AF37]">★★★★★</span>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "Exceptional service and attention to detail. The Bugatti Chiron experience was flawless from booking to return. Truly world-class luxury."
+                    </p>
+                </div>
+
+                <div class="premium-card hover-lift">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Client testimonial" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-white">Sophia R.</h4>
+                            <p class="text-sm text-gray-400">Investment Banking Director</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-3">
+                        <span class="text-[#D4AF37]">★★★★★</span>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "The superyacht charter in Monaco exceeded all expectations. Professional crew, impeccable service, and unforgettable memories."
+                    </p>
+                </div>
+
+                <div class="premium-card hover-lift">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Client testimonial" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-white">Marcus K.</h4>
+                            <p class="text-sm text-gray-400">Real Estate Mogul</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-3">
+                        <span class="text-[#D4AF37]">★★★★★</span>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "Private jet service to Aspen was seamless. The Gulfstream G700 and professional crew made our family vacation perfect."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Trust Signals -->
+            <div class="grid md:grid-cols-4 gap-8 mb-16 text-center stagger-children">
+                <div class="fade-in">
+                    <div class="text-4xl mb-4">🏆</div>
+                    <h4 class="font-bold text-white mb-2">Industry Awards</h4>
+                    <p class="text-sm text-gray-400">Luxury Travel Awards 2023<br>Best Concierge Service</p>
+                </div>
+                <div class="fade-in">
+                    <div class="text-4xl mb-4">🔒</div>
+                    <h4 class="font-bold text-white mb-2">Fully Insured</h4>
+                    <p class="text-sm text-gray-400">$50M Comprehensive Coverage<br>Lloyd's of London</p>
+                </div>
+                <div class="fade-in">
+                    <div class="text-4xl mb-4">✅</div>
+                    <h4 class="font-bold text-white mb-2">Certified Partners</h4>
+                    <p class="text-sm text-gray-400">IATA Certified<br>ISO 9001 Quality Standards</p>
+                </div>
+                <div class="fade-in">
+                    <div class="text-4xl mb-4">🌍</div>
+                    <h4 class="font-bold text-white mb-2">Global Network</h4>
+                    <p class="text-sm text-gray-400">50+ Cities Worldwide<br>24/7 Concierge Support</p>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-2xl p-8 mb-16 fade-in">
+                <h3 class="text-2xl font-bold text-center mb-8 gold-accent">Live Activity</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="border-l-2 border-[#D4AF37] pl-4">
+                        <div class="text-2xl font-bold text-[#D4AF37]">247</div>
+                        <div class="text-sm text-gray-400">Bookings This Month</div>
+                    </div>
+                    <div class="border-l-2 border-[#D4AF37] pl-4">
+                        <div class="text-2xl font-bold text-[#D4AF37]">98.7%</div>
+                        <div class="text-sm text-gray-400">Client Satisfaction</div>
+                    </div>
+                    <div class="border-l-2 border-[#D4AF37] pl-4">
+                        <div class="text-2xl font-bold text-[#D4AF37]">15min</div>
+                        <div class="text-sm text-gray-400">Avg Response Time</div>
+                    </div>
+                    <div class="border-l-2 border-[#D4AF37] pl-4">
+                        <div class="text-2xl font-bold text-[#D4AF37]">5,000+</div>
+                        <div class="text-sm text-gray-400">Elite Members</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Team -->
+            <div class="text-center mb-16 fade-in">
+                <h3 class="text-3xl font-bold mb-8 gold-accent">Meet Our Expert Team</h3>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center hover-lift">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Team member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-[#D4AF37]">
+                        <h4 class="font-bold text-white">James Mitchell</h4>
+                        <p class="text-sm text-gray-400">Chief Concierge Officer</p>
+                        <p class="text-xs text-gray-500 mt-2">15+ years luxury hospitality</p>
+                    </div>
+                    <div class="text-center hover-lift">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Team member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-[#D4AF37]">
+                        <h4 class="font-bold text-white">Sarah Chen</h4>
+                        <p class="text-sm text-gray-400">Fleet Operations Director</p>
+                        <p class="text-xs text-gray-500 mt-2">Former Ferrari specialist</p>
+                    </div>
+                    <div class="text-center hover-lift">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Team member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-[#D4AF37]">
+                        <h4 class="font-bold text-white">Captain Rodriguez</h4>
+                        <p class="text-sm text-gray-400">Marine Operations</p>
+                        <p class="text-xs text-gray-500 mt-2">Master Mariner License</p>
+                    </div>
+                    <div class="text-center hover-lift">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face&auto=format&q=80&ixlib=rb-4.0.3"
+                             alt="Team member" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-[#D4AF37]">
+                        <h4 class="font-bold text-white">David Thompson</h4>
+                        <p class="text-sm text-gray-400">Aviation Director</p>
+                        <p class="text-xs text-gray-500 mt-2">Commercial pilot, 20+ years</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 section-bg">
+        <div class="container mx-auto px-4 fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 gold-accent">Connect with Our VVIP Concierge</h2>
+            <form id="contact-form" class="max-w-lg mx-auto">
+                <div class="mb-6">
+                    <label for="name" class="block text-sm font-medium mb-2 text-white">Name</label>
+                    <input type="text" id="name" class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]" required>
+                </div>
+                <div class="mb-6">
+                    <label for="email" class="block text-sm font-medium mb-2 text-white">Email</label>
+                    <input type="email" id="email" class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]" required>
+                </div>
+                <div class="mb-6">
+                    <label for="phone" class="block text-sm font-medium mb-2 text-white">Phone</label>
+                    <input type="tel" id="phone" class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]">
+                </div>
+                <div class="mb-6">
+                    <label for="service" class="block text-sm font-medium mb-2 text-white">Service</label>
+                    <select id="service" class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]" required>
+                        <option value="car">Exotic Car Rental</option>
+                        <option value="yacht">Superyacht Charter</option>
+                        <option value="plane">Private Jet Charter</option>
+                        <option value="property">Exclusive Estate Rental</option>
+                    </select>
+                </div>
+                <div class="mb-6">
+                    <label for="message" class="block text-sm font-medium mb-2 text-white">Your Requirements</label>
+                    <textarea id="message" class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="bg-[#D4AF37] text-black px-8 py-4 rounded-lg hover:bg-[#E8C96A] transition-colors w-full">Request a Quote</button>
+                <!-- Honeypot field for spam protection -->
+                <input type="text" name="honeypot" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off">
+            </form>
+            <div class="mt-12 text-center">
+                <p class="text-white">Midas The Lifestyle - Luxury Rentals</p>
+                <p class="text-white">Dubai | Washington, DC | Houston TX | Atlanta | Maryland | Northern Virginia</p>
+                <p class="text-white">Phone: +971 123 456 789 | Email: concierge@midasthelifestyle.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title" class="text-2xl font-bold mb-4 gold-accent">Reserve Your Experience</h2>
+            <form id="modal-form">
+                <div class="mb-4">
+                    <label for="modal-name" class="block text-sm font-medium mb-2">Name</label>
+                    <input type="text" id="modal-name" class="w-full p-3 rounded-lg bg-black text-white border border-[#D4AF37]" required>
+                </div>
+                <div class="mb-4">
+                    <label for="modal-dates" class="block text-sm font-medium mb-2">Rental Dates</label>
+                    <input type="text" id="modal-dates" class="w-full p-3 rounded-lg bg-black text-white border border-[#D4AF37]" placeholder="e.g., 2025-06-01 to 2025-06-03" required>
+                </div>
+                <div class="mb-4">
+                    <label for="modal-location" class="block text-sm font-medium mb-2">Location</label>
+                    <select id="modal-location" class="w-full p-3 rounded-lg bg-black text-white border border-[#D4AF37]" required>
+                        <option value="dubai">Dubai</option>
+                        <option value="washington-dc">Washington, DC</option>
+                        <option value="maryland">Maryland</option>
+                        <option value="northern-virginia">Northern Virginia</option>
+                        <option value="atlanta">Atlanta, GA</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <button type="submit" class="bg-[#D4AF37] text-black px-6 py-3 rounded-lg hover:bg-[#E8C96A] w-full">Submit Reservation</button>
+                <button type="button" onclick="closeModal()" class="mt-4 text-[#D4AF37] hover:underline">Close</button>
+                <!-- Honeypot field for spam protection -->
+                <input type="text" name="honeypot" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off">
+            </form>
+        </div>
+    </div>
+
+    <!-- WhatsApp Chat Button -->
+    <div id="whatsapp-chat" class="whatsapp-chat">
+        <button onclick="openWhatsAppChat()" class="whatsapp-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.384"/>
+            </svg>
+            <span>WhatsApp</span>
+        </button>
+    </div>
+
+    <!-- AI Chatbot -->
+    <div id="ai-chatbot" class="ai-chatbot">
+        <div id="chatbot-toggle" class="chatbot-toggle" onclick="toggleChatbot()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3.04 1.05 4.36L1 22l5.64-2.05C8.96 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.31 0-2.59-.29-3.73-.85L7 20l.85-1.27C6.29 17.59 6 16.31 6 15c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6z"/>
+                <circle cx="9" cy="12" r="1"/>
+                <circle cx="12" cy="12" r="1"/>
+                <circle cx="15" cy="12" r="1"/>
+            </svg>
+            <span>AI Assistant</span>
+        </div>
+
+        <div id="chatbot-window" class="chatbot-window">
+            <div class="chatbot-header">
+                <h3>Midas AI Concierge</h3>
+                <button onclick="toggleChatbot()" class="chatbot-close">×</button>
+            </div>
+
+            <div id="chatbot-messages" class="chatbot-messages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        Welcome to Midas The Lifestyle! I'm your AI concierge. How may I assist you with our luxury services today?
+                    </div>
+                    <div class="message-time">Just now</div>
+                </div>
+            </div>
+
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input-field" placeholder="Type your message..." onkeypress="handleChatbotKeypress(event)">
+                <button onclick="sendChatbotMessage()" class="send-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="chatbot-quick-actions">
+                <button onclick="sendQuickMessage('I want to rent a luxury car')" class="quick-action-btn">🚗 Car Rental</button>
+                <button onclick="sendQuickMessage('Tell me about yacht charters')" class="quick-action-btn">🛥️ Yacht Charter</button>
+                <button onclick="sendQuickMessage('I need a private jet')" class="quick-action-btn">✈️ Private Jet</button>
+                <button onclick="sendQuickMessage('Show me luxury properties')" class="quick-action-btn">🏛️ Properties</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Luxury Footer -->
+    <footer class="bg-gradient-to-b from-gray-900 to-black text-white">
+        <div class="container mx-auto px-4">
+            <!-- Main Footer Content -->
+            <div class="py-16 border-b border-gray-800">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Brand Section -->
+                    <div class="lg:col-span-1">
+                        <div class="mb-6">
+                            <h3 class="text-2xl font-bold gold-accent mb-2">Midas The Lifestyle</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Bespoke luxury rentals for the world's elite. Experience the pinnacle of automotive excellence, maritime luxury, aviation prestige, and estate grandeur.
+                            </p>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://www.instagram.com/midasthelifestyle/" target="_blank"
+                               class="w-10 h-10 bg-gradient-to-r from-gray-800 to-gray-700 rounded-full flex items-center justify-center text-[#D4AF37] hover:bg-gradient-to-r hover:from-[#D4AF37] hover:to-[#E8C96A] hover:text-black transition-all duration-300 transform hover:scale-110">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/@MidasLifestyle" target="_blank"
+                               class="w-10 h-10 bg-gradient-to-r from-gray-800 to-gray-700 rounded-full flex items-center justify-center text-[#D4AF37] hover:bg-gradient-to-r hover:from-[#D4AF37] hover:to-[#E8C96A] hover:text-black transition-all duration-300 transform hover:scale-110">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </a>
+                            <a href="#" target="_blank"
+                               class="w-10 h-10 bg-gradient-to-r from-gray-800 to-gray-700 rounded-full flex items-center justify-center text-[#D4AF37] hover:bg-gradient-to-r hover:from-[#D4AF37] hover:to-[#E8C96A] hover:text-black transition-all duration-300 transform hover:scale-110">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Services Section -->
+                    <div>
+                        <h4 class="text-lg font-semibold gold-accent mb-4">Luxury Services</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#cars" class="text-gray-300 hover:text-[#D4AF37] transition-colors">Luxury Car Rentals</a></li>
+                            <li><a href="#yachts" class="text-gray-300 hover:text-[#D4AF37] transition-colors">Yacht Charters</a></li>
+                            <li><a href="#planes" class="text-gray-300 hover:text-[#D4AF37] transition-colors">Private Jet Charters</a></li>
+                            <li><a href="#properties" class="text-gray-300 hover:text-[#D4AF37] transition-colors">Exclusive Estates</a></li>
+                            <li><a href="#transportation" class="text-gray-300 hover:text-[#D4AF37] transition-colors">Chauffeur Services</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Locations Section -->
+                    <div>
+                        <h4 class="text-lg font-semibold gold-accent mb-4">Global Locations</h4>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-[#D4AF37] rounded-full mr-2"></span>
+                                Dubai, UAE
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-[#D4AF37] rounded-full mr-2"></span>
+                                Washington, DC
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-[#D4AF37] rounded-full mr-2"></span>
+                                Houston, TX
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-[#D4AF37] rounded-full mr-2"></span>
+                                Atlanta, GA
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-[#D4AF37] rounded-full mr-2"></span>
+                                Maryland
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-2 h-2 bg-[#D4AF37] rounded-full mr-2"></span>
+                                Northern Virginia
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Section -->
+                    <div>
+                        <h4 class="text-lg font-semibold gold-accent mb-4">VVIP Concierge</h4>
+                        <div class="space-y-3 text-sm">
+                            <!-- UAE Phone Number -->
+                            <div class="flex items-center footer-phone-container">
+                                <svg class="w-5 h-5 text-[#D4AF37] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                </svg>
+                                <div class="flex flex-col">
+                                    <a href="tel:+971585531029" class="text-gray-300 hover:text-[#D4AF37] transition-colors font-medium">
+                                        +971 58 553 1029
+                                    </a>
+                                    <span class="footer-location-label text-gray-500">UAE • Dubai</span>
+                                </div>
+                            </div>
+
+                            <!-- USA Phone Number - Serves All US Locations -->
+                            <div class="flex items-center footer-phone-container">
+                                <svg class="w-5 h-5 text-[#D4AF37] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                </svg>
+                                <div class="flex flex-col">
+                                    <a href="tel:+12403510511" class="text-gray-300 hover:text-[#D4AF37] transition-colors font-medium">
+                                        +1 240 351 0511
+                                    </a>
+                                    <span class="footer-location-label text-gray-500">USA • Washington, DC - serves all US locations</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 text-[#D4AF37] mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                </svg>
+                                <a href="mailto:concierge@midasthelifestyle.com" class="text-gray-300 hover:text-[#D4AF37] transition-colors">concierge@midasthelifestyle.com</a>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 text-[#D4AF37] mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="text-gray-300">24/7 Availability</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA Button -->
+                        <div class="mt-6">
+                            <button onclick="openModal('Concierge')"
+                                    class="w-full bg-gradient-to-r from-[#D4AF37] to-[#E8C96A] text-black px-4 py-2 rounded-lg font-semibold hover:from-[#E8C96A] hover:to-[#D4AF37] transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                Contact Concierge
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-sm text-gray-400 mb-4 md:mb-0">
+                        © 2025 Midas The Lifestyle. All rights reserved. |
+                        <a href="#" class="hover:text-[#D4AF37] transition-colors">Privacy Policy</a> |
+                        <a href="#" class="hover:text-[#D4AF37] transition-colors">Terms of Service</a>
+                    </div>
+                    <div class="flex items-center space-x-4 text-sm text-gray-400">
+                        <span class="flex items-center">
+                            <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                            Online Now
+                        </span>
+                        <span>|</span>
+                        <span>Luxury Redefined</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <!-- Google Sign-In API -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <!-- Stripe.js for payment processing -->
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <!-- Swiper.js for sliders -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Midas The Lifestyle Luxury Systems -->
+    <script src="utils/performanceOptimizer.js"></script>
+    <script src="utils/imageManager.js"></script>
+    <script src="utils/pwaManager.js"></script>
+    <script src="utils/carInventoryManager.js"></script>
+    <script src="utils/bookingCalendar.js"></script>
+    <script src="utils/bookingSystem.js"></script>
+    <script src="utils/vehicleShowcase.js"></script>
+    <script src="utils/paymentSystem.js"></script>
+    <script src="utils/userAuth.js"></script>
+    <script src="utils/aiChatbot.js"></script>
+    <script src="utils/advancedAnimations.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
