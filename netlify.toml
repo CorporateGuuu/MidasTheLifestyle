@@ -1,99 +1,158 @@
 [build]
-  # Install dependencies for Netlify functions
-  command = "npm install"
-  # Publish the root directory
   publish = "."
-  # Base directory (leave empty for root)
-  base = ""
-  # Functions directory
+  command = "npm run build:production"
   functions = "netlify/functions"
 
 [build.environment]
-  # Node.js version for Netlify functions
   NODE_VERSION = "18"
-  # Email configuration (set these in Netlify dashboard)
-  EMAIL_USER = ""
-  EMAIL_PASS = ""
+  NPM_VERSION = "9"
+  PYTHON_VERSION = "3.9"
 
-# Redirect rules for SPA-like behavior
+[context.production]
+  environment = { NODE_ENV = "production", MIDAS_ENV = "production" }
+
+[context.production.processing]
+  skip_processing = false
+
+[context.production.processing.css]
+  bundle = true
+  minify = true
+
+[context.production.processing.js]
+  bundle = true
+  minify = true
+
+[context.production.processing.html]
+  pretty_urls = true
+
+# API Routes for all Phase 9 features
 [[redirects]]
-  # Handle client-side routing (if needed)
+  from = "/api/auth/*"
+  to = "/.netlify/functions/auth-:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/inventory/*"
+  to = "/.netlify/functions/inventory-:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/booking/*"
+  to = "/.netlify/functions/booking-:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/payment/*"
+  to = "/.netlify/functions/payment-:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/admin/*"
+  to = "/.netlify/functions/admin-:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/ai/*"
+  to = "/.netlify/functions/ai-:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/loyalty/*"
+  to = "/.netlify/functions/loyalty-:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/blockchain/*"
+  to = "/.netlify/functions/blockchain-:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/virtual-tours/*"
+  to = "/.netlify/functions/virtual-tours-:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/analytics/*"
+  to = "/.netlify/functions/analytics-:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# SPA Fallback
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  conditions = {Role = ["admin"]}
 
-# Headers for security and performance
+# Security Headers
 [[headers]]
   for = "/*"
   [headers.values]
-    # Security headers
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    
-    # Performance headers
-    Cache-Control = "public, max-age=31536000"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(self), payment=(self)"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+# Static Assets Caching
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept-Encoding"
 
 [[headers]]
-  for = "*.html"
+  for = "/assets/*"
   [headers.values]
-    # HTML files should not be cached as aggressively
-    Cache-Control = "public, max-age=3600"
-
-[[headers]]
-  for = "*.css"
-  [headers.values]
-    # CSS files can be cached longer
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept-Encoding"
 
 [[headers]]
   for = "*.js"
   [headers.values]
-    # JavaScript files can be cached longer
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept-Encoding"
 
-# Form handling (for contact forms)
-[build.processing]
-  skip_processing = false
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept-Encoding"
 
-[build.processing.css]
-  bundle = false
-  minify = true
+[[headers]]
+  for = "*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
-[build.processing.js]
-  bundle = false
-  minify = true
+[[headers]]
+  for = "*.woff"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
-[build.processing.html]
-  pretty_urls = true
+# API Headers
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Access-Control-Allow-Origin = "https://midasthelifestyle.com"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization, X-Requested-With"
+    Access-Control-Max-Age = "86400"
 
-# Environment variables (if needed)
-[context.production.environment]
-  HUGO_VERSION = "0.58.2"
-  HUGO_ENV = "production"
-  HUGO_ENABLEGITINFO = "true"
+# PWA Manifest
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "application/manifest+json"
 
-[context.split1]
-  command = "echo 'split1 context'"
-
-[context.split1.environment]
-  HUGO_VERSION = "0.58.2"
-  HUGO_ENV = "production"
-
-[context.deploy-preview]
-  command = "echo 'deploy-preview context'"
-
-[context.deploy-preview.environment]
-  HUGO_VERSION = "0.58.2"
-
-[context.branch-deploy]
-  command = "echo 'branch-deploy context'"
-
-[context.branch-deploy.environment]
-  HUGO_VERSION = "0.58.2"
-
-# Custom domain settings (will be configured in Netlify dashboard)
-# Site name: midasthelifestyle
-# Custom domain: midasthelifestyle.netlify.app
+# Service Worker
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Content-Type = "application/javascript"

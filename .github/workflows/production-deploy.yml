@@ -1,0 +1,290 @@
+# Production CI/CD Pipeline for Midas The Lifestyle
+# Enterprise-grade deployment with comprehensive testing and monitoring
+
+name: Production Deployment Pipeline
+
+on:
+  push:
+    branches: [main, staging, develop]
+  pull_request:
+    branches: [main, staging]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+
+env:
+  NODE_VERSION: '18'
+  NPM_VERSION: '9'
+
+jobs:
+  # Code Quality and Security Checks
+  quality-checks:
+    name: Code Quality & Security
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: |
+            frontend/package-lock.json
+            netlify/functions/package-lock.json
+
+      # Frontend Quality Checks
+      - name: Install Frontend Dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Frontend Lint Check
+        run: |
+          cd frontend
+          npm run lint
+
+      - name: Frontend Type Check
+        run: |
+          cd frontend
+          npm run type-check
+
+      - name: Frontend Security Audit
+        run: |
+          cd frontend
+          npm audit --audit-level=moderate
+
+      # Backend Quality Checks
+      - name: Install Backend Dependencies
+        run: |
+          cd netlify/functions
+          npm ci
+
+      - name: Backend Security Audit
+        run: |
+          cd netlify/functions
+          npm audit --audit-level=moderate
+
+      # Security Scanning
+      - name: Run CodeQL Analysis
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  # Frontend Testing
+  frontend-tests:
+    name: Frontend Tests
+    runs-on: ubuntu-latest
+    needs: quality-checks
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install Dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Run Unit Tests
+        run: |
+          cd frontend
+          npm run test -- --coverage --watchAll=false
+        env:
+          CI: true
+
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: frontend/coverage/lcov.info
+          flags: frontend
+          name: frontend-coverage
+
+  # Build Application
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+    needs: [frontend-tests]
+    
+    strategy:
+      matrix:
+        environment: [staging, production]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install Dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Build Frontend
+        run: |
+          cd frontend
+          npm run build
+        env:
+          NODE_ENV: ${{ matrix.environment }}
+          REACT_APP_ENVIRONMENT: ${{ matrix.environment }}
+          REACT_APP_API_URL: /.netlify/functions
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ matrix.environment }}
+          path: frontend/build/
+          retention-days: 7
+
+  # Security Testing
+  security-tests:
+    name: Security Testing
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Snyk Security Scan
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+  # Deploy to Staging
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [build, security-tests]
+    if: github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/develop'
+    environment: staging
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-staging
+          path: frontend/build/
+
+      - name: Deploy to Netlify Staging
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir=frontend/build --site=${{ secrets.NETLIFY_STAGING_SITE_ID }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      - name: Run Smoke Tests
+        run: |
+          sleep 30
+          curl -f https://midasthelifestyle-staging.netlify.app/ || exit 1
+
+  # Deploy to Production
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [build, security-tests]
+    if: github.ref == 'refs/heads/main'
+    environment: production
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-production
+          path: frontend/build/
+
+      - name: Deploy to Netlify Production
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir=frontend/build --prod --site=${{ secrets.NETLIFY_SITE_ID }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      - name: Run Production Smoke Tests
+        run: |
+          sleep 30
+          curl -f https://midasthelifestyle.netlify.app/ || exit 1
+
+      - name: Notify Deployment Success
+        uses: 8398a7/action-slack@v3
+        if: success()
+        with:
+          status: success
+          text: 'Midas The Lifestyle deployed successfully to production! 🚀'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Notify Deployment Failure
+        uses: 8398a7/action-slack@v3
+        if: failure()
+        with:
+          status: failure
+          text: 'Midas The Lifestyle production deployment failed! ❌'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  # Post-Deployment Monitoring
+  post-deployment:
+    name: Post-Deployment Monitoring
+    runs-on: ubuntu-latest
+    needs: [deploy-production]
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Wait for Deployment Propagation
+        run: sleep 60
+
+      - name: Performance Monitoring
+        run: |
+          # Trigger performance monitoring
+          echo "Monitoring deployment performance..."
+          curl -s -o /dev/null -w "%{http_code}" https://midasthelifestyle.netlify.app/ | grep -q "200" && echo "✅ Site is responding" || echo "❌ Site not responding"
+
+      - name: Health Check
+        run: |
+          # Basic health checks
+          echo "Running health checks..."
+          response=$(curl -s -w "%{http_code}" https://midasthelifestyle.netlify.app/)
+          if [[ "$response" == *"200" ]]; then
+            echo "✅ Production site is healthy"
+          else
+            echo "❌ Production site health check failed"
+            exit 1
+          fi

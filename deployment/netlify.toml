@@ -1,0 +1,242 @@
+# Netlify Configuration for Midas The Lifestyle
+# Production deployment configuration with security headers and optimization
+
+[build]
+  # Build settings
+  publish = "frontend/build"
+  command = "cd frontend && npm ci && npm run build"
+  functions = "netlify/functions"
+  
+  # Environment variables for build
+  environment = { NODE_VERSION = "18", NPM_VERSION = "9" }
+
+[build.processing]
+  # Skip processing for already optimized files
+  skip_processing = false
+
+[build.processing.css]
+  # CSS optimization
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  # JavaScript optimization
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  # HTML optimization
+  pretty_urls = true
+  minify = true
+
+[build.processing.images]
+  # Image optimization
+  compress = true
+
+# Production environment
+[context.production]
+  publish = "frontend/build"
+  command = "cd frontend && npm ci && npm run build"
+  
+  [context.production.environment]
+    NODE_ENV = "production"
+    REACT_APP_ENVIRONMENT = "production"
+    REACT_APP_API_URL = "/.netlify/functions"
+
+# Staging environment
+[context.deploy-preview]
+  publish = "frontend/build"
+  command = "cd frontend && npm ci && npm run build"
+  
+  [context.deploy-preview.environment]
+    NODE_ENV = "staging"
+    REACT_APP_ENVIRONMENT = "staging"
+    REACT_APP_API_URL = "/.netlify/functions"
+
+# Development branch
+[context.branch-deploy]
+  publish = "frontend/build"
+  command = "cd frontend && npm ci && npm run build"
+  
+  [context.branch-deploy.environment]
+    NODE_ENV = "development"
+    REACT_APP_ENVIRONMENT = "development"
+    REACT_APP_API_URL = "/.netlify/functions"
+
+# Redirects and rewrites
+[[redirects]]
+  # SPA fallback
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["admin"], Country = ["US"]}
+
+[[redirects]]
+  # API routes
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  # Legacy redirects
+  from = "/old-booking/*"
+  to = "/booking/:splat"
+  status = 301
+
+[[redirects]]
+  # Admin panel security
+  from = "/admin/*"
+  to = "/admin/:splat"
+  status = 200
+  force = true
+  headers = {X-Frame-Options = "DENY"}
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    
+    # Content Security Policy
+    Content-Security-Policy = '''
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com https://js.stripe.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' data: https: blob:;
+      connect-src 'self' https://api.stripe.com https://www.google-analytics.com;
+      frame-src https://js.stripe.com https://www.google.com;
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self';
+    '''
+    
+    # HSTS
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    
+    # Cache control
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    # Long cache for static assets
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    # No cache for HTML files
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    # API security headers
+    X-Robots-Tag = "noindex"
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    # Admin panel security
+    X-Frame-Options = "DENY"
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+# Edge functions
+[[edge_functions]]
+  function = "auth-middleware"
+  path = "/admin/*"
+
+[[edge_functions]]
+  function = "rate-limiter"
+  path = "/api/*"
+
+# Forms
+[forms]
+  # Contact form
+  [forms.contact]
+    name = "contact"
+    action = "/thank-you"
+    
+  # Newsletter signup
+  [forms.newsletter]
+    name = "newsletter"
+    action = "/newsletter-success"
+
+# Functions
+[functions]
+  # Function timeout
+  timeout = 30
+  
+  # Memory allocation
+  memory = 1024
+  
+  # Environment variables
+  [functions.environment]
+    NODE_ENV = "production"
+
+# Plugins
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  
+  [plugins.inputs.thresholds]
+    performance = 0.9
+    accessibility = 0.9
+    best-practices = 0.9
+    seo = 0.9
+
+[[plugins]]
+  package = "netlify-plugin-submit-sitemap"
+  
+  [plugins.inputs]
+    baseUrl = "https://midasthelifestyle.netlify.app"
+    sitemapPath = "/sitemap.xml"
+    providers = [
+      "google",
+      "bing"
+    ]
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Split testing
+[split_testing]
+  # A/B test for booking flow
+  [split_testing.booking_flow]
+    path = "/booking/*"
+    branches = [
+      {branch = "main", percentage = 80},
+      {branch = "booking-optimization", percentage = 20}
+    ]
+
+# Analytics
+[analytics]
+  provider = "google"
+  
+  [analytics.google]
+    measurement_id = "G-XXXXXXXXXX"
+
+# Performance
+[performance]
+  # Preload critical resources
+  preload = [
+    "/static/css/main.css",
+    "/static/js/main.js"
+  ]
+  
+  # Resource hints
+  dns_prefetch = [
+    "https://fonts.googleapis.com",
+    "https://www.google-analytics.com"
+  ]
+  
+  preconnect = [
+    "https://fonts.gstatic.com"
+  ]

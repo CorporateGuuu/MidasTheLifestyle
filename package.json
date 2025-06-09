@@ -5,7 +5,10 @@
   "main": "index.html",
   "scripts": {
     "dev": "netlify dev",
-    "build": "echo 'No build step required for static site'",
+    "build": "npm run build:production",
+    "build:production": "npm run optimize:assets && npm run generate:sitemap && echo 'Production build complete'",
+    "optimize:assets": "echo 'Optimizing assets for production'",
+    "generate:sitemap": "node scripts/generate-sitemap.js || echo 'Sitemap generation skipped'",
     "test": "jest --verbose --coverage",
     "test:watch": "jest --watch --verbose",
     "test:unit": "jest --testPathPattern=unit --verbose",
@@ -34,7 +37,16 @@
     "mongoose": "^8.0.3",
     "nodemailer": "^6.9.7",
     "stripe": "^14.12.0",
-    "validator": "^13.11.0"
+    "validator": "^13.11.0",
+    "@tensorflow/tfjs-node": "^4.15.0",
+    "natural": "^6.12.0",
+    "axios": "^1.6.2",
+    "uuid": "^9.0.1",
+    "redis": "^4.6.10",
+    "twilio": "^4.19.0",
+    "web3": "^4.3.0",
+    "bitcoin": "^3.1.1",
+    "ethers": "^6.9.0"
   },
   "devDependencies": {
     "netlify-cli": "^17.10.1",

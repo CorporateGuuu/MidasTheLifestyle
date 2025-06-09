@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midas The Lifestyle - API Documentation</title>
+    
+    <!-- Swagger UI CSS -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@4.15.5/swagger-ui.css" />
+    
+    <!-- Custom Luxury Styling -->
+    <style>
+        /* Luxury Theme for API Documentation */
+        :root {
+            --luxury-gold: #D4AF37;
+            --luxury-light-gold: #F4E4BC;
+            --luxury-dark-gold: #B8941F;
+            --luxury-black: #0A0A0A;
+            --luxury-dark-gray: #1A1A1A;
+            --luxury-gray: #2A2A2A;
+            --luxury-light-gray: #CCCCCC;
+            --luxury-white: #FFFFFF;
+        }
+
+        body {
+            background-color: var(--luxury-black) !important;
+            color: var(--luxury-white) !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        }
+
+        /* Header Styling */
+        .swagger-ui .topbar {
+            background-color: var(--luxury-dark-gray) !important;
+            border-bottom: 2px solid var(--luxury-gold) !important;
+            padding: 20px 0 !important;
+        }
+
+        .swagger-ui .topbar .download-url-wrapper {
+            display: none !important;
+        }
+
+        /* Custom Header */
+        .luxury-header {
+            background: linear-gradient(135deg, var(--luxury-dark-gray) 0%, var(--luxury-gray) 100%);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--luxury-gold);
+            margin-bottom: 30px;
+        }
+
+        .luxury-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--luxury-gold) 0%, var(--luxury-light-gold) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .luxury-subtitle {
+            color: var(--luxury-light-gray);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .luxury-description {
+            color: var(--luxury-light-gray);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Swagger UI Customization */
+        .swagger-ui {
+            background-color: var(--luxury-black) !important;
+        }
+
+        .swagger-ui .info {
+            background-color: var(--luxury-dark-gray) !important;
+            border: 1px solid var(--luxury-gold) !important;
+            border-radius: 8px !important;
+            padding: 30px !important;
+            margin-bottom: 30px !important;
+        }
+
+        .swagger-ui .info .title {
+            color: var(--luxury-gold) !important;
+            font-family: 'Playfair Display', serif !important;
+            font-size: 2.5rem !important;
+        }
+
+        .swagger-ui .info .description {
+            color: var(--luxury-light-gray) !important;
+        }
+
+        /* Operation Blocks */
+        .swagger-ui .opblock {
+            background-color: var(--luxury-dark-gray) !important;
+            border: 1px solid var(--luxury-gray) !important;
+            border-radius: 8px !important;
+            margin-bottom: 20px !important;
+        }
+
+        .swagger-ui .opblock.opblock-post {
+            border-left: 4px solid var(--luxury-gold) !important;
+        }
+
+        .swagger-ui .opblock.opblock-get {
+            border-left: 4px solid #4CAF50 !important;
+        }
+
+        .swagger-ui .opblock.opblock-put {
+            border-left: 4px solid #FF9800 !important;
+        }
+
+        .swagger-ui .opblock.opblock-delete {
+            border-left: 4px solid #F44336 !important;
+        }
+
+        .swagger-ui .opblock .opblock-summary {
+            background-color: var(--luxury-gray) !important;
+            color: var(--luxury-white) !important;
+        }
+
+        .swagger-ui .opblock .opblock-summary-method {
+            background-color: var(--luxury-gold) !important;
+            color: var(--luxury-black) !important;
+            font-weight: 600 !important;
+        }
+
+        .swagger-ui .opblock .opblock-summary-path {
+            color: var(--luxury-light-gray) !important;
+            font-family: 'Monaco', 'Menlo', monospace !important;
+        }
+
+        /* Parameters and Responses */
+        .swagger-ui .parameters-container {
+            background-color: var(--luxury-dark-gray) !important;
+            border: 1px solid var(--luxury-gray) !important;
+            border-radius: 8px !important;
+            padding: 20px !important;
+        }
+
+        .swagger-ui .parameter__name {
+            color: var(--luxury-gold) !important;
+            font-weight: 600 !important;
+        }
+
+        .swagger-ui .parameter__type {
+            color: var(--luxury-light-gray) !important;
+        }
+
+        .swagger-ui .response-col_status {
+            color: var(--luxury-gold) !important;
+            font-weight: 600 !important;
+        }
+
+        /* Try it out button */
+        .swagger-ui .btn.try-out__btn {
+            background-color: var(--luxury-gold) !important;
+            color: var(--luxury-black) !important;
+            border: none !important;
+            border-radius: 6px !important;
+            font-weight: 600 !important;
+            padding: 8px 16px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .swagger-ui .btn.try-out__btn:hover {
+            background-color: var(--luxury-dark-gold) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        .swagger-ui .btn.execute {
+            background-color: var(--luxury-gold) !important;
+            color: var(--luxury-black) !important;
+            border: none !important;
+            border-radius: 6px !important;
+            font-weight: 600 !important;
+            padding: 12px 24px !important;
+        }
+
+        /* Code blocks */
+        .swagger-ui .highlight-code {
+            background-color: var(--luxury-black) !important;
+            border: 1px solid var(--luxury-gray) !important;
+            border-radius: 6px !important;
+        }
+
+        .swagger-ui .microlight {
+            color: var(--luxury-light-gray) !important;
+        }
+
+        /* Models */
+        .swagger-ui .model-container {
+            background-color: var(--luxury-dark-gray) !important;
+            border: 1px solid var(--luxury-gray) !important;
+            border-radius: 8px !important;
+        }
+
+        .swagger-ui .model .property {
+            color: var(--luxury-light-gray) !important;
+        }
+
+        .swagger-ui .model .property-type {
+            color: var(--luxury-gold) !important;
+        }
+
+        /* Authentication */
+        .swagger-ui .auth-container {
+            background-color: var(--luxury-dark-gray) !important;
+            border: 2px solid var(--luxury-gold) !important;
+            border-radius: 8px !important;
+            padding: 20px !important;
+        }
+
+        .swagger-ui .auth-container h4 {
+            color: var(--luxury-gold) !important;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--luxury-dark-gray);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--luxury-gold) 0%, var(--luxury-light-gold) 100%);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--luxury-dark-gold) 0%, var(--luxury-gold) 100%);
+        }
+
+        /* Quick Navigation */
+        .quick-nav {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: var(--luxury-dark-gray);
+            border: 1px solid var(--luxury-gold);
+            border-radius: 8px;
+            padding: 15px;
+            z-index: 1000;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .quick-nav h4 {
+            color: var(--luxury-gold);
+            margin: 0 0 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .quick-nav a {
+            display: block;
+            color: var(--luxury-light-gray);
+            text-decoration: none;
+            padding: 5px 0;
+            font-size: 0.8rem;
+            border-bottom: 1px solid var(--luxury-gray);
+        }
+
+        .quick-nav a:hover {
+            color: var(--luxury-gold);
+        }
+
+        /* Environment Selector */
+        .env-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+        }
+
+        .env-selector select {
+            background: var(--luxury-dark-gray);
+            color: var(--luxury-white);
+            border: 1px solid var(--luxury-gold);
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+
+        /* Status Indicators */
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-indicator.online {
+            background-color: #4CAF50;
+        }
+
+        .status-indicator.offline {
+            background-color: #F44336;
+        }
+
+        .status-indicator.maintenance {
+            background-color: #FF9800;
+        }
+    </style>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Custom Luxury Header -->
+    <div class="luxury-header">
+        <div class="luxury-logo">MIDAS THE LIFESTYLE</div>
+        <div class="luxury-subtitle">Luxury Rental Platform API Documentation</div>
+        <div class="luxury-description">
+            Comprehensive API documentation for the world's premier luxury rental platform. 
+            Access our complete suite of APIs for vehicle inventory, booking management, 
+            user authentication, and premium concierge services.
+        </div>
+    </div>
+
+    <!-- Environment Selector -->
+    <div class="env-selector">
+        <select id="environmentSelector" onchange="switchEnvironment()">
+            <option value="production">🌐 Production</option>
+            <option value="staging">🧪 Staging</option>
+            <option value="local">💻 Local</option>
+        </select>
+    </div>
+
+    <!-- Quick Navigation -->
+    <div class="quick-nav">
+        <h4>Quick Navigation</h4>
+        <a href="#authentication">🔐 Authentication</a>
+        <a href="#inventory">🚗 Inventory</a>
+        <a href="#booking">📅 Booking</a>
+        <a href="#users">👤 Users</a>
+        <a href="#admin">⚙️ Admin</a>
+        <a href="#payments">💳 Payments</a>
+        <a href="#notifications">📧 Notifications</a>
+    </div>
+
+    <!-- Swagger UI Container -->
+    <div id="swagger-ui"></div>
+
+    <!-- Swagger UI JavaScript -->
+    <script src="https://unpkg.com/swagger-ui-dist@4.15.5/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@4.15.5/swagger-ui-standalone-preset.js"></script>
+
+    <script>
+        // Environment configurations
+        const environments = {
+            production: {
+                url: 'https://midasthelifestyle.netlify.app/.netlify/functions',
+                name: 'Production',
+                status: 'online'
+            },
+            staging: {
+                url: 'https://midasthelifestyle-staging.netlify.app/.netlify/functions',
+                name: 'Staging',
+                status: 'online'
+            },
+            local: {
+                url: 'http://localhost:3000/.netlify/functions',
+                name: 'Local Development',
+                status: 'offline'
+            }
+        };
+
+        // OpenAPI Specification
+        const openApiSpec = {
+            openapi: '3.0.3',
+            info: {
+                title: 'Midas The Lifestyle API',
+                description: `
+# Luxury Rental Platform API
+
+Welcome to the Midas The Lifestyle API documentation. Our comprehensive API provides access to:
+
+- **Premium Vehicle Inventory** - Browse and manage luxury cars, yachts, jets, and properties
+- **Real-time Booking System** - Complete booking lifecycle management
+- **User Authentication** - Secure JWT-based authentication with OAuth support
+- **Payment Processing** - Stripe and PayPal integration for secure transactions
+- **Admin Management** - Comprehensive business management tools
+- **Concierge Services** - Premium customer service integration
+
+## Authentication
+
+All API endpoints require authentication using JWT tokens. Include your token in the Authorization header:
+
+\`\`\`
+Authorization: Bearer your_jwt_token_here
+\`\`\`
+
+## Rate Limiting
+
+API requests are limited to:
+- **General API**: 100 requests per 15 minutes
+- **Admin API**: 20 requests per 5 minutes
+- **Authentication**: 5 attempts per 15 minutes
+
+## Support
+
+For API support, contact our development team at:
+- **Email**: concierge@midasthelifestyle.com
+- **Phone**: +1 240 351 0511
+                `,
+                version: '1.0.0',
+                contact: {
+                    name: 'Midas The Lifestyle API Support',
+                    email: 'concierge@midasthelifestyle.com',
+                    url: 'https://midasthelifestyle.netlify.app'
+                },
+                license: {
+                    name: 'Proprietary',
+                    url: 'https://midasthelifestyle.netlify.app/terms'
+                }
+            },
+            servers: [
+                {
+                    url: environments.production.url,
+                    description: 'Production Server'
+                },
+                {
+                    url: environments.staging.url,
+                    description: 'Staging Server'
+                },
+                {
+                    url: environments.local.url,
+                    description: 'Local Development Server'
+                }
+            ],
+            components: {
+                securitySchemes: {
+                    bearerAuth: {
+                        type: 'http',
+                        scheme: 'bearer',
+                        bearerFormat: 'JWT'
+                    }
+                }
+            },
+            security: [
+                {
+                    bearerAuth: []
+                }
+            ],
+            paths: {
+                '/auth-login': {
+                    post: {
+                        tags: ['Authentication'],
+                        summary: 'User Login',
+                        description: 'Authenticate user and receive JWT token',
+                        requestBody: {
+                            required: true,
+                            content: {
+                                'application/json': {
+                                    schema: {
+                                        type: 'object',
+                                        properties: {
+                                            email: { type: 'string', format: 'email' },
+                                            password: { type: 'string', minLength: 8 }
+                                        },
+                                        required: ['email', 'password']
+                                    }
+                                }
+                            }
+                        },
+                        responses: {
+                            '200': {
+                                description: 'Login successful',
+                                content: {
+                                    'application/json': {
+                                        schema: {
+                                            type: 'object',
+                                            properties: {
+                                                token: { type: 'string' },
+                                                user: { $ref: '#/components/schemas/User' },
+                                                expiresIn: { type: 'string' }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            '401': { description: 'Invalid credentials' },
+                            '429': { description: 'Too many login attempts' }
+                        }
+                    }
+                },
+                '/inventory': {
+                    get: {
+                        tags: ['Inventory'],
+                        summary: 'Get Vehicle Inventory',
+                        description: 'Retrieve paginated list of available luxury vehicles',
+                        parameters: [
+                            {
+                                name: 'category',
+                                in: 'query',
+                                schema: { type: 'string', enum: ['cars', 'yachts', 'jets', 'properties'] }
+                            },
+                            {
+                                name: 'location',
+                                in: 'query',
+                                schema: { type: 'string' }
+                            },
+                            {
+                                name: 'page',
+                                in: 'query',
+                                schema: { type: 'integer', minimum: 1, default: 1 }
+                            },
+                            {
+                                name: 'limit',
+                                in: 'query',
+                                schema: { type: 'integer', minimum: 1, maximum: 50, default: 12 }
+                            }
+                        ],
+                        responses: {
+                            '200': {
+                                description: 'Inventory retrieved successfully',
+                                content: {
+                                    'application/json': {
+                                        schema: {
+                                            type: 'object',
+                                            properties: {
+                                                items: {
+                                                    type: 'array',
+                                                    items: { $ref: '#/components/schemas/Vehicle' }
+                                                },
+                                                pagination: { $ref: '#/components/schemas/Pagination' }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                '/booking-management': {
+                    post: {
+                        tags: ['Booking'],
+                        summary: 'Create New Booking',
+                        description: 'Create a new luxury vehicle booking',
+                        requestBody: {
+                            required: true,
+                            content: {
+                                'application/json': {
+                                    schema: { $ref: '#/components/schemas/BookingRequest' }
+                                }
+                            }
+                        },
+                        responses: {
+                            '201': {
+                                description: 'Booking created successfully',
+                                content: {
+                                    'application/json': {
+                                        schema: { $ref: '#/components/schemas/Booking' }
+                                    }
+                                }
+                            },
+                            '400': { description: 'Invalid booking data' },
+                            '409': { description: 'Vehicle not available for selected dates' }
+                        }
+                    }
+                }
+            },
+            components: {
+                schemas: {
+                    User: {
+                        type: 'object',
+                        properties: {
+                            id: { type: 'string' },
+                            email: { type: 'string', format: 'email' },
+                            firstName: { type: 'string' },
+                            lastName: { type: 'string' },
+                            role: { type: 'string', enum: ['customer', 'concierge', 'admin', 'super-admin'] },
+                            createdAt: { type: 'string', format: 'date-time' }
+                        }
+                    },
+                    Vehicle: {
+                        type: 'object',
+                        properties: {
+                            id: { type: 'string' },
+                            brand: { type: 'string' },
+                            model: { type: 'string' },
+                            year: { type: 'integer' },
+                            category: { type: 'string' },
+                            basePrice: { type: 'number' },
+                            location: { type: 'string' },
+                            images: { type: 'array', items: { type: 'string' } },
+                            features: { type: 'array', items: { type: 'string' } },
+                            availability: { type: 'boolean' }
+                        }
+                    },
+                    Booking: {
+                        type: 'object',
+                        properties: {
+                            id: { type: 'string' },
+                            vehicleId: { type: 'string' },
+                            userId: { type: 'string' },
+                            startDate: { type: 'string', format: 'date' },
+                            endDate: { type: 'string', format: 'date' },
+                            totalAmount: { type: 'number' },
+                            status: { type: 'string', enum: ['pending', 'confirmed', 'active', 'completed', 'cancelled'] },
+                            createdAt: { type: 'string', format: 'date-time' }
+                        }
+                    },
+                    BookingRequest: {
+                        type: 'object',
+                        required: ['vehicleId', 'startDate', 'endDate'],
+                        properties: {
+                            vehicleId: { type: 'string' },
+                            startDate: { type: 'string', format: 'date' },
+                            endDate: { type: 'string', format: 'date' },
+                            serviceTier: { type: 'string', enum: ['standard', 'premium', 'vvip'] },
+                            addOns: { type: 'array', items: { type: 'string' } },
+                            guestInfo: {
+                                type: 'object',
+                                properties: {
+                                    firstName: { type: 'string' },
+                                    lastName: { type: 'string' },
+                                    email: { type: 'string', format: 'email' },
+                                    phone: { type: 'string' }
+                                }
+                            }
+                        }
+                    },
+                    Pagination: {
+                        type: 'object',
+                        properties: {
+                            page: { type: 'integer' },
+                            limit: { type: 'integer' },
+                            total: { type: 'integer' },
+                            totalPages: { type: 'integer' },
+                            hasMore: { type: 'boolean' }
+                        }
+                    }
+                }
+            }
+        };
+
+        // Initialize Swagger UI
+        function initSwaggerUI(serverUrl) {
+            const ui = SwaggerUIBundle({
+                url: null,
+                spec: {
+                    ...openApiSpec,
+                    servers: [{ url: serverUrl, description: 'Current Environment' }]
+                },
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout",
+                tryItOutEnabled: true,
+                requestInterceptor: (request) => {
+                    // Add custom headers
+                    request.headers['X-API-Client'] = 'Midas-Documentation';
+                    return request;
+                },
+                responseInterceptor: (response) => {
+                    // Log API responses for debugging
+                    console.log('API Response:', response);
+                    return response;
+                }
+            });
+
+            return ui;
+        }
+
+        // Switch environment
+        function switchEnvironment() {
+            const selector = document.getElementById('environmentSelector');
+            const selectedEnv = selector.value;
+            const env = environments[selectedEnv];
+            
+            console.log(`Switching to ${env.name} environment`);
+            initSwaggerUI(env.url);
+        }
+
+        // Initialize with production environment
+        document.addEventListener('DOMContentLoaded', function() {
+            initSwaggerUI(environments.production.url);
+        });
+    </script>
+</body>
+</html>
