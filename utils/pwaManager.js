@@ -15,25 +15,27 @@ class PWAManager {
         this.setupInstallPrompt();
         this.createInstallButton();
         this.setupMobileOptimizations();
-        this.handleAppInstalled();
         this.setupTouchOptimizations();
         console.log('🚀 PWA Manager initialized');
     }
 
     checkInstallationStatus() {
-        // Check if app is running in standalone mode
+        // Check if app is running in standalone mode (actually installed and launched as PWA)
         this.isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
                            window.navigator.standalone ||
                            document.referrer.includes('android-app://');
 
-        // Check if app is already installed (only if actually in standalone mode)
+        // Only consider app installed if it's actually running in standalone mode
         this.isInstalled = this.isStandalone;
 
         if (this.isStandalone) {
+            // App is actually installed and running as PWA
             document.body.classList.add('pwa-standalone');
             this.addStandaloneStyles();
+            console.log('✅ PWA: Running in standalone mode (app is installed)');
         } else {
-            // Show install prompt for non-installed users after delay
+            // App is running in browser - show install prompt after delay
+            console.log('🌐 PWA: Running in browser mode - will show install prompt');
             setTimeout(() => {
                 this.showInstallPromptIfAvailable();
             }, 5000);
@@ -52,7 +54,7 @@ class PWAManager {
         // Handle app installed event
         window.addEventListener('appinstalled', () => {
             console.log('PWA: App installed successfully');
-            this.handleAppInstalled();
+            this.handleAppInstalled(true); // Show success message for browser-initiated install
         });
     }
 
@@ -98,18 +100,47 @@ class PWAManager {
 
     showInstallPromptIfAvailable() {
         // Only show if not installed and user hasn't dismissed recently
-        if (!this.isInstalled && !localStorage.getItem('midas-install-dismissed')) {
+        if (!this.isInstalled && !this.checkDismissalStatus()) {
+            console.log('📱 PWA: Showing install prompt banner');
             this.showInstallBanner();
+        } else if (this.isInstalled) {
+            console.log('✅ PWA: App already installed, skipping install prompt');
+        } else {
+            console.log('⏰ PWA: Install prompt dismissed recently, skipping');
         }
     }
 
-    showInstallBanner() {
-        if (this.isInstalled || document.getElementById('install-banner')) return;
-
-        // Check if user dismissed recently
+    checkDismissalStatus() {
         const dismissed = localStorage.getItem('midas-install-dismissed');
-        if (dismissed && Date.now() < parseInt(dismissed)) return;
+        if (!dismissed) return false;
 
+        const dismissedTime = parseInt(dismissed);
+        const now = Date.now();
+
+        // Check if 24 hours have passed since dismissal
+        if (now > dismissedTime) {
+            // Clear expired dismissal
+            localStorage.removeItem('midas-install-dismissed');
+            return false;
+        }
+
+        return true;
+    }
+
+    showInstallBanner() {
+        // Double-check conditions before showing banner
+        if (this.isInstalled || document.getElementById('install-banner')) {
+            console.log('🚫 PWA: Banner not shown - app installed or banner already exists');
+            return;
+        }
+
+        // Check dismissal status using the new method
+        if (this.checkDismissalStatus()) {
+            console.log('🚫 PWA: Banner not shown - recently dismissed');
+            return;
+        }
+
+        console.log('🎯 PWA: Creating install banner');
         const banner = document.createElement('div');
         banner.id = 'install-banner';
         banner.className = 'install-banner';
@@ -139,6 +170,7 @@ class PWAManager {
         `;
 
         document.body.appendChild(banner);
+        console.log('✅ PWA: Install banner displayed');
 
         // Auto-dismiss after 15 seconds
         setTimeout(() => {
@@ -161,7 +193,7 @@ class PWAManager {
             
             if (outcome === 'accepted') {
                 console.log('PWA: User accepted install');
-                this.handleAppInstalled();
+                this.handleAppInstalled(true); // Show success message for user-initiated install
             } else {
                 console.log('PWA: User dismissed install');
             }
@@ -172,7 +204,7 @@ class PWAManager {
         }
     }
 
-    handleAppInstalled() {
+    handleAppInstalled(showSuccessMessage = false) {
         this.isInstalled = true;
         localStorage.setItem('midas-pwa-installed', 'true');
 
@@ -182,16 +214,14 @@ class PWAManager {
         }
         this.dismissBanner();
 
-        // Only show success message if user actually installed the app
-        if (this.deferredPrompt) {
+        // Only show success message if explicitly requested (after user action)
+        if (showSuccessMessage) {
             this.showInstallSuccess();
         }
     }
 
     showInstallSuccess() {
-        // Only show if the app was actually installed through the prompt
-        if (!this.deferredPrompt) return;
-
+        // Create success notification for actual app installation
         const notification = document.createElement('div');
         notification.className = 'install-success-notification';
         notification.innerHTML = `
@@ -210,9 +240,14 @@ class PWAManager {
 
         document.body.appendChild(notification);
 
+        // Auto-remove notification after 5 seconds
         setTimeout(() => {
-            notification.remove();
+            if (notification.parentNode) {
+                notification.remove();
+            }
         }, 5000);
+
+        console.log('✅ PWA: Install success notification displayed');
     }
 
     dismissBanner() {
@@ -220,7 +255,9 @@ class PWAManager {
         if (banner) {
             banner.remove();
             // Remember user dismissed the banner for 24 hours
-            localStorage.setItem('midas-install-dismissed', Date.now() + (24 * 60 * 60 * 1000));
+            const dismissUntil = Date.now() + (24 * 60 * 60 * 1000);
+            localStorage.setItem('midas-install-dismissed', dismissUntil);
+            console.log('❌ PWA: Install banner dismissed by user for 24 hours');
         }
     }
 
