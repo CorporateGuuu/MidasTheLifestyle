@@ -474,11 +474,24 @@ class LuxuryBookingSystem {
     const requiredFields = ['first-name', 'last-name', 'email', 'phone', 'pickup-location', 'dropoff-location', 'license-number'];
     let isValid = true;
 
+    // Clear previous errors
+    document.querySelectorAll('.error-message').forEach(error => error.remove());
+    document.querySelectorAll('.error').forEach(field => field.classList.remove('error'));
+
     requiredFields.forEach(fieldId => {
       const field = document.getElementById(fieldId);
       if (field && !field.value.trim()) {
         this.showFieldError(field, 'This field is required');
         isValid = false;
+      } else if (field) {
+        // Validate specific field types
+        if (fieldId === 'email' && !this.validateEmail(field.value)) {
+          this.showFieldError(field, 'Please enter a valid email address');
+          isValid = false;
+        } else if (fieldId === 'phone' && !this.validatePhone(field.value)) {
+          this.showFieldError(field, 'Please enter a valid phone number');
+          isValid = false;
+        }
       }
     });
 
@@ -489,6 +502,26 @@ class LuxuryBookingSystem {
     }
 
     return isValid;
+  }
+
+  // Validate email format
+  validateEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    return emailRegex.test(email) && email.length <= 254;
+  }
+
+  // Validate phone format
+  validatePhone(phone) {
+    // Remove all non-digit characters except +
+    const cleanPhone = phone.replace(/[^\d+]/g, '');
+
+    // Check if it's a valid international format
+    if (cleanPhone.startsWith('+')) {
+      return cleanPhone.length >= 8 && cleanPhone.length <= 16;
+    }
+
+    // Check if it's a valid domestic format
+    return cleanPhone.length >= 7 && cleanPhone.length <= 15;
   }
 
   // Show field error
@@ -699,19 +732,109 @@ class LuxuryBookingSystem {
   }
 
   // Complete booking
-  completeBooking() {
+  async completeBooking() {
     this.showLoadingState('Completing your booking...');
 
-    // Simulate booking completion
-    setTimeout(() => {
-      this.showBookingConfirmation();
-      this.sendConfirmationEmail();
-      this.sendConfirmationSMS();
-    }, 2000);
+    try {
+      // Collect all booking data
+      const bookingData = this.collectBookingData();
+
+      // Validate booking data
+      if (!this.validateBookingData(bookingData)) {
+        throw new Error('Invalid booking data. Please check all fields.');
+      }
+
+      // Submit booking to backend
+      const response = await fetch('/.netlify/functions/reservation-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...bookingData,
+          service: 'Luxury Vehicle Rental',
+          bookingType: 'vehicle-rental',
+          timestamp: new Date().toISOString(),
+          bookingReference: `MTL-${Date.now()}`
+        })
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        this.showBookingConfirmation(result.bookingReference || `MTL-${Date.now()}`);
+        this.sendConfirmationNotifications(bookingData);
+      } else {
+        throw new Error(result.error || 'Booking submission failed');
+      }
+    } catch (error) {
+      console.error('Booking completion error:', error);
+      this.showBookingError(error.message);
+    }
+  }
+
+  // Collect all booking data
+  collectBookingData() {
+    return {
+      // Vehicle information
+      vehicleId: this.selectedVehicle,
+      vehicleName: this.getVehicleData(this.selectedVehicle)?.name || 'Unknown Vehicle',
+
+      // Date information
+      pickupDate: this.selectedDates?.pickup || '',
+      returnDate: this.selectedDates?.return || '',
+      pickupTime: document.getElementById('pickup-time')?.value || '',
+      returnTime: document.getElementById('return-time')?.value || '',
+
+      // Customer information
+      firstName: document.getElementById('first-name')?.value || '',
+      lastName: document.getElementById('last-name')?.value || '',
+      email: document.getElementById('email')?.value || '',
+      phone: document.getElementById('phone')?.value || '',
+
+      // Location information
+      pickupLocation: document.getElementById('pickup-location')?.value || '',
+      dropoffLocation: document.getElementById('dropoff-location')?.value || '',
+
+      // Additional information
+      licenseNumber: document.getElementById('license-number')?.value || '',
+      specialRequests: document.getElementById('special-requests')?.value || '',
+      conciergeServices: document.getElementById('concierge-services')?.checked || false,
+
+      // Pricing information
+      totalPrice: this.calculateTotalPrice(),
+      currency: 'AED'
+    };
+  }
+
+  // Validate booking data
+  validateBookingData(data) {
+    const requiredFields = ['vehicleId', 'pickupDate', 'returnDate', 'firstName', 'lastName', 'email', 'phone', 'pickupLocation', 'dropoffLocation', 'licenseNumber'];
+
+    for (const field of requiredFields) {
+      if (!data[field] || data[field].toString().trim() === '') {
+        console.error(`Missing required field: ${field}`);
+        return false;
+      }
+    }
+
+    // Validate email format
+    if (!this.validateEmail(data.email)) {
+      console.error('Invalid email format');
+      return false;
+    }
+
+    // Validate phone format
+    if (!this.validatePhone(data.phone)) {
+      console.error('Invalid phone format');
+      return false;
+    }
+
+    return true;
   }
 
   // Show booking confirmation
-  showBookingConfirmation() {
+  showBookingConfirmation(bookingReference) {
     const modal = document.getElementById('booking-modal');
     if (modal) {
       modal.innerHTML = `
@@ -721,19 +844,105 @@ class LuxuryBookingSystem {
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
           </div>
-          <h2>Booking Confirmed!</h2>
-          <p>Your luxury vehicle has been reserved. You will receive confirmation details via email and SMS.</p>
-          <div class="confirmation-details">
-            <p><strong>Booking Reference:</strong> MTL${Date.now()}</p>
-            <p><strong>Vehicle:</strong> ${this.getVehicleData(this.selectedVehicle).name}</p>
-            <p><strong>Date:</strong> ${this.selectedDates?.pickup}</p>
+          <h2 style="color: #D4AF37; margin: 20px 0;">Booking Confirmed!</h2>
+          <p style="color: #fff; margin-bottom: 20px;">Your luxury vehicle has been reserved. You will receive confirmation details via email and SMS within 15 minutes.</p>
+          <div class="confirmation-details" style="background: rgba(212, 175, 55, 0.1); padding: 20px; border-radius: 12px; margin: 20px 0;">
+            <p style="color: #fff; margin: 10px 0;"><strong style="color: #D4AF37;">Booking Reference:</strong> ${bookingReference}</p>
+            <p style="color: #fff; margin: 10px 0;"><strong style="color: #D4AF37;">Vehicle:</strong> ${this.getVehicleData(this.selectedVehicle)?.name || 'Luxury Vehicle'}</p>
+            <p style="color: #fff; margin: 10px 0;"><strong style="color: #D4AF37;">Pickup Date:</strong> ${this.selectedDates?.pickup || 'TBD'}</p>
+            <p style="color: #fff; margin: 10px 0;"><strong style="color: #D4AF37;">Contact:</strong> Our concierge team will contact you within 2 hours</p>
           </div>
-          <button class="luxury-btn primary-btn" onclick="bookingSystem.closeBookingModal()">
+          <button class="luxury-btn primary-btn" onclick="bookingSystem.closeBookingModal()"
+                  style="background: linear-gradient(135deg, #D4AF37, #E8C96A); color: #000; border: none; padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 20px;">
             Close
           </button>
         </div>
       `;
     }
+  }
+
+  // Show booking error
+  showBookingError(message) {
+    const modal = document.getElementById('booking-modal');
+    if (modal) {
+      modal.innerHTML = `
+        <div class="modal-content booking-error">
+          <div class="error-icon">
+            <svg class="w-16 h-16 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+            </svg>
+          </div>
+          <h2 style="color: #ff6b6b; margin: 20px 0;">Booking Error</h2>
+          <p style="color: #fff; margin-bottom: 20px;">${message}</p>
+          <p style="color: #ccc; margin-bottom: 20px;">Please try again or contact our concierge team directly:</p>
+          <div style="background: rgba(255, 107, 107, 0.1); padding: 20px; border-radius: 12px; margin: 20px 0;">
+            <p style="color: #fff; margin: 10px 0;"><strong style="color: #D4AF37;">UAE:</strong> +971 58 553 1029</p>
+            <p style="color: #fff; margin: 10px 0;"><strong style="color: #D4AF37;">USA:</strong> +1 240 351 0511</p>
+            <p style="color: #fff; margin: 10px 0;"><strong style="color: #D4AF37;">Email:</strong> concierge@midasthelifestyle.com</p>
+          </div>
+          <div style="display: flex; gap: 15px; justify-content: center;">
+            <button onclick="bookingSystem.goToStep(1)"
+                    style="background: linear-gradient(135deg, #D4AF37, #E8C96A); color: #000; border: none; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;">
+              Try Again
+            </button>
+            <button onclick="bookingSystem.closeBookingModal()"
+                    style="background: #333; color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;">
+              Close
+            </button>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  // Send confirmation notifications
+  sendConfirmationNotifications(bookingData) {
+    // This would integrate with email and SMS services
+    console.log('📧 Sending confirmation email to:', bookingData.email);
+    console.log('📱 Sending confirmation SMS to:', bookingData.phone);
+
+    // In production, this would call the email service
+    this.sendConfirmationEmail(bookingData);
+    this.sendConfirmationSMS(bookingData);
+  }
+
+  // Calculate total price
+  calculateTotalPrice() {
+    if (!this.selectedVehicle || !this.selectedDates) {
+      return 0;
+    }
+
+    const vehicleData = this.getVehicleData(this.selectedVehicle);
+    const basePrice = vehicleData?.price || 0;
+
+    // Calculate number of days
+    const pickup = new Date(this.selectedDates.pickup);
+    const returnDate = new Date(this.selectedDates.return);
+    const days = Math.ceil((returnDate - pickup) / (1000 * 60 * 60 * 24)) || 1;
+
+    let total = basePrice * days;
+
+    // Add concierge services if selected
+    const conciergeServices = document.getElementById('concierge-services')?.checked;
+    if (conciergeServices) {
+      total += 500 * days; // AED 500 per day for concierge
+    }
+
+    return total;
+  }
+
+  // Get vehicle data
+  getVehicleData(vehicleId) {
+    const vehicles = {
+      'bugatti-chiron': { name: 'Bugatti Chiron', price: 20000 },
+      'koenigsegg-jesko': { name: 'Koenigsegg Jesko', price: 22000 },
+      'rolls-royce-phantom': { name: 'Rolls-Royce Phantom', price: 9000 },
+      'ferrari-sf90-stradale': { name: 'Ferrari SF90 Stradale', price: 18000 },
+      'lamborghini-huracan-evo': { name: 'Lamborghini Huracán EVO', price: 15000 },
+      'mclaren-720s': { name: 'McLaren 720S', price: 16000 }
+    };
+
+    return vehicles[vehicleId] || { name: 'Luxury Vehicle', price: 10000 };
   }
 
   // Send confirmation email

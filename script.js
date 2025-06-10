@@ -604,7 +604,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
     } catch (error) {
         console.error('Error submitting contact form:', error);
-        showNotification('error', 'There was an error submitting your inquiry. Please try again or contact us directly at +971 123 456 789.');
+        showNotification('error', 'There was an error submitting your inquiry. Please try again or contact us directly at UAE: +971 58 553 1029 or USA: +1 240 351 0511.');
     } finally {
         // Restore button state
         submitButton.textContent = originalText;
@@ -658,7 +658,7 @@ document.getElementById('modal-form').addEventListener('submit', async function(
 
     } catch (error) {
         console.error('Error submitting reservation:', error);
-        showNotification('error', 'There was an error submitting your reservation. Please contact our concierge team directly at +971 123 456 789.');
+        showNotification('error', 'There was an error submitting your reservation. Please contact our concierge team directly at UAE: +971 58 553 1029 or USA: +1 240 351 0511.');
     } finally {
         // Restore button state
         submitButton.textContent = originalText;

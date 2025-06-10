@@ -314,6 +314,208 @@
             border-radius: 12px !important;
             color: #FFFFFF !important;
         }
+
+        /* Transportation Modal Styles */
+        .transportation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+        }
+
+        .transportation-modal.active {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .transportation-modal .modal-content {
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a) !important;
+            border: 2px solid #D4AF37 !important;
+            border-radius: 16px !important;
+            padding: 30px !important;
+            max-width: 800px !important;
+            width: 90% !important;
+            max-height: 90vh !important;
+            overflow-y: auto !important;
+            position: relative !important;
+        }
+
+        .transportation-modal .modal-close {
+            position: absolute !important;
+            top: 15px !important;
+            right: 20px !important;
+            background: none !important;
+            border: none !important;
+            color: #D4AF37 !important;
+            font-size: 24px !important;
+            cursor: pointer !important;
+            padding: 5px !important;
+            border-radius: 50% !important;
+            width: 35px !important;
+            height: 35px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .transportation-modal .modal-close:hover {
+            background: rgba(212, 175, 55, 0.2) !important;
+            transform: scale(1.1) !important;
+        }
+
+        .service-selection {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+            gap: 15px !important;
+            margin: 20px 0 !important;
+        }
+
+        .service-option {
+            background: rgba(0, 0, 0, 0.5) !important;
+            border: 2px solid #333 !important;
+            border-radius: 12px !important;
+            padding: 20px !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            text-align: center !important;
+        }
+
+        .service-option:hover {
+            border-color: #D4AF37 !important;
+            transform: translateY(-2px) !important;
+        }
+
+        .service-option.selected {
+            border-color: #D4AF37 !important;
+            background: rgba(212, 175, 55, 0.1) !important;
+        }
+
+        .service-option h4 {
+            color: #D4AF37 !important;
+            margin: 0 0 10px 0 !important;
+            font-size: 18px !important;
+        }
+
+        .service-option p {
+            color: #ccc !important;
+            margin: 0 !important;
+            font-size: 14px !important;
+        }
+
+        .transportation-form .form-row {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 20px !important;
+            margin-bottom: 20px !important;
+        }
+
+        .transportation-form .form-group {
+            margin-bottom: 20px !important;
+        }
+
+        .transportation-form label {
+            display: block !important;
+            color: #D4AF37 !important;
+            margin-bottom: 8px !important;
+            font-weight: 600 !important;
+        }
+
+        .transportation-form input,
+        .transportation-form select,
+        .transportation-form textarea {
+            width: 100% !important;
+            padding: 12px !important;
+            background: rgba(0, 0, 0, 0.7) !important;
+            border: 2px solid #333 !important;
+            border-radius: 8px !important;
+            color: #fff !important;
+            font-size: 16px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .transportation-form input:focus,
+        .transportation-form select:focus,
+        .transportation-form textarea:focus {
+            outline: none !important;
+            border-color: #D4AF37 !important;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2) !important;
+        }
+
+        .pricing-estimate {
+            background: rgba(212, 175, 55, 0.1) !important;
+            border: 1px solid #D4AF37 !important;
+            border-radius: 12px !important;
+            padding: 20px !important;
+            margin: 20px 0 !important;
+        }
+
+        .pricing-estimate h3 {
+            margin: 0 0 15px 0 !important;
+            color: #D4AF37 !important;
+        }
+
+        .pricing-breakdown .price-row {
+            display: flex !important;
+            justify-content: space-between !important;
+            margin-bottom: 8px !important;
+            color: #fff !important;
+        }
+
+        .pricing-breakdown .price-row.total {
+            border-top: 1px solid #D4AF37 !important;
+            padding-top: 10px !important;
+            margin-top: 10px !important;
+            font-weight: bold !important;
+            font-size: 18px !important;
+        }
+
+        .pricing-note {
+            font-size: 12px !important;
+            color: #ccc !important;
+            margin-top: 10px !important;
+            font-style: italic !important;
+        }
+
+        .transportation-form .btn-primary {
+            background: linear-gradient(135deg, #D4AF37, #E8C96A) !important;
+            color: #000 !important;
+            border: none !important;
+            padding: 15px 30px !important;
+            border-radius: 8px !important;
+            font-size: 18px !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            width: 100% !important;
+            transition: all 0.3s ease !important;
+            margin-top: 20px !important;
+        }
+
+        .transportation-form .btn-primary:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3) !important;
+        }
+
+        @media (max-width: 768px) {
+            .transportation-form .form-row {
+                grid-template-columns: 1fr !important;
+            }
+
+            .service-selection {
+                grid-template-columns: 1fr !important;
+            }
+
+            .transportation-modal .modal-content {
+                padding: 20px !important;
+                margin: 10px !important;
+            }
+        }
     </style>
 </head>
 <body style="background-color: #0A0A0A !important; color: #FFFFFF !important; font-family: 'Inter', 'Montserrat', sans-serif !important; margin: 0; padding: 0;">
@@ -694,6 +896,13 @@
                     </div>
                 </div>
             </div>
+
+            <!-- View Full Fleet Button -->
+            <div class="text-center mt-12">
+                <a href="fleet-details.html" class="luxury-button text-lg px-8 py-4 inline-block">
+                    View Full Fleet Collection
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1005,6 +1214,13 @@
                 <div class="swiper-button-prev text-[#D4AF37]"></div>
                 <div class="swiper-pagination"></div>
             </div>
+
+            <!-- View All Properties Button -->
+            <div class="text-center mt-12">
+                <a href="property-details.html" class="luxury-button text-lg px-8 py-4 inline-block">
+                    View All Properties
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1139,7 +1355,9 @@
                     </div>
 
                     <div class="text-center mt-8">
-                        <button onclick="openTransportationModal('dubai-chauffeur')" class="bg-[#D4AF37] text-black px-8 py-3 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all">
+                        <button onclick="openTransportationModal('dubai-chauffeur')"
+                                class="bg-[#D4AF37] text-black px-8 py-3 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#D4AF37] focus:ring-opacity-50"
+                                aria-label="Book Dubai chauffeur service">
                             Book Dubai Chauffeur
                         </button>
                     </div>
@@ -1182,7 +1400,9 @@
                     </div>
 
                     <div class="text-center mt-8">
-                        <button onclick="openTransportationModal('estate-transport')" class="bg-[#D4AF37] text-black px-8 py-3 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all">
+                        <button onclick="openTransportationModal('estate-transport')"
+                                class="bg-[#D4AF37] text-black px-8 py-3 rounded-lg font-semibold hover:bg-[#E8C96A] transition-all transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#D4AF37] focus:ring-opacity-50"
+                                aria-label="Book estate transportation service">
                             Book Estate Transport
                         </button>
                     </div>
@@ -1467,11 +1687,11 @@
                             required
                             aria-describedby="service-error">
                         <option value="">Select a service</option>
-                        <option value="car">Exotic Car Rental</option>
-                        <option value="yacht">Superyacht Charter</option>
-                        <option value="plane">Private Jet Charter</option>
-                        <option value="property">Exclusive Estate Rental</option>
-                        <option value="transportation">Chauffeur Services</option>
+                        <option value="luxury-cars">Luxury Cars</option>
+                        <option value="yachts">Yachts</option>
+                        <option value="private-jets">Private Jets</option>
+                        <option value="estates">Estates</option>
+                        <option value="transportation">Transportation</option>
                         <option value="multiple">Multiple Services</option>
                     </select>
                     <div id="service-error" class="error-message" role="alert" aria-live="polite"></div>
@@ -1511,7 +1731,7 @@
             <div class="mt-12 text-center">
                 <p class="text-white">Midas The Lifestyle - Luxury Rentals</p>
                 <p class="text-white">Dubai | Washington, DC | Houston TX | Atlanta | Maryland | Northern Virginia</p>
-                <p class="text-white">Phone: +971 123 456 789 | Email: concierge@midasthelifestyle.com</p>
+                <p class="text-white">UAE: +971 58 553 1029 | USA: +1 240 351 0511 | Email: concierge@midasthelifestyle.com</p>
             </div>
         </div>
     </section>
