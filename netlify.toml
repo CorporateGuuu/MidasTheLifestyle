@@ -1,3 +1,10 @@
+# Netlify Project Configuration
+# Project Name: midasthelifestyle
+# Owner: Midas Technical Solutions
+# Project ID: 6c48e21f-64ff-433b-a130-811dc9cf4843
+# Site URL: midasthelifestyle.netlify.app
+# Custom Domain: midasthelifestyle.com
+
 [build]
   publish = "."
   command = "node build.js && echo 'CUSTOM DOMAIN DEPLOYMENT - midasthelifestyle.com'"

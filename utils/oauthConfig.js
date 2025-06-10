@@ -22,6 +22,9 @@ class OAuthConfig {
     };
 
     this.netlifyConfig = {
+      projectName: 'midasthelifestyle',
+      owner: 'Midas Technical Solutions',
+      projectId: '6c48e21f-64ff-433b-a130-811dc9cf4843',
       siteUrl: this.getSiteUrl(),
       callbackPath: '/.netlify/functions/oauth-callback',
       successRedirect: '/dashboard',

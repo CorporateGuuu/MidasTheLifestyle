@@ -1,5 +1,14 @@
 # Midas The Lifestyle - Deployment Guide
 
+## 🏗️ **Netlify Project Configuration**
+
+- **Project Name**: midasthelifestyle
+- **Owner**: Midas Technical Solutions
+- **Project ID**: 6c48e21f-64ff-433b-a130-811dc9cf4843
+- **Site URL**: https://midasthelifestyle.netlify.app
+- **Custom Domain**: https://midasthelifestyle.com (when configured)
+- **Repository**: https://github.com/CorporateGuuu/MidasTheLifestyle.git
+
 ## 🚀 Backend Integration Setup
 
 ### Prerequisites

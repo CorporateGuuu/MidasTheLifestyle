@@ -1,7 +1,7 @@
 {
-  "name": "midas-the-lifestyle-website",
-  "version": "2.0.1",
-  "description": "Midas The Lifestyle - Bespoke luxury rentals website with advanced business features",
+  "name": "midasthelifestyle",
+  "version": "2.1.0",
+  "description": "Midas The Lifestyle - Bespoke luxury rentals platform with comprehensive business features",
   "main": "index.html",
   "scripts": {
     "dev": "netlify dev",
@@ -71,13 +71,20 @@
     "netlify",
     "serverless"
   ],
-  "author": "Midas The Lifestyle",
+  "author": "Midas Technical Solutions",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/CorporateGuuu/MidasTheLifestyle.git"
   },
   "homepage": "https://midasthelifestyle.netlify.app",
+  "netlify": {
+    "projectName": "midasthelifestyle",
+    "owner": "Midas Technical Solutions",
+    "projectId": "6c48e21f-64ff-433b-a130-811dc9cf4843",
+    "siteUrl": "https://midasthelifestyle.netlify.app",
+    "customDomain": "https://midasthelifestyle.com"
+  },
   "engines": {
     "node": ">=18.0.0"
   },

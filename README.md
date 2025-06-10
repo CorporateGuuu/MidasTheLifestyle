@@ -1,6 +1,15 @@
 # Midas The Lifestyle - Bespoke Luxury Rentals
 
-A premium luxury rental website featuring exotic cars, superyachts, private jets, and exclusive estates. Built with modern web technologies and designed for the world's elite.
+A premium luxury rental platform featuring exotic cars, superyachts, private jets, and exclusive estates. Built with modern web technologies and designed for the world's elite.
+
+## 🏗️ **Project Information**
+
+- **Project Name**: midasthelifestyle
+- **Owner**: Midas Technical Solutions
+- **Project ID**: 6c48e21f-64ff-433b-a130-811dc9cf4843
+- **Live URL**: https://midasthelifestyle.netlify.app
+- **Custom Domain**: https://midasthelifestyle.com (when configured)
+- **Version**: 2.1.0
 
 ## Features
 

@@ -1,6 +1,10 @@
 /**
  * Path Validator for Midas The Lifestyle
  * Validates all file paths and dependencies to ensure no errors
+ *
+ * Project: midasthelifestyle
+ * Owner: Midas Technical Solutions
+ * Project ID: 6c48e21f-64ff-433b-a130-811dc9cf4843
  */
 
 class PathValidator {
