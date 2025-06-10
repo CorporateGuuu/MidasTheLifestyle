@@ -26,13 +26,17 @@ class PWAManager {
                            window.navigator.standalone ||
                            document.referrer.includes('android-app://');
 
-        // Check if app is already installed
-        this.isInstalled = this.isStandalone || 
-                          localStorage.getItem('midas-pwa-installed') === 'true';
+        // Check if app is already installed (only if actually in standalone mode)
+        this.isInstalled = this.isStandalone;
 
         if (this.isStandalone) {
             document.body.classList.add('pwa-standalone');
             this.addStandaloneStyles();
+        } else {
+            // Show install prompt for non-installed users after delay
+            setTimeout(() => {
+                this.showInstallPromptIfAvailable();
+            }, 5000);
         }
     }
 
@@ -89,16 +93,22 @@ class PWAManager {
     showInstallButton() {
         if (this.installButton && !this.isInstalled) {
             this.installButton.classList.remove('hidden');
-            
-            // Show install banner after 3 seconds
-            setTimeout(() => {
-                this.showInstallBanner();
-            }, 3000);
+        }
+    }
+
+    showInstallPromptIfAvailable() {
+        // Only show if not installed and user hasn't dismissed recently
+        if (!this.isInstalled && !localStorage.getItem('midas-install-dismissed')) {
+            this.showInstallBanner();
         }
     }
 
     showInstallBanner() {
         if (this.isInstalled || document.getElementById('install-banner')) return;
+
+        // Check if user dismissed recently
+        const dismissed = localStorage.getItem('midas-install-dismissed');
+        if (dismissed && Date.now() < parseInt(dismissed)) return;
 
         const banner = document.createElement('div');
         banner.id = 'install-banner';
@@ -107,28 +117,33 @@ class PWAManager {
             <div class="install-banner-content">
                 <div class="flex items-center gap-3">
                     <div class="install-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                         </svg>
                     </div>
                     <div class="install-text">
-                        <h3>Install Midas The Lifestyle</h3>
-                        <p>Get quick access to luxury rentals</p>
+                        <h3>Install Midas The Lifestyle App</h3>
+                        <p>Quick access to luxury rentals • Offline browsing • Faster booking</p>
                     </div>
                 </div>
                 <div class="install-actions">
-                    <button class="install-btn-primary" onclick="pwaManager.promptInstall()">Install</button>
-                    <button class="install-btn-secondary" onclick="pwaManager.dismissBanner()">Later</button>
+                    <button class="install-btn-primary" onclick="pwaManager.promptInstall()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                        Install App
+                    </button>
+                    <button class="install-btn-secondary" onclick="pwaManager.dismissBanner()">Not Now</button>
                 </div>
             </div>
         `;
 
         document.body.appendChild(banner);
 
-        // Auto-dismiss after 10 seconds
+        // Auto-dismiss after 15 seconds
         setTimeout(() => {
             this.dismissBanner();
-        }, 10000);
+        }, 15000);
     }
 
     async promptInstall() {
@@ -160,18 +175,23 @@ class PWAManager {
     handleAppInstalled() {
         this.isInstalled = true;
         localStorage.setItem('midas-pwa-installed', 'true');
-        
+
         // Hide install button and banner
         if (this.installButton) {
             this.installButton.classList.add('hidden');
         }
         this.dismissBanner();
 
-        // Show success message
-        this.showInstallSuccess();
+        // Only show success message if user actually installed the app
+        if (this.deferredPrompt) {
+            this.showInstallSuccess();
+        }
     }
 
     showInstallSuccess() {
+        // Only show if the app was actually installed through the prompt
+        if (!this.deferredPrompt) return;
+
         const notification = document.createElement('div');
         notification.className = 'install-success-notification';
         notification.innerHTML = `
@@ -199,6 +219,8 @@ class PWAManager {
         const banner = document.getElementById('install-banner');
         if (banner) {
             banner.remove();
+            // Remember user dismissed the banner for 24 hours
+            localStorage.setItem('midas-install-dismissed', Date.now() + (24 * 60 * 60 * 1000));
         }
     }
 
