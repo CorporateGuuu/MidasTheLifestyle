@@ -1,0 +1,68 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F4D03F;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#E8C96A;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#D4AF37;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#C19B26;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2A2A2A;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#1A1A1A;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0A0A0A;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#050505;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#F4D03F;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#D4AF37;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:0.2" />
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="textShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="512" height="512" rx="64" fill="url(#backgroundGradient)"/>
+  
+  <!-- Outer Border -->
+  <rect x="8" y="8" width="496" height="496" rx="56" fill="none" stroke="url(#goldGradient)" stroke-width="4"/>
+  
+  <!-- Inner Glow -->
+  <circle cx="256" cy="256" r="180" fill="url(#centerGlow)" opacity="0.3"/>
+  
+  <!-- Main Logo Circle -->
+  <circle cx="256" cy="256" r="160" fill="url(#goldGradient)" filter="url(#glow)"/>
+  
+  <!-- Inner Circle -->
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#000000" stroke-width="3" opacity="0.3"/>
+  
+  <!-- Letter M -->
+  <text x="256" y="300" font-family="serif" font-size="180" font-weight="bold" text-anchor="middle" fill="#000000" filter="url(#textShadow)">M</text>
+  
+  <!-- Luxury Crown -->
+  <path d="M 176 156 L 196 126 L 216 156 L 236 126 L 256 156 L 276 126 L 296 156 L 316 126 L 336 156 L 316 186 L 296 156 L 276 186 L 256 156 L 236 186 L 216 156 L 196 186 Z" fill="url(#goldGradient)" opacity="0.4"/>
+  
+  <!-- Decorative Diamonds -->
+  <path d="M 206 356 L 216 346 L 226 356 L 216 366 Z" fill="url(#goldGradient)" opacity="0.8"/>
+  <path d="M 286 356 L 296 346 L 306 356 L 296 366 Z" fill="url(#goldGradient)" opacity="0.8"/>
+  <path d="M 246 376 L 256 366 L 266 376 L 256 386 Z" fill="url(#goldGradient)" opacity="0.6"/>
+  
+  <!-- Corner Accents -->
+  <circle cx="96" cy="96" r="8" fill="url(#goldGradient)" opacity="0.5"/>
+  <circle cx="416" cy="96" r="8" fill="url(#goldGradient)" opacity="0.5"/>
+  <circle cx="96" cy="416" r="8" fill="url(#goldGradient)" opacity="0.5"/>
+  <circle cx="416" cy="416" r="8" fill="url(#goldGradient)" opacity="0.5"/>
+  
+  <!-- Luxury Text -->
+  <text x="256" y="450" font-family="serif" font-size="24" font-weight="normal" text-anchor="middle" fill="url(#goldGradient)" opacity="0.8">LUXURY</text>
+</svg>

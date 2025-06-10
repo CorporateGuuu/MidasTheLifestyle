@@ -2,15 +2,17 @@
   "name": "Midas The Lifestyle - Luxury Rentals",
   "short_name": "Midas Luxury",
   "description": "Premium luxury car, yacht, jet, and estate rentals. Experience the pinnacle of luxury with Midas The Lifestyle.",
-  "start_url": "/",
+  "start_url": "/?utm_source=pwa&utm_medium=app",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
   "background_color": "#000000",
   "theme_color": "#D4AF37",
-  "orientation": "portrait-primary",
+  "orientation": "any",
   "scope": "/",
   "lang": "en",
   "dir": "ltr",
-  "categories": ["lifestyle", "travel", "business"],
+  "categories": ["lifestyle", "travel", "business", "luxury"],
+  "id": "com.midasthelifestyle.app",
   "icons": [
     {
       "src": "images/icons/icon-16x16.png",
@@ -156,5 +158,30 @@
   },
   "launch_handler": {
     "client_mode": "navigate-existing"
-  }
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+midas",
+      "url": "/?handler=%s"
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "file_handlers": [
+    {
+      "action": "/handle-file",
+      "accept": {
+        "image/*": [".jpg", ".jpeg", ".png", ".webp"]
+      }
+    }
+  ],
+  "handle_links": "preferred"
 }

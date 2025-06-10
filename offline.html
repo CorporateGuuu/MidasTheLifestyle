@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Midas The Lifestyle</title>
+    <meta name="description" content="You're currently offline. Midas The Lifestyle luxury rentals will be available when you reconnect.">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#D4AF37">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Inline Critical CSS for Offline -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 50%, #0A0A0A 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .offline-container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .luxury-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #D4AF37, #F4D03F);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #000;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #D4AF37;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            color: #E5E5E5;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .offline-features {
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid #D4AF37;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .features-title {
+            font-size: 1.5rem;
+            color: #D4AF37;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .features-list {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .features-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            color: #E5E5E5;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 1rem;
+            color: #D4AF37;
+        }
+        
+        .retry-button {
+            background: linear-gradient(135deg, #D4AF37, #F4D03F);
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .retry-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        .connection-status {
+            margin-top: 2rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .status-offline {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #fca5a5;
+        }
+        
+        .status-online {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid #22c55e;
+            color: #86efac;
+        }
+        
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #D4AF37 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, #D4AF37 2px, transparent 2px);
+            background-size: 100px 100px;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100px, -100px); }
+        }
+        
+        @media (max-width: 768px) {
+            .offline-container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .luxury-logo {
+                width: 100px;
+                height: 100px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <div class="offline-container">
+        <div class="luxury-logo">M</div>
+        
+        <h1>You're Offline</h1>
+        <p class="subtitle">Your luxury experience will resume when you reconnect to the internet.</p>
+        
+        <div class="offline-features">
+            <h3 class="features-title">Available Offline</h3>
+            <ul class="features-list">
+                <li>
+                    <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Browse cached luxury vehicles
+                </li>
+                <li>
+                    <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    View property details and amenities
+                </li>
+                <li>
+                    <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Access contact information
+                </li>
+                <li>
+                    <svg class="feature-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Save booking preferences
+                </li>
+            </ul>
+        </div>
+        
+        <div id="connection-status" class="connection-status status-offline">
+            📡 No internet connection detected
+        </div>
+        
+        <button class="retry-button" onclick="retryConnection()">
+            Try Again
+        </button>
+    </div>
+    
+    <script>
+        // Monitor connection status
+        function updateConnectionStatus() {
+            const statusElement = document.getElementById('connection-status');
+            
+            if (navigator.onLine) {
+                statusElement.className = 'connection-status status-online';
+                statusElement.textContent = '✅ Connection restored! Redirecting...';
+                
+                // Redirect to main app after short delay
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000);
+            } else {
+                statusElement.className = 'connection-status status-offline';
+                statusElement.textContent = '📡 No internet connection detected';
+            }
+        }
+        
+        function retryConnection() {
+            updateConnectionStatus();
+            
+            if (navigator.onLine) {
+                window.location.href = '/';
+            } else {
+                // Provide feedback for failed retry
+                const button = document.querySelector('.retry-button');
+                const originalText = button.textContent;
+                button.textContent = 'Still Offline...';
+                button.style.background = 'rgba(239, 68, 68, 0.8)';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'linear-gradient(135deg, #D4AF37, #F4D03F)';
+                }, 2000);
+            }
+        }
+        
+        // Listen for connection changes
+        window.addEventListener('online', updateConnectionStatus);
+        window.addEventListener('offline', updateConnectionStatus);
+        
+        // Initial status check
+        updateConnectionStatus();
+        
+        // Auto-retry every 30 seconds
+        setInterval(() => {
+            if (navigator.onLine) {
+                updateConnectionStatus();
+            }
+        }, 30000);
+        
+        console.log('🏆 Midas The Lifestyle - Offline page loaded');
+    </script>
+</body>
+</html>

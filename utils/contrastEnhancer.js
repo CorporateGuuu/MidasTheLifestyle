@@ -230,28 +230,9 @@ class ContrastEnhancer {
     }
 
     addContrastIndicators() {
-        // Add visual indicators for enhanced contrast (development mode)
-        if (window.location.hostname === 'localhost' || window.location.hostname.includes('netlify')) {
-            const indicator = document.createElement('div');
-            indicator.style.cssText = `
-                position: fixed;
-                top: 10px;
-                right: 10px;
-                background: rgba(212, 175, 55, 0.9);
-                color: #000;
-                padding: 8px 12px;
-                border-radius: 6px;
-                font-size: 12px;
-                font-weight: 600;
-                z-index: 10000;
-                pointer-events: none;
-            `;
-            indicator.textContent = '📱 Enhanced Contrast Active';
-            document.body.appendChild(indicator);
-            
-            // Remove after 3 seconds
-            setTimeout(() => indicator.remove(), 3000);
-        }
+        // Contrast indicators disabled for production
+        // Enhanced contrast is applied silently for better user experience
+        console.log('✅ Enhanced contrast applied for mobile accessibility');
     }
 
     observeContentChanges() {

@@ -1,0 +1,41 @@
+<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F4D03F;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#D4AF37;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A1A1A;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0A0A0A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="192" height="192" rx="24" fill="url(#backgroundGradient)"/>
+  
+  <!-- Border -->
+  <rect x="4" y="4" width="184" height="184" rx="20" fill="none" stroke="url(#goldGradient)" stroke-width="2"/>
+  
+  <!-- Main Logo Circle -->
+  <circle cx="96" cy="96" r="60" fill="url(#goldGradient)" filter="url(#glow)"/>
+  
+  <!-- Letter M -->
+  <text x="96" y="116" font-family="serif" font-size="64" font-weight="bold" text-anchor="middle" fill="#000000">M</text>
+  
+  <!-- Luxury Crown Elements -->
+  <path d="M 66 56 L 76 46 L 86 56 L 96 46 L 106 56 L 116 46 L 126 56 L 116 66 L 106 56 L 96 66 L 86 56 L 76 66 Z" fill="url(#goldGradient)" opacity="0.3"/>
+  
+  <!-- Decorative Elements -->
+  <circle cx="76" cy="136" r="3" fill="url(#goldGradient)" opacity="0.7"/>
+  <circle cx="116" cy="136" r="3" fill="url(#goldGradient)" opacity="0.7"/>
+  <circle cx="96" cy="146" r="2" fill="url(#goldGradient)" opacity="0.5"/>
+</svg>

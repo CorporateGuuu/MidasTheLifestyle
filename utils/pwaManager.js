@@ -16,7 +16,9 @@ class PWAManager {
         this.createInstallButton();
         this.setupMobileOptimizations();
         this.setupTouchOptimizations();
-        console.log('🚀 PWA Manager initialized');
+        this.setupPWAFeatures();
+        this.registerServiceWorker();
+        console.log('🚀 PWA Manager initialized with full PWA capabilities');
     }
 
     checkInstallationStatus() {
@@ -518,6 +520,115 @@ class PWAManager {
         `;
 
         document.body.appendChild(instructions);
+    }
+
+    setupPWAFeatures() {
+        this.setupAppShortcuts();
+        this.setupShareTarget();
+        this.setupFileHandling();
+        this.setupProtocolHandling();
+        console.log('✅ PWA Features: Advanced PWA features configured');
+    }
+
+    async registerServiceWorker() {
+        if ('serviceWorker' in navigator) {
+            try {
+                const registration = await navigator.serviceWorker.register('/sw.js');
+                console.log('✅ PWA: Service Worker registered successfully');
+
+                registration.addEventListener('updatefound', () => {
+                    const newWorker = registration.installing;
+                    newWorker.addEventListener('statechange', () => {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            this.showUpdateAvailable();
+                        }
+                    });
+                });
+
+            } catch (error) {
+                console.error('❌ PWA: Service Worker registration failed:', error);
+            }
+        }
+    }
+
+    setupAppShortcuts() {
+        console.log('🔗 PWA: App shortcuts configured');
+    }
+
+    setupShareTarget() {
+        if ('serviceWorker' in navigator && 'share' in navigator) {
+            navigator.serviceWorker.addEventListener('message', (event) => {
+                if (event.data && event.data.type === 'SHARE_TARGET') {
+                    this.handleSharedContent(event.data);
+                }
+            });
+        }
+    }
+
+    setupFileHandling() {
+        if ('launchQueue' in window) {
+            window.launchQueue.setConsumer((launchParams) => {
+                if (launchParams.files && launchParams.files.length) {
+                    this.handleFiles(launchParams.files);
+                }
+            });
+        }
+    }
+
+    setupProtocolHandling() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const handler = urlParams.get('handler');
+        if (handler) {
+            this.handleProtocolLink(handler);
+        }
+    }
+
+    handleSharedContent(data) {
+        console.log('📤 PWA: Handling shared content:', data);
+    }
+
+    handleFiles(files) {
+        console.log('📁 PWA: Handling files:', files);
+    }
+
+    handleProtocolLink(handler) {
+        console.log('🔗 PWA: Handling protocol link:', handler);
+    }
+
+    showUpdateAvailable() {
+        const updateBanner = document.createElement('div');
+        updateBanner.className = 'pwa-update-banner';
+        updateBanner.innerHTML = `
+            <div class="update-content">
+                <span>🚀 New version available!</span>
+                <button onclick="pwaManager.applyUpdate()" class="update-btn">Update</button>
+                <button onclick="this.parentElement.parentElement.remove()" class="dismiss-btn">Later</button>
+            </div>
+        `;
+
+        const style = document.createElement('style');
+        style.textContent = `
+            .pwa-update-banner {
+                position: fixed; top: 0; left: 0; right: 0;
+                background: linear-gradient(135deg, #D4AF37, #E8C96A);
+                color: #000; padding: 12px; z-index: 10000;
+                text-align: center; font-weight: 600;
+            }
+            .update-content { display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; }
+            .update-btn, .dismiss-btn { background: rgba(0,0,0,0.8); color: #D4AF37; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        `;
+        document.head.appendChild(style);
+        document.body.appendChild(updateBanner);
+    }
+
+    async applyUpdate() {
+        if ('serviceWorker' in navigator) {
+            const registration = await navigator.serviceWorker.getRegistration();
+            if (registration && registration.waiting) {
+                registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+                window.location.reload();
+            }
+        }
     }
 }
 

@@ -1,16 +1,27 @@
-// Service Worker for Midas The Lifestyle
-// Handles caching for improved performance
+/**
+ * Midas The Lifestyle - Advanced PWA Service Worker
+ * Premium offline experience for luxury rentals
+ * Version: 2.1.0
+ */
 
-const CACHE_NAME = 'midas-luxury-v1';
-const STATIC_CACHE = 'midas-static-v1';
-const DYNAMIC_CACHE = 'midas-dynamic-v1';
+const CACHE_NAME = 'midas-luxury-v2.1.0';
+const STATIC_CACHE = 'midas-static-v2.1.0';
+const DYNAMIC_CACHE = 'midas-dynamic-v2.1.0';
+const OFFLINE_PAGE = '/offline.html';
+const FALLBACK_IMAGE = '/images/fallback-luxury.jpg';
 
-// Assets to cache immediately
+// Critical assets to cache immediately for offline functionality
 const STATIC_ASSETS = [
     '/',
     '/index.html',
-    '/styles.css',
+    '/fleet-details.html',
+    '/property-details.html',
+    '/offline.html',
     '/script.js',
+    '/manifest.json',
+
+    // Enhanced PWA utilities
+    '/utils/contrastEnhancer.js',
     '/utils/performanceOptimizer.js',
     '/utils/accessibilityEnhancer.js',
     '/utils/formValidator.js',
@@ -24,29 +35,50 @@ const STATIC_ASSETS = [
     '/utils/pwaManager.js',
     '/utils/aiChatbot.js',
     '/utils/advancedAnimations.js',
+    '/utils/offlineManager.js',
+    '/utils/pushNotifications.js',
+
+    // Data files
     '/data/inventory.json',
+
+    // Essential images
+    '/images/icons/icon-192x192.png',
+    '/images/icons/icon-512x512.png',
+    '/images/fallback-luxury.jpg',
+
+    // External dependencies
     'https://cdn.tailwindcss.com',
-    'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap',
+    'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',
     'https://unpkg.com/swiper/swiper-bundle.min.css',
-    'https://unpkg.com/swiper/swiper-bundle.min.js',
-    'https://js.stripe.com/v3/',
-    'https://accounts.google.com/gsi/client'
+    'https://unpkg.com/swiper/swiper-bundle.min.js'
 ];
 
-// Install event - cache static assets
+// Install event - cache critical assets for offline functionality
 self.addEventListener('install', event => {
-    console.log('SW: Installing...');
+    console.log('🚀 Midas PWA: Service Worker installing...');
+
     event.waitUntil(
-        caches.open(STATIC_CACHE)
-            .then(cache => {
-                console.log('SW: Caching static assets');
+        Promise.all([
+            // Cache static assets
+            caches.open(STATIC_CACHE).then(cache => {
+                console.log('📦 Midas PWA: Caching static assets');
                 return cache.addAll(STATIC_ASSETS);
+            }),
+
+            // Cache offline page
+            caches.open(DYNAMIC_CACHE).then(cache => {
+                console.log('📄 Midas PWA: Caching offline page');
+                return cache.add(OFFLINE_PAGE);
             })
-            .catch(error => {
-                console.error('SW: Error caching static assets:', error);
-            })
+        ])
+        .then(() => {
+            console.log('✅ Midas PWA: Installation complete');
+            return self.skipWaiting();
+        })
+        .catch(error => {
+            console.error('❌ Midas PWA: Installation failed:', error);
+        })
     );
-    self.skipWaiting();
 });
 
 // Activate event - clean up old caches
@@ -186,42 +218,87 @@ async function doBackgroundSync() {
     console.log('SW: Performing background sync');
 }
 
-// Push notifications
+// Enhanced push notifications for luxury experience
 self.addEventListener('push', event => {
+    console.log('📱 Midas PWA: Push notification received');
+
+    let notificationData = {
+        title: 'Midas The Lifestyle',
+        body: 'You have a new luxury service update',
+        icon: '/images/icons/icon-192x192.png',
+        badge: '/images/icons/badge-72x72.png',
+        image: '/images/notification-banner.jpg',
+        vibrate: [200, 100, 200],
+        requireInteraction: true,
+        data: {
+            url: '/',
+            timestamp: Date.now()
+        },
+        actions: [
+            {
+                action: 'view',
+                title: 'View Details',
+                icon: '/images/icons/action-view.png'
+            },
+            {
+                action: 'book',
+                title: 'Book Now',
+                icon: '/images/icons/action-book.png'
+            },
+            {
+                action: 'dismiss',
+                title: 'Dismiss',
+                icon: '/images/icons/action-dismiss.png'
+            }
+        ],
+        tag: 'midas-notification',
+        renotify: true
+    };
+
     if (event.data) {
-        const data = event.data.json();
-        const options = {
-            body: data.body,
-            icon: '/icon-192x192.png',
-            badge: '/badge-72x72.png',
-            data: data.data,
-            actions: [
-                {
-                    action: 'view',
-                    title: 'View Details'
-                },
-                {
-                    action: 'dismiss',
-                    title: 'Dismiss'
-                }
-            ]
-        };
-        
-        event.waitUntil(
-            self.registration.showNotification(data.title, options)
-        );
+        try {
+            const data = event.data.json();
+            notificationData = { ...notificationData, ...data };
+        } catch (error) {
+            console.error('❌ Midas PWA: Error parsing notification data:', error);
+        }
     }
+
+    event.waitUntil(
+        self.registration.showNotification(notificationData.title, notificationData)
+    );
 });
 
-// Notification click handling
+// Enhanced notification click handling
 self.addEventListener('notificationclick', event => {
+    console.log('🔔 Midas PWA: Notification clicked:', event.action);
     event.notification.close();
-    
-    if (event.action === 'view') {
-        event.waitUntil(
-            clients.openWindow(event.notification.data.url || '/')
-        );
-    }
+
+    const urlToOpen = event.notification.data?.url || '/';
+
+    event.waitUntil(
+        clients.matchAll({ type: 'window', includeUncontrolled: true })
+            .then(clientList => {
+                // Check if app is already open
+                for (const client of clientList) {
+                    if (client.url.includes(self.location.origin) && 'focus' in client) {
+                        if (event.action === 'view' || event.action === 'book') {
+                            client.postMessage({
+                                type: 'NOTIFICATION_CLICK',
+                                action: event.action,
+                                data: event.notification.data
+                            });
+                            return client.focus();
+                        }
+                    }
+                }
+
+                // Open new window if app not open
+                if (event.action === 'view' || event.action === 'book' || !event.action) {
+                    return clients.openWindow(urlToOpen);
+                }
+            })
+    );
 });
 
 // Message handling from main thread
