@@ -121,21 +121,25 @@
             color: #D4AF37 !important;
         }
 
-        /* NAVIGATION STYLING */
+        /* ENHANCED NAVIGATION STYLING FOR MOBILE CONTRAST */
         nav {
-            background: rgba(10, 10, 10, 0.95) !important;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #D4AF37;
+            background: rgba(10, 10, 10, 0.98) !important; /* Increased opacity for better contrast */
+            backdrop-filter: blur(15px);
+            border-bottom: 2px solid #D4AF37; /* Thicker border for better visibility */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Added shadow for depth */
         }
 
         nav a {
             color: #FFFFFF !important;
             text-decoration: none;
             transition: color 0.3s ease;
+            font-weight: 500; /* Slightly bolder for better readability */
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Subtle text shadow for contrast */
         }
 
-        nav a:hover {
-            color: #D4AF37 !important;
+        nav a:hover, nav a:focus {
+            color: #F4D03F !important; /* Lighter gold for better contrast on hover */
+            text-shadow: 0 0 8px rgba(244, 208, 63, 0.4); /* Glow effect for better visibility */
         }
 
         /* LUXURY BUTTONS */
@@ -167,9 +171,32 @@
             color: #FFFFFF !important;
         }
 
+        /* ENHANCED SECTION BACKGROUNDS WITH BETTER TEXT CONTRAST */
         .section-bg {
-            background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(26,26,26,0.8) 50%, rgba(0,0,0,0.9) 100%) !important;
+            background: linear-gradient(135deg, rgba(0,0,0,0.92) 0%, rgba(26,26,26,0.85) 50%, rgba(0,0,0,0.92) 100%) !important;
             position: relative;
+        }
+
+        .section-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.25); /* Additional overlay for text contrast */
+            z-index: 1;
+        }
+
+        .section-bg > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Enhanced text contrast for sections with background images */
+        .parallax-bg h1, .parallax-bg h2, .parallax-bg h3,
+        .parallax-bg p, .parallax-bg li, .parallax-bg span {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
         }
 
         /* PREMIUM CARDS */
@@ -188,10 +215,33 @@
             border-color: #E8C96A !important;
         }
 
-        /* HERO SECTION */
+        /* ENHANCED HERO SECTION WITH BETTER CONTRAST */
         .hero-bg {
-            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(26,26,26,0.6)) !important;
+            background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(26,26,26,0.75)) !important;
             color: #FFFFFF !important;
+            position: relative;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3); /* Additional overlay for better text contrast */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-bg h1, .hero-bg p, .hero-bg button {
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8) !important;
+            position: relative;
+            z-index: 2;
         }
 
         /* FOOTER */
@@ -201,11 +251,12 @@
             color: #FFFFFF !important;
         }
 
-        /* FORCE LUXURY THEME ON ALL TAILWIND CLASSES */
+        /* ENHANCED CONTRAST LUXURY THEME */
         .bg-black { background-color: #0A0A0A !important; }
         .bg-gray-900 { background-color: #1A1A1A !important; }
         .text-white { color: #FFFFFF !important; }
-        .text-gray-300 { color: rgba(255, 255, 255, 0.7) !important; }
+        .text-gray-300 { color: #E5E5E5 !important; } /* Enhanced from rgba(255, 255, 255, 0.7) to #E5E5E5 for better contrast */
+        .text-gray-400 { color: #CCCCCC !important; } /* Enhanced from default to ensure 4.5:1 contrast */
         .border-gray-800 { border-color: rgba(212, 175, 55, 0.3) !important; }
 
         /* Additional Critical Styles */
@@ -261,10 +312,31 @@
             color: #FFFFFF;
         }
 
-        /* Navigation fixes */
+        /* Enhanced Mobile Navigation Contrast */
         nav {
-            background: rgba(10, 10, 10, 0.95) !important;
-            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.98) !important;
+            backdrop-filter: blur(15px);
+        }
+
+        /* Mobile Menu Enhanced Contrast */
+        #mobile-menu {
+            background: rgba(10, 10, 10, 0.98) !important;
+            border-top: 2px solid #D4AF37 !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        #mobile-menu a {
+            color: #FFFFFF !important;
+            font-weight: 500 !important;
+            padding: 12px 0 !important; /* Increased padding for better touch targets */
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        #mobile-menu a:hover, #mobile-menu a:focus {
+            color: #F4D03F !important;
+            background: rgba(212, 175, 55, 0.1) !important;
+            text-shadow: 0 0 8px rgba(244, 208, 63, 0.4) !important;
         }
 
         /* Hero section fixes */
@@ -404,9 +476,10 @@
         }
 
         .service-option p {
-            color: #ccc !important;
+            color: #E5E5E5 !important; /* Enhanced contrast from #ccc */
             margin: 0 !important;
             font-size: 14px !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
         }
 
         .transportation-form .form-row {
@@ -432,12 +505,20 @@
         .transportation-form textarea {
             width: 100% !important;
             padding: 12px !important;
-            background: rgba(0, 0, 0, 0.7) !important;
-            border: 2px solid #333 !important;
+            background: rgba(0, 0, 0, 0.85) !important; /* Darker background for better contrast */
+            border: 2px solid #555 !important; /* Lighter border for better visibility */
             border-radius: 8px !important;
-            color: #fff !important;
+            color: #FFFFFF !important; /* Pure white for maximum contrast */
             font-size: 16px !important;
+            font-weight: 500 !important; /* Slightly bolder text */
             transition: all 0.3s ease !important;
+        }
+
+        .transportation-form input::placeholder,
+        .transportation-form select::placeholder,
+        .transportation-form textarea::placeholder {
+            color: #CCCCCC !important; /* Enhanced placeholder contrast */
+            opacity: 1 !important;
         }
 
         .transportation-form input:focus,
@@ -478,9 +559,10 @@
 
         .pricing-note {
             font-size: 12px !important;
-            color: #ccc !important;
+            color: #E5E5E5 !important; /* Enhanced contrast from #ccc */
             margin-top: 10px !important;
             font-style: italic !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
         }
 
         .transportation-form .btn-primary {
@@ -563,9 +645,10 @@
         }
 
         .install-banner .install-text p {
-            color: #ccc;
+            color: #E5E5E5; /* Enhanced contrast from #ccc */
             font-size: 14px;
             margin: 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .install-banner .install-actions {
@@ -596,11 +679,12 @@
 
         .install-btn-secondary {
             background: transparent;
-            color: #ccc;
-            border: 1px solid #666;
+            color: #E5E5E5; /* Enhanced contrast from #ccc */
+            border: 1px solid #888; /* Lighter border for better visibility */
             padding: 10px 16px;
             border-radius: 8px;
             font-size: 14px;
+            font-weight: 500; /* Slightly bolder text */
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -674,14 +758,87 @@
         .install-success-notification p {
             margin: 0;
             font-size: 14px;
-            color: #ccc;
+            color: #E5E5E5; /* Enhanced contrast from #ccc */
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
 
+        /* MOBILE CONTRAST ENHANCEMENTS */
         @media (max-width: 768px) {
+            /* Enhanced Mobile Navigation */
+            nav {
+                background: rgba(10, 10, 10, 0.99) !important; /* Nearly opaque for better contrast */
+                border-bottom: 3px solid #D4AF37 !important; /* Thicker border for mobile */
+            }
+
+            nav a {
+                font-size: 16px !important; /* Larger text for mobile */
+                font-weight: 600 !important; /* Bolder for better readability */
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7) !important;
+            }
+
+            /* Enhanced Mobile Menu */
+            #mobile-menu {
+                background: rgba(10, 10, 10, 0.99) !important;
+                border-top: 3px solid #D4AF37 !important;
+            }
+
+            #mobile-menu a {
+                font-size: 16px !important;
+                font-weight: 600 !important;
+                padding: 16px 0 !important; /* Larger touch targets */
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7) !important;
+            }
+
+            /* Enhanced Mobile Text Contrast */
+            .text-gray-300, .text-gray-400 {
+                color: #F0F0F0 !important; /* Even lighter for mobile */
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7) !important;
+            }
+
+            /* Enhanced Mobile Form Elements */
+            input, select, textarea {
+                background: rgba(0, 0, 0, 0.9) !important;
+                border: 2px solid #777 !important;
+                color: #FFFFFF !important;
+                font-size: 16px !important; /* Prevent zoom on iOS */
+                font-weight: 500 !important;
+            }
+
+            input::placeholder, select::placeholder, textarea::placeholder {
+                color: #D0D0D0 !important;
+                opacity: 1 !important;
+            }
+
+            /* Enhanced Mobile Button Contrast */
+            .luxury-button, button {
+                font-size: 16px !important;
+                font-weight: 700 !important;
+                padding: 14px 24px !important;
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+            }
+
+            /* Enhanced Mobile Card Text */
+            .card, .premium-card, .luxury-card {
+                background: linear-gradient(145deg, #1a1a1a, #2a2a2a) !important;
+                border: 2px solid #D4AF37 !important; /* Thicker borders for mobile */
+            }
+
+            .card h3, .premium-card h3, .luxury-card h3 {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7) !important;
+            }
+
+            .card p, .premium-card p, .luxury-card p {
+                color: #F0F0F0 !important;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7) !important;
+            }
+
+            /* Enhanced Mobile Install Banner */
             .install-banner {
                 left: 10px;
                 right: 10px;
                 bottom: 10px;
+                background: linear-gradient(145deg, #1a1a1a, #2a2a2a) !important;
+                border: 3px solid #D4AF37 !important;
             }
 
             .install-banner-content {
@@ -699,6 +856,23 @@
             .install-btn-secondary {
                 flex: 1;
                 justify-content: center;
+                font-weight: 600 !important;
+            }
+
+            /* Enhanced Mobile Footer Text */
+            footer .text-gray-300, footer .text-gray-400 {
+                color: #F0F0F0 !important;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7) !important;
+            }
+
+            /* Enhanced Mobile Hero Text */
+            .hero-bg h1, .hero-bg p {
+                text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8) !important;
+            }
+
+            /* Enhanced Mobile Section Headings */
+            h1, h2, h3, h4, h5, h6 {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7) !important;
             }
         }
     </style>
@@ -2252,6 +2426,7 @@
 
     <!-- Midas The Lifestyle Luxury Systems -->
     <!-- Critical Performance Scripts (Load First) -->
+    <script src="utils/contrastEnhancer.js"></script>
     <script src="utils/performanceOptimizer.js"></script>
     <script src="utils/accessibilityEnhancer.js"></script>
     <script src="utils/formValidator.js"></script>
