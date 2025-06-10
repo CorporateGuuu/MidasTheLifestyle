@@ -1,6 +1,6 @@
 [build]
   publish = "."
-  command = "node build.js && echo 'Force rebuild 2025-01-27'"
+  command = "node build.js && echo 'FINAL LUXURY DEPLOYMENT 2025-01-27'"
   functions = "netlify/functions"
 
 [[headers]]
