@@ -1,421 +1,321 @@
-// Performance Optimizer for Midas The Lifestyle
-// Handles image optimization, lazy loading, caching, and SEO enhancements
+/**
+ * Performance Optimizer for Midas The Lifestyle
+ * Comprehensive performance optimization targeting Core Web Vitals
+ * Maintains luxury styling while achieving <1.5s FCP, <2.5s LCP, <3.0s SI
+ */
 
 class PerformanceOptimizer {
     constructor() {
-        this.imageCache = new Map();
-        this.lazyLoadObserver = null;
-        this.preloadedImages = new Set();
+        this.criticalResources = new Set();
+        this.lazyImages = [];
+        this.intersectionObserver = null;
+        this.performanceMetrics = {};
+        this.isOptimized = false;
+        
         this.init();
     }
 
     init() {
+        // Initialize performance optimizations immediately
+        this.inlineCriticalCSS();
+        this.optimizeFontLoading();
         this.setupLazyLoading();
-        this.setupImageOptimization();
-        this.setupSEOEnhancements();
-        this.setupCaching();
+        this.optimizeEventListeners();
+        this.preloadCriticalResources();
         this.setupPerformanceMonitoring();
-        console.log('🚀 Performance Optimizer initialized');
-    }
-
-    // Lazy Loading Implementation
-    setupLazyLoading() {
-        if ('IntersectionObserver' in window) {
-            this.lazyLoadObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        this.loadImage(entry.target);
-                        this.lazyLoadObserver.unobserve(entry.target);
-                    }
-                });
-            }, {
-                rootMargin: '50px 0px',
-                threshold: 0.01
-            });
-
-            // Observe all images with lazy loading
-            this.observeLazyImages();
+        
+        // Defer non-critical optimizations
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.deferredOptimizations());
         } else {
-            // Fallback for older browsers
-            this.loadAllImages();
+            this.deferredOptimizations();
         }
     }
 
-    observeLazyImages() {
-        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-        lazyImages.forEach(img => {
-            this.lazyLoadObserver.observe(img);
-        });
+    // Inline critical CSS for above-the-fold content
+    inlineCriticalCSS() {
+        const criticalCSS = `
+            /* Critical CSS for immediate rendering */
+            body, html { 
+                background: #0A0A0A !important; 
+                color: #FFFFFF !important; 
+                margin: 0; 
+                padding: 0;
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            }
+            .hero-section { 
+                background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(26,26,26,0.8)) !important;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .gold-accent, .luxury-heading { 
+                color: #D4AF37 !important; 
+                font-family: 'Playfair Display', serif !important;
+            }
+            .luxury-button, .btn-luxury {
+                background: linear-gradient(135deg, #D4AF37, #E8C96A) !important;
+                color: #000000 !important;
+                border: none !important;
+                padding: 12px 24px !important;
+                border-radius: 8px !important;
+                font-weight: 600 !important;
+                cursor: pointer !important;
+                transition: all 0.3s ease !important;
+            }
+            .nav-container {
+                background: rgba(0, 0, 0, 0.95) !important;
+                backdrop-filter: blur(10px) !important;
+            }
+            .loading-placeholder {
+                background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+                background-size: 200% 100%;
+                animation: loading 1.5s infinite;
+            }
+            @keyframes loading {
+                0% { background-position: 200% 0; }
+                100% { background-position: -200% 0; }
+            }
+            .error-message {
+                color: #ff6b6b;
+                font-size: 12px;
+                margin-top: 5px;
+                display: none;
+            }
+            .error-message.show {
+                display: block;
+            }
+            input.error, select.error, textarea.error {
+                border-color: #ff6b6b !important;
+                box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2) !important;
+            }
+        `;
+
+        const style = document.createElement('style');
+        style.textContent = criticalCSS;
+        document.head.insertBefore(style, document.head.firstChild);
     }
 
-    loadImage(img) {
-        const src = img.dataset.src || img.src;
-        if (src && !img.dataset.loaded) {
-            // Create optimized image URL
-            const optimizedSrc = this.optimizeImageUrl(src, img);
-            
-            // Preload image
-            const preloadImg = new Image();
-            preloadImg.onload = () => {
-                img.src = optimizedSrc;
-                img.dataset.loaded = 'true';
-                img.classList.add('loaded');
-                this.imageCache.set(src, optimizedSrc);
-            };
-            preloadImg.onerror = () => {
-                // Fallback to original src
-                img.src = src;
-                img.dataset.loaded = 'true';
-            };
-            preloadImg.src = optimizedSrc;
-        }
-    }
-
-    loadAllImages() {
-        const images = document.querySelectorAll('img[loading="lazy"]');
-        images.forEach(img => this.loadImage(img));
-    }
-
-    // Image Optimization
-    setupImageOptimization() {
-        // Preload critical images
-        this.preloadCriticalImages();
-        
-        // Setup responsive image handling
-        this.setupResponsiveImages();
-    }
-
-    optimizeImageUrl(src, imgElement) {
-        // Get optimal dimensions based on container
-        const rect = imgElement.getBoundingClientRect();
-        const devicePixelRatio = window.devicePixelRatio || 1;
-        
-        const optimalWidth = Math.ceil(rect.width * devicePixelRatio);
-        const optimalHeight = Math.ceil(rect.height * devicePixelRatio);
-
-        // For Unsplash images, add optimization parameters
-        if (src.includes('unsplash.com')) {
-            const url = new URL(src);
-            url.searchParams.set('w', Math.min(optimalWidth, 1200));
-            url.searchParams.set('h', Math.min(optimalHeight, 800));
-            url.searchParams.set('fit', 'crop');
-            url.searchParams.set('auto', 'format,compress');
-            url.searchParams.set('q', '85');
-            return url.toString();
-        }
-
-        return src;
-    }
-
-    preloadCriticalImages() {
-        // Preload hero images and above-the-fold content
-        const criticalImages = [
-            'https://source.unsplash.com/1920x1080?bugatti',
-            'https://source.unsplash.com/1920x1080?superyacht',
-            'https://source.unsplash.com/1920x1080?private-jet',
-            'https://source.unsplash.com/1920x1080?luxury-villa'
+    // Optimize font loading strategy
+    optimizeFontLoading() {
+        // Preload critical fonts
+        const fontPreloads = [
+            { family: 'Playfair Display', weight: '700', display: 'swap' },
+            { family: 'Inter', weight: '400,600', display: 'swap' }
         ];
 
-        criticalImages.forEach(src => {
-            if (!this.preloadedImages.has(src)) {
-                const link = document.createElement('link');
-                link.rel = 'preload';
-                link.as = 'image';
-                link.href = src;
-                document.head.appendChild(link);
-                this.preloadedImages.add(src);
-            }
+        fontPreloads.forEach(font => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'font';
+            link.type = 'font/woff2';
+            link.crossOrigin = 'anonymous';
+            link.href = `https://fonts.googleapis.com/css2?family=${font.family.replace(' ', '+')}:wght@${font.weight}&display=${font.display}`;
+            document.head.appendChild(link);
         });
     }
 
-    setupResponsiveImages() {
-        // Handle responsive images based on viewport
-        const handleResize = () => {
-            const images = document.querySelectorAll('img[data-responsive]');
-            images.forEach(img => {
-                const newSrc = this.optimizeImageUrl(img.src, img);
-                if (newSrc !== img.src) {
-                    img.src = newSrc;
-                }
-            });
+    // Setup lazy loading for images and videos
+    setupLazyLoading() {
+        const imageObserverOptions = {
+            root: null,
+            rootMargin: '50px',
+            threshold: 0.1
         };
 
+        this.intersectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.loadImage(entry.target);
+                    this.intersectionObserver.unobserve(entry.target);
+                }
+            });
+        }, imageObserverOptions);
+
+        // Find all images with lazy loading
+        this.lazyImages = document.querySelectorAll('img[loading="lazy"], img[data-src]');
+        this.lazyImages.forEach(img => {
+            // Add placeholder while loading
+            if (!img.src && img.dataset.src) {
+                img.src = this.generatePlaceholder(img.width || 800, img.height || 600);
+                img.classList.add('loading-placeholder');
+            }
+            this.intersectionObserver.observe(img);
+        });
+    }
+
+    // Load image with WebP support and fallback
+    loadImage(img) {
+        const originalSrc = img.dataset.src || img.src;
+        
+        // Check WebP support and optimize URL
+        if (this.supportsWebP()) {
+            const webpSrc = this.convertToWebP(originalSrc);
+            img.src = webpSrc;
+        } else {
+            img.src = originalSrc;
+        }
+
+        img.classList.remove('loading-placeholder');
+        img.classList.add('loaded');
+        
+        // Add fade-in animation
+        img.style.opacity = '0';
+        img.style.transition = 'opacity 0.3s ease';
+        
+        img.onload = () => {
+            img.style.opacity = '1';
+        };
+    }
+
+    // Check WebP support
+    supportsWebP() {
+        if (this.webpSupport !== undefined) return this.webpSupport;
+        
+        const canvas = document.createElement('canvas');
+        canvas.width = 1;
+        canvas.height = 1;
+        this.webpSupport = canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+        return this.webpSupport;
+    }
+
+    // Convert image URL to WebP if supported
+    convertToWebP(url) {
+        if (url.includes('unsplash.com')) {
+            return url.includes('&fm=') ? url.replace(/&fm=\w+/, '&fm=webp') : url + '&fm=webp';
+        }
+        return url;
+    }
+
+    // Generate placeholder image
+    generatePlaceholder(width, height) {
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        
+        // Create luxury gradient placeholder
+        const gradient = ctx.createLinearGradient(0, 0, width, height);
+        gradient.addColorStop(0, '#1a1a1a');
+        gradient.addColorStop(0.5, '#2a2a2a');
+        gradient.addColorStop(1, '#1a1a1a');
+        
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, width, height);
+        
+        return canvas.toDataURL();
+    }
+
+    // Optimize event listeners for better performance
+    optimizeEventListeners() {
+        // Use passive listeners for scroll events
+        const passiveEvents = ['scroll', 'touchstart', 'touchmove', 'wheel'];
+        
+        passiveEvents.forEach(eventType => {
+            const originalAddEventListener = EventTarget.prototype.addEventListener;
+            EventTarget.prototype.addEventListener = function(type, listener, options) {
+                if (passiveEvents.includes(type) && typeof options !== 'object') {
+                    options = { passive: true };
+                } else if (typeof options === 'object' && options.passive === undefined) {
+                    options.passive = true;
+                }
+                return originalAddEventListener.call(this, type, listener, options);
+            };
+        });
+
+        // Debounce resize events
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(handleResize, 250);
-        });
+            resizeTimeout = setTimeout(() => {
+                this.handleResize();
+            }, 250);
+        }, { passive: true });
     }
 
-    // SEO Enhancements
-    setupSEOEnhancements() {
-        this.addStructuredData();
-        this.optimizeMetaTags();
-        this.setupOpenGraph();
-        this.addBreadcrumbs();
-    }
-
-    addStructuredData() {
-        // Add JSON-LD structured data for luxury car rentals
-        const structuredData = {
-            "@context": "https://schema.org",
-            "@type": "AutoRental",
-            "name": "Midas The Lifestyle - Luxury Car Rentals",
-            "description": "Premium luxury car rental service featuring exotic cars, supercars, and luxury vehicles in Dubai, Washington DC, Atlanta, Maryland, and Northern Virginia.",
-            "url": window.location.origin,
-            "logo": `${window.location.origin}/logo.png`,
-            "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+971-123-456-789",
-                "contactType": "customer service",
-                "email": "concierge@midasthelifestyle.com"
-            },
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Dubai",
-                "addressCountry": "UAE"
-            },
-            "areaServed": [
-                "Dubai", "Washington DC", "Atlanta", "Maryland", "Northern Virginia"
-            ],
-            "priceRange": "$1500-$6000 per day",
-            "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Luxury Vehicle Fleet",
-                "itemListElement": this.generateVehicleStructuredData()
-            }
-        };
-
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.textContent = JSON.stringify(structuredData);
-        document.head.appendChild(script);
-    }
-
-    generateVehicleStructuredData() {
-        // This would be populated from the car inventory
-        return [
-            {
-                "@type": "Vehicle",
-                "name": "Bugatti Chiron",
-                "brand": "Bugatti",
-                "model": "Chiron",
-                "vehicleEngine": {
-                    "@type": "EngineSpecification",
-                    "enginePower": "1479 HP"
-                },
-                "offers": {
-                    "@type": "Offer",
-                    "price": "5500",
-                    "priceCurrency": "USD",
-                    "availability": "https://schema.org/InStock"
-                }
-            }
-            // More vehicles would be added dynamically
+    // Preload critical resources
+    preloadCriticalResources() {
+        const criticalResources = [
+            { href: '/utils/bookingSystem.js', as: 'script' },
+            { href: '/utils/vehicleShowcase.js', as: 'script' },
+            { href: 'https://unpkg.com/swiper/swiper-bundle.min.css', as: 'style' }
         ];
-    }
 
-    optimizeMetaTags() {
-        // Update meta descriptions for better SEO
-        const metaDescription = document.querySelector('meta[name="description"]');
-        if (metaDescription) {
-            metaDescription.content = "Rent luxury cars in Dubai, Washington DC, Atlanta. Premium fleet including Bugatti, Ferrari, Lamborghini, Rolls-Royce. White glove service, instant booking, 24/7 concierge.";
-        }
-
-        // Add additional meta tags
-        this.addMetaTag('keywords', 'luxury car rental, exotic car rental, supercar rental, Dubai car rental, Washington DC luxury cars, Atlanta exotic cars, Bugatti rental, Ferrari rental, Lamborghini rental');
-        this.addMetaTag('author', 'Midas The Lifestyle');
-        this.addMetaTag('robots', 'index, follow, max-image-preview:large');
-    }
-
-    addMetaTag(name, content) {
-        if (!document.querySelector(`meta[name="${name}"]`)) {
-            const meta = document.createElement('meta');
-            meta.name = name;
-            meta.content = content;
-            document.head.appendChild(meta);
-        }
-    }
-
-    setupOpenGraph() {
-        // Enhance Open Graph tags for social sharing
-        const ogTags = {
-            'og:type': 'website',
-            'og:site_name': 'Midas The Lifestyle',
-            'og:locale': 'en_US',
-            'twitter:card': 'summary_large_image',
-            'twitter:site': '@midasthelifestyle'
-        };
-
-        Object.entries(ogTags).forEach(([property, content]) => {
-            if (!document.querySelector(`meta[property="${property}"]`)) {
-                const meta = document.createElement('meta');
-                meta.setAttribute('property', property);
-                meta.content = content;
-                document.head.appendChild(meta);
+        criticalResources.forEach(resource => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.href = resource.href;
+            link.as = resource.as;
+            if (resource.as === 'script') {
+                link.crossOrigin = 'anonymous';
             }
+            document.head.appendChild(link);
         });
     }
 
-    addBreadcrumbs() {
-        // Add breadcrumb structured data
-        const breadcrumbData = {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": window.location.origin
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Luxury Car Rentals",
-                    "item": `${window.location.origin}#cars`
-                }
-            ]
-        };
-
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.textContent = JSON.stringify(breadcrumbData);
-        document.head.appendChild(script);
-    }
-
-    // Caching Strategy
-    setupCaching() {
-        // Service Worker registration for caching
-        if ('serviceWorker' in navigator) {
-            this.registerServiceWorker();
-        }
-
-        // Local storage caching for API responses
-        this.setupLocalStorageCaching();
-    }
-
-    registerServiceWorker() {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered:', registration);
-            })
-            .catch(error => {
-                console.log('SW registration failed:', error);
-            });
-    }
-
-    setupLocalStorageCaching() {
-        // Cache inventory data
-        const originalFetch = window.fetch;
-        window.fetch = async (...args) => {
-            const [url] = args;
-            
-            if (url.includes('inventory.json')) {
-                const cacheKey = `cache_${url}`;
-                const cached = localStorage.getItem(cacheKey);
-                const cacheTime = localStorage.getItem(`${cacheKey}_time`);
-                
-                // Use cache if less than 1 hour old
-                if (cached && cacheTime && (Date.now() - parseInt(cacheTime)) < 3600000) {
-                    return new Response(cached, {
-                        status: 200,
-                        headers: { 'Content-Type': 'application/json' }
-                    });
-                }
-                
-                const response = await originalFetch(...args);
-                if (response.ok) {
-                    const data = await response.clone().text();
-                    localStorage.setItem(cacheKey, data);
-                    localStorage.setItem(`${cacheKey}_time`, Date.now().toString());
-                }
-                return response;
-            }
-            
-            return originalFetch(...args);
-        };
-    }
-
-    // Performance Monitoring
+    // Setup performance monitoring
     setupPerformanceMonitoring() {
         // Monitor Core Web Vitals
-        this.monitorCoreWebVitals();
-        
-        // Monitor resource loading
-        this.monitorResourceLoading();
-    }
+        if ('PerformanceObserver' in window) {
+            // Largest Contentful Paint
+            new PerformanceObserver((entryList) => {
+                const entries = entryList.getEntries();
+                const lastEntry = entries[entries.length - 1];
+                this.performanceMetrics.lcp = lastEntry.startTime;
+                console.log('LCP:', lastEntry.startTime);
+            }).observe({ entryTypes: ['largest-contentful-paint'] });
 
-    monitorCoreWebVitals() {
-        // Largest Contentful Paint (LCP)
-        new PerformanceObserver((entryList) => {
-            const entries = entryList.getEntries();
-            const lastEntry = entries[entries.length - 1];
-            console.log('LCP:', lastEntry.startTime);
-        }).observe({ entryTypes: ['largest-contentful-paint'] });
+            // First Input Delay
+            new PerformanceObserver((entryList) => {
+                const entries = entryList.getEntries();
+                entries.forEach(entry => {
+                    this.performanceMetrics.fid = entry.processingStart - entry.startTime;
+                    console.log('FID:', entry.processingStart - entry.startTime);
+                });
+            }).observe({ entryTypes: ['first-input'] });
 
-        // First Input Delay (FID)
-        new PerformanceObserver((entryList) => {
-            const entries = entryList.getEntries();
-            entries.forEach(entry => {
-                console.log('FID:', entry.processingStart - entry.startTime);
-            });
-        }).observe({ entryTypes: ['first-input'] });
-
-        // Cumulative Layout Shift (CLS)
-        let clsValue = 0;
-        new PerformanceObserver((entryList) => {
-            const entries = entryList.getEntries();
-            entries.forEach(entry => {
-                if (!entry.hadRecentInput) {
-                    clsValue += entry.value;
+            // Cumulative Layout Shift
+            let clsValue = 0;
+            new PerformanceObserver((entryList) => {
+                for (const entry of entryList.getEntries()) {
+                    if (!entry.hadRecentInput) {
+                        clsValue += entry.value;
+                    }
                 }
-            });
-            console.log('CLS:', clsValue);
-        }).observe({ entryTypes: ['layout-shift'] });
-    }
-
-    monitorResourceLoading() {
-        window.addEventListener('load', () => {
-            const navigation = performance.getEntriesByType('navigation')[0];
-            console.log('Page Load Time:', navigation.loadEventEnd - navigation.fetchStart);
-            
-            const resources = performance.getEntriesByType('resource');
-            resources.forEach(resource => {
-                if (resource.duration > 1000) {
-                    console.warn('Slow resource:', resource.name, resource.duration);
-                }
-            });
-        });
-    }
-
-    // Public methods for manual optimization
-    preloadImage(src) {
-        if (!this.preloadedImages.has(src)) {
-            const img = new Image();
-            img.src = src;
-            this.preloadedImages.add(src);
+                this.performanceMetrics.cls = clsValue;
+                console.log('CLS:', clsValue);
+            }).observe({ entryTypes: ['layout-shift'] });
         }
     }
 
-    clearImageCache() {
-        this.imageCache.clear();
+    // Deferred optimizations after initial load
+    deferredOptimizations() {
+        this.isOptimized = true;
     }
 
-    getPerformanceMetrics() {
+    // Handle resize events efficiently
+    handleResize() {
+        // Recalculate lazy loading thresholds
+        if (this.intersectionObserver) {
+            this.lazyImages.forEach(img => {
+                if (!img.classList.contains('loaded')) {
+                    this.intersectionObserver.observe(img);
+                }
+            });
+        }
+    }
+
+    // Public method to get performance status
+    getPerformanceStatus() {
         return {
-            imagesCached: this.imageCache.size,
-            imagesPreloaded: this.preloadedImages.size,
-            memoryUsage: performance.memory ? {
-                used: Math.round(performance.memory.usedJSHeapSize / 1048576),
-                total: Math.round(performance.memory.totalJSHeapSize / 1048576),
-                limit: Math.round(performance.memory.jsHeapSizeLimit / 1048576)
-            } : null
+            isOptimized: this.isOptimized,
+            metrics: this.performanceMetrics,
+            lazyImagesLoaded: this.lazyImages.filter(img => img.classList.contains('loaded')).length,
+            totalLazyImages: this.lazyImages.length
         };
     }
 }
 
-// Initialize performance optimizer
-document.addEventListener('DOMContentLoaded', () => {
-    window.performanceOptimizer = new PerformanceOptimizer();
-});
+// Initialize performance optimizer immediately
+const performanceOptimizer = new PerformanceOptimizer();

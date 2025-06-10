@@ -11,18 +11,26 @@ const STATIC_ASSETS = [
     '/index.html',
     '/styles.css',
     '/script.js',
-    '/utils/carInventoryManager.js',
     '/utils/performanceOptimizer.js',
+    '/utils/accessibilityEnhancer.js',
+    '/utils/formValidator.js',
+    '/utils/carInventoryManager.js',
     '/utils/bookingCalendar.js',
+    '/utils/bookingSystem.js',
     '/utils/paymentSystem.js',
     '/utils/userAuth.js',
+    '/utils/vehicleShowcase.js',
+    '/utils/imageManager.js',
+    '/utils/pwaManager.js',
     '/utils/aiChatbot.js',
+    '/utils/advancedAnimations.js',
     '/data/inventory.json',
     'https://cdn.tailwindcss.com',
-    'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap',
+    'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap',
     'https://unpkg.com/swiper/swiper-bundle.min.css',
     'https://unpkg.com/swiper/swiper-bundle.min.js',
-    'https://js.stripe.com/v3/'
+    'https://js.stripe.com/v3/',
+    'https://accounts.google.com/gsi/client'
 ];
 
 // Install event - cache static assets

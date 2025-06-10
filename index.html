@@ -318,65 +318,100 @@
 </head>
 <body style="background-color: #0A0A0A !important; color: #FFFFFF !important; font-family: 'Inter', 'Montserrat', sans-serif !important; margin: 0; padding: 0;">
     <!-- Navigation -->
-    <nav class="bg-black text-white p-4 sticky top-0 z-50 backdrop-blur-md">
+    <nav class="bg-black text-white p-4 sticky top-0 z-50 backdrop-blur-md"
+         role="navigation"
+         aria-label="Main navigation"
+         id="navigation">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold font-['Playfair_Display'] gold-accent">Midas The Lifestyle</a>
-            <div class="space-x-6 hidden md:flex">
-                <a href="#home" class="hover:text-[#D4AF37] transition-colors">Home</a>
-                <a href="#cars" class="hover:text-[#D4AF37] transition-colors">Luxury Cars</a>
-                <a href="#yachts" class="hover:text-[#D4AF37] transition-colors">Yachts</a>
-                <a href="#planes" class="hover:text-[#D4AF37] transition-colors">Private Jets</a>
-                <a href="#properties" class="hover:text-[#D4AF37] transition-colors">Estates</a>
-                <a href="#transportation" class="hover:text-[#D4AF37] transition-colors">Transportation</a>
-                <a href="#contact" class="hover:text-[#D4AF37] transition-colors">Concierge</a>
+            <a href="#home"
+               class="text-3xl font-bold font-['Playfair_Display'] gold-accent"
+               aria-label="Midas The Lifestyle - Home">Midas The Lifestyle</a>
+            <div class="space-x-6 hidden md:flex" role="menubar">
+                <a href="#home" class="hover:text-[#D4AF37] transition-colors" role="menuitem">Home</a>
+                <a href="#cars" class="hover:text-[#D4AF37] transition-colors" role="menuitem">Luxury Cars</a>
+                <a href="#yachts" class="hover:text-[#D4AF37] transition-colors" role="menuitem">Yachts</a>
+                <a href="#planes" class="hover:text-[#D4AF37] transition-colors" role="menuitem">Private Jets</a>
+                <a href="#properties" class="hover:text-[#D4AF37] transition-colors" role="menuitem">Estates</a>
+                <a href="#transportation" class="hover:text-[#D4AF37] transition-colors" role="menuitem">Transportation</a>
+                <a href="#contact" class="hover:text-[#D4AF37] transition-colors" role="menuitem">Concierge</a>
             </div>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button id="mobile-menu-btn"
+                    class="md:hidden text-white"
+                    aria-label="Open mobile navigation menu"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-[#D4AF37]">
+        <div id="mobile-menu"
+             class="hidden md:hidden bg-black border-t border-[#D4AF37]"
+             role="menu"
+             aria-labelledby="mobile-menu-btn">
             <div class="px-4 py-2 space-y-2">
-                <a href="#home" class="block py-2 hover:text-[#D4AF37] transition-colors">Home</a>
-                <a href="#cars" class="block py-2 hover:text-[#D4AF37] transition-colors">Luxury Cars</a>
-                <a href="#yachts" class="block py-2 hover:text-[#D4AF37] transition-colors">Yachts</a>
-                <a href="#planes" class="block py-2 hover:text-[#D4AF37] transition-colors">Private Jets</a>
-                <a href="#properties" class="block py-2 hover:text-[#D4AF37] transition-colors">Estates</a>
-                <a href="#transportation" class="block py-2 hover:text-[#D4AF37] transition-colors">Transportation</a>
-                <a href="#contact" class="block py-2 hover:text-[#D4AF37] transition-colors">Concierge</a>
+                <a href="#home" class="block py-2 hover:text-[#D4AF37] transition-colors" role="menuitem">Home</a>
+                <a href="#cars" class="block py-2 hover:text-[#D4AF37] transition-colors" role="menuitem">Luxury Cars</a>
+                <a href="#yachts" class="block py-2 hover:text-[#D4AF37] transition-colors" role="menuitem">Yachts</a>
+                <a href="#planes" class="block py-2 hover:text-[#D4AF37] transition-colors" role="menuitem">Private Jets</a>
+                <a href="#properties" class="block py-2 hover:text-[#D4AF37] transition-colors" role="menuitem">Estates</a>
+                <a href="#transportation" class="block py-2 hover:text-[#D4AF37] transition-colors" role="menuitem">Transportation</a>
+                <a href="#contact" class="block py-2 hover:text-[#D4AF37] transition-colors" role="menuitem">Concierge</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg flex items-center justify-center text-white">
-        <div class="swiper hero-slider">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3" alt="Luxury Exotic Car" loading="eager">
-                </div>
-                <div class="swiper-slide">
-                    <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3" alt="Luxury Superyacht" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                    <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3" alt="Private Jet" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3" alt="Luxury Estate" loading="lazy">
+    <main>
+        <section id="home"
+                 class="hero-bg flex items-center justify-center text-white"
+                 role="banner"
+                 aria-labelledby="hero-heading"
+                 id="main-content">
+            <div class="swiper hero-slider" aria-hidden="true">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&fm=webp&ixlib=rb-4.0.3"
+                             alt="Luxury exotic car - Bugatti Chiron in elegant setting"
+                             loading="eager"
+                             width="1920"
+                             height="1080">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&fm=webp&ixlib=rb-4.0.3"
+                             alt="Luxury superyacht on crystal blue waters"
+                             loading="lazy"
+                             width="1920"
+                             height="1080">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&fm=webp&ixlib=rb-4.0.3"
+                             alt="Private jet on luxury airport tarmac"
+                             loading="lazy"
+                             width="1920"
+                             height="1080">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&fm=webp&ixlib=rb-4.0.3"
+                             alt="Luxury estate with stunning architecture"
+                             loading="lazy"
+                             width="1920"
+                             height="1080">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container mx-auto text-center hero-content z-10">
-            <h1 class="text-6xl font-bold mb-4 luxury-heading">Midas The Lifestyle: Touch of Gold</h1>
-            <p class="text-2xl mb-8 max-w-2xl mx-auto">Curated rentals of exotic cars, superyachts, private jets, and exclusive estates for the world's elite.</p>
-            <button onclick="bookingSystem.openBookingModal()" class="luxury-button micro-bounce">Request a VVIP Consultation</button>
-        </div>
-    </section>
+            <div class="container mx-auto text-center hero-content z-10">
+                <h1 id="hero-heading" class="text-6xl font-bold mb-4 luxury-heading">Midas The Lifestyle: Touch of Gold</h1>
+                <p class="text-2xl mb-8 max-w-2xl mx-auto">Curated rentals of exotic cars, superyachts, private jets, and exclusive estates for the world's elite.</p>
+                <button onclick="bookingSystem.openBookingModal()"
+                        class="luxury-button micro-bounce"
+                        aria-label="Request a VVIP consultation for luxury rentals">Request a VVIP Consultation</button>
+            </div>
+        </section>
 
     <!-- Luxury Car Rentals Section -->
     <section id="cars" class="py-20 section-bg parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3');">
@@ -485,13 +520,17 @@
             <div class="swiper car-slider">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide card" data-type="hypercar">
-                        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&h=600&fit=crop&crop=center&auto=format&q=80&ixlib=rb-4.0.3"
+                        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&h=600&fit=crop&crop=center&auto=format&q=80&fm=webp&ixlib=rb-4.0.3"
                              alt="Bugatti Chiron - Ultimate luxury hypercar with 1,479 horsepower"
-                             loading="lazy">
+                             loading="lazy"
+                             width="800"
+                             height="600">
                         <div class="p-6">
                             <h3 class="text-2xl font-semibold gold-accent">Bugatti Chiron</h3>
                             <p class="text-white">AED 20,000/day | $5,500/day</p>
-                            <button onclick="bookingSystem.openBookingModal('bugatti-chiron')" class="text-[#D4AF37] hover:underline">Reserve Now</button>
+                            <button onclick="bookingSystem.openBookingModal('bugatti-chiron')"
+                                    class="text-[#D4AF37] hover:underline"
+                                    aria-label="Reserve Bugatti Chiron luxury hypercar">Reserve Now</button>
                         </div>
                     </div>
                     <div class="swiper-slide card" data-type="hypercar">
@@ -1361,35 +1400,113 @@
     <section id="contact" class="py-20 section-bg">
         <div class="container mx-auto px-4 fade-in">
             <h2 class="text-4xl font-bold text-center mb-12 gold-accent">Connect with Our VVIP Concierge</h2>
-            <form id="contact-form" class="max-w-lg mx-auto">
+            <form id="contact-form" class="max-w-lg mx-auto" novalidate aria-label="Contact form for luxury rental inquiries">
                 <div class="mb-6">
-                    <label for="name" class="block text-sm font-medium mb-2 text-white">Name</label>
-                    <input type="text" id="name" class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]" required>
+                    <label for="name" class="block text-sm font-medium mb-2 text-white">Full Name *</label>
+                    <input type="text"
+                           id="name"
+                           name="name"
+                           class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#E8C96A] transition-all duration-300"
+                           required
+                           autocomplete="name"
+                           pattern="[A-Za-z\s]{2,50}"
+                           minlength="2"
+                           maxlength="50"
+                           aria-describedby="name-error"
+                           placeholder="Enter your full name">
+                    <div id="name-error" class="error-message" role="alert" aria-live="polite"></div>
                 </div>
                 <div class="mb-6">
-                    <label for="email" class="block text-sm font-medium mb-2 text-white">Email</label>
-                    <input type="email" id="email" class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]" required>
+                    <label for="email" class="block text-sm font-medium mb-2 text-white">Email Address *</label>
+                    <input type="email"
+                           id="email"
+                           name="email"
+                           class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#E8C96A] transition-all duration-300"
+                           required
+                           autocomplete="email"
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                           aria-describedby="email-error"
+                           placeholder="your.email@example.com">
+                    <div id="email-error" class="error-message" role="alert" aria-live="polite"></div>
                 </div>
                 <div class="mb-6">
-                    <label for="phone" class="block text-sm font-medium mb-2 text-white">Phone</label>
-                    <input type="tel" id="phone" class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]">
+                    <label for="phone" class="block text-sm font-medium mb-2 text-white">Phone Number *</label>
+                    <input type="tel"
+                           id="phone"
+                           name="phone"
+                           class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#E8C96A] transition-all duration-300"
+                           required
+                           autocomplete="tel"
+                           pattern="[\+]?[1-9][\d\s\-\(\)]{7,15}"
+                           aria-describedby="phone-error"
+                           placeholder="+1 (555) 123-4567">
+                    <div id="phone-error" class="error-message" role="alert" aria-live="polite"></div>
                 </div>
                 <div class="mb-6">
-                    <label for="service" class="block text-sm font-medium mb-2 text-white">Service</label>
-                    <select id="service" class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]" required>
+                    <label for="location" class="block text-sm font-medium mb-2 text-white">Preferred Location *</label>
+                    <select id="location"
+                            name="location"
+                            class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#E8C96A] transition-all duration-300"
+                            required
+                            aria-describedby="location-error">
+                        <option value="">Select your location</option>
+                        <option value="dubai-uae">Dubai, UAE</option>
+                        <option value="washington-dc">Washington, DC</option>
+                        <option value="houston-tx">Houston, TX</option>
+                        <option value="atlanta-ga">Atlanta, GA</option>
+                        <option value="maryland">Maryland</option>
+                        <option value="northern-virginia">Northern Virginia</option>
+                    </select>
+                    <div id="location-error" class="error-message" role="alert" aria-live="polite"></div>
+                </div>
+                <div class="mb-6">
+                    <label for="service" class="block text-sm font-medium mb-2 text-white">Service Interest *</label>
+                    <select id="service"
+                            name="service"
+                            class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#E8C96A] transition-all duration-300"
+                            required
+                            aria-describedby="service-error">
+                        <option value="">Select a service</option>
                         <option value="car">Exotic Car Rental</option>
                         <option value="yacht">Superyacht Charter</option>
                         <option value="plane">Private Jet Charter</option>
                         <option value="property">Exclusive Estate Rental</option>
+                        <option value="transportation">Chauffeur Services</option>
+                        <option value="multiple">Multiple Services</option>
                     </select>
+                    <div id="service-error" class="error-message" role="alert" aria-live="polite"></div>
                 </div>
                 <div class="mb-6">
-                    <label for="message" class="block text-sm font-medium mb-2 text-white">Your Requirements</label>
-                    <textarea id="message" class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]" rows="5" required></textarea>
+                    <label for="message" class="block text-sm font-medium mb-2 text-white">Your Requirements *</label>
+                    <textarea id="message"
+                              name="message"
+                              class="w-full p-4 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#E8C96A] transition-all duration-300"
+                              rows="5"
+                              required
+                              minlength="10"
+                              maxlength="1000"
+                              aria-describedby="message-error"
+                              placeholder="Please describe your luxury rental requirements, preferred dates, and any special requests..."></textarea>
+                    <div id="message-error" class="error-message" role="alert" aria-live="polite"></div>
+                    <div class="text-xs text-gray-400 mt-1">
+                        <span id="message-count">0</span>/1000 characters
+                    </div>
                 </div>
-                <button type="submit" class="bg-[#D4AF37] text-black px-8 py-4 rounded-lg hover:bg-[#E8C96A] transition-colors w-full">Request a Quote</button>
+                <button type="submit"
+                        class="bg-[#D4AF37] text-black px-8 py-4 rounded-lg hover:bg-[#E8C96A] transition-all duration-300 w-full font-semibold transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#D4AF37] focus:ring-opacity-50"
+                        aria-describedby="submit-status">
+                    <span class="submit-text">Request a Quote</span>
+                    <span class="submit-loading hidden">
+                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-black inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending...
+                    </span>
+                </button>
+                <div id="submit-status" class="mt-4 text-center" role="status" aria-live="polite"></div>
                 <!-- Honeypot field for spam protection -->
-                <input type="text" name="honeypot" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off">
+                <input type="text" name="honeypot" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off" aria-hidden="true">
             </form>
             <div class="mt-12 text-center">
                 <p class="text-white">Midas The Lifestyle - Luxury Rentals</p>
@@ -1400,33 +1517,111 @@
     </section>
 
     <!-- Booking Modal -->
-    <div id="booking-modal" class="modal">
-        <div class="modal-content">
-            <h2 id="modal-title" class="text-2xl font-bold mb-4 gold-accent">Reserve Your Experience</h2>
-            <form id="modal-form">
+    <div id="booking-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-content" role="document">
+            <div class="modal-header">
+                <h2 id="modal-title" class="text-2xl font-bold mb-4 gold-accent">Reserve Your Experience</h2>
+                <button type="button"
+                        onclick="closeModal()"
+                        class="modal-close-btn"
+                        aria-label="Close booking modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="modal-form" novalidate aria-label="Vehicle reservation form">
                 <div class="mb-4">
-                    <label for="modal-name" class="block text-sm font-medium mb-2">Name</label>
-                    <input type="text" id="modal-name" class="w-full p-3 rounded-lg bg-black text-white border border-[#D4AF37]" required>
+                    <label for="modal-name" class="block text-sm font-medium mb-2 text-white">Full Name *</label>
+                    <input type="text"
+                           id="modal-name"
+                           name="name"
+                           class="w-full p-3 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#E8C96A] transition-all duration-300"
+                           required
+                           autocomplete="name"
+                           pattern="[A-Za-z\s]{2,50}"
+                           minlength="2"
+                           maxlength="50"
+                           aria-describedby="modal-name-error"
+                           placeholder="Enter your full name">
+                    <div id="modal-name-error" class="error-message" role="alert" aria-live="polite"></div>
                 </div>
                 <div class="mb-4">
-                    <label for="modal-dates" class="block text-sm font-medium mb-2">Rental Dates</label>
-                    <input type="text" id="modal-dates" class="w-full p-3 rounded-lg bg-black text-white border border-[#D4AF37]" placeholder="e.g., 2025-06-01 to 2025-06-03" required>
+                    <label for="modal-email" class="block text-sm font-medium mb-2 text-white">Email Address *</label>
+                    <input type="email"
+                           id="modal-email"
+                           name="email"
+                           class="w-full p-3 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#E8C96A] transition-all duration-300"
+                           required
+                           autocomplete="email"
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                           aria-describedby="modal-email-error"
+                           placeholder="your.email@example.com">
+                    <div id="modal-email-error" class="error-message" role="alert" aria-live="polite"></div>
                 </div>
                 <div class="mb-4">
-                    <label for="modal-location" class="block text-sm font-medium mb-2">Location</label>
-                    <select id="modal-location" class="w-full p-3 rounded-lg bg-black text-white border border-[#D4AF37]" required>
-                        <option value="dubai">Dubai</option>
+                    <label for="modal-phone" class="block text-sm font-medium mb-2 text-white">Phone Number *</label>
+                    <input type="tel"
+                           id="modal-phone"
+                           name="phone"
+                           class="w-full p-3 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#E8C96A] transition-all duration-300"
+                           required
+                           autocomplete="tel"
+                           pattern="[\+]?[1-9][\d\s\-\(\)]{7,15}"
+                           aria-describedby="modal-phone-error"
+                           placeholder="+1 (555) 123-4567">
+                    <div id="modal-phone-error" class="error-message" role="alert" aria-live="polite"></div>
+                </div>
+                <div class="mb-4">
+                    <label for="modal-dates" class="block text-sm font-medium mb-2 text-white">Rental Dates *</label>
+                    <input type="text"
+                           id="modal-dates"
+                           name="dates"
+                           class="w-full p-3 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#E8C96A] transition-all duration-300"
+                           placeholder="e.g., 2025-06-01 to 2025-06-03"
+                           required
+                           aria-describedby="modal-dates-error">
+                    <div id="modal-dates-error" class="error-message" role="alert" aria-live="polite"></div>
+                </div>
+                <div class="mb-4">
+                    <label for="modal-location" class="block text-sm font-medium mb-2 text-white">Pickup Location *</label>
+                    <select id="modal-location"
+                            name="location"
+                            class="w-full p-3 rounded-lg bg-black text-white border border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37] focus:border-[#E8C96A] transition-all duration-300"
+                            required
+                            aria-describedby="modal-location-error">
+                        <option value="">Select pickup location</option>
+                        <option value="dubai-uae">Dubai, UAE</option>
                         <option value="washington-dc">Washington, DC</option>
+                        <option value="houston-tx">Houston, TX</option>
+                        <option value="atlanta-ga">Atlanta, GA</option>
                         <option value="maryland">Maryland</option>
                         <option value="northern-virginia">Northern Virginia</option>
-                        <option value="atlanta">Atlanta, GA</option>
-                        <option value="other">Other</option>
                     </select>
+                    <div id="modal-location-error" class="error-message" role="alert" aria-live="polite"></div>
                 </div>
-                <button type="submit" class="bg-[#D4AF37] text-black px-6 py-3 rounded-lg hover:bg-[#E8C96A] w-full">Submit Reservation</button>
-                <button type="button" onclick="closeModal()" class="mt-4 text-[#D4AF37] hover:underline">Close</button>
+                <div class="modal-actions">
+                    <button type="submit"
+                            class="bg-[#D4AF37] text-black px-6 py-3 rounded-lg hover:bg-[#E8C96A] transition-all duration-300 w-full font-semibold transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#D4AF37] focus:ring-opacity-50"
+                            aria-describedby="modal-submit-status">
+                        <span class="submit-text">Submit Reservation</span>
+                        <span class="submit-loading hidden">
+                            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-black inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Processing...
+                        </span>
+                    </button>
+                    <button type="button"
+                            onclick="closeModal()"
+                            class="mt-4 text-[#D4AF37] hover:text-[#E8C96A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-opacity-50 rounded px-2 py-1">
+                        Cancel
+                    </button>
+                </div>
+                <div id="modal-submit-status" class="mt-4 text-center" role="status" aria-live="polite"></div>
                 <!-- Honeypot field for spam protection -->
-                <input type="text" name="honeypot" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off">
+                <input type="text" name="honeypot" style="position: absolute; left: -9999px; opacity: 0;" tabindex="-1" autocomplete="off" aria-hidden="true">
             </form>
         </div>
     </div>
@@ -1651,17 +1846,22 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- Midas The Lifestyle Luxury Systems -->
+    <!-- Critical Performance Scripts (Load First) -->
     <script src="utils/performanceOptimizer.js"></script>
-    <script src="utils/imageManager.js"></script>
-    <script src="utils/pwaManager.js"></script>
-    <script src="utils/carInventoryManager.js"></script>
-    <script src="utils/bookingCalendar.js"></script>
-    <script src="utils/bookingSystem.js"></script>
-    <script src="utils/vehicleShowcase.js"></script>
-    <script src="utils/paymentSystem.js"></script>
-    <script src="utils/userAuth.js"></script>
-    <script src="utils/aiChatbot.js"></script>
-    <script src="utils/advancedAnimations.js"></script>
+    <script src="utils/accessibilityEnhancer.js"></script>
+    <script src="utils/formValidator.js"></script>
+
+    <!-- Core Functionality Scripts (Deferred for Performance) -->
+    <script src="utils/imageManager.js" defer></script>
+    <script src="utils/pwaManager.js" defer></script>
+    <script src="utils/carInventoryManager.js" defer></script>
+    <script src="utils/bookingCalendar.js" defer></script>
+    <script src="utils/bookingSystem.js" defer></script>
+    <script src="utils/vehicleShowcase.js" defer></script>
+    <script src="utils/paymentSystem.js" defer></script>
+    <script src="utils/userAuth.js" defer></script>
+    <script src="utils/aiChatbot.js" defer></script>
+    <script src="utils/advancedAnimations.js" defer></script>
     <script src="script.js"></script>
 </body>
 </html>
