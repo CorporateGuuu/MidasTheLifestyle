@@ -84,7 +84,7 @@ function buildForProduction() {
  * Generate sitemap.xml
  */
 function generateSitemap() {
-    const baseUrl = 'https://midasthelifestyle.netlify.app';
+    const baseUrl = 'https://midasthelifestyle.com';
     const currentDate = new Date().toISOString().split('T')[0];
     
     const pages = [
@@ -123,7 +123,7 @@ function generateRobotsTxt() {
 Allow: /
 
 # Sitemap
-Sitemap: https://midasthelifestyle.netlify.app/sitemap.xml
+Sitemap: https://midasthelifestyle.com/sitemap.xml
 
 # Allow luxury content
 Allow: /#cars
