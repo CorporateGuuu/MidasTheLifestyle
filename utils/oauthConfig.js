@@ -347,6 +347,12 @@ const oauthConfig = new OAuthConfig();
 // Global functions for use in HTML
 if (typeof window !== 'undefined') {
   window.oauthConfig = oauthConfig;
+  window.OAuthConfig = OAuthConfig;
 }
 
-export default oauthConfig;
+// Support both CommonJS and browser environments
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = oauthConfig;
+} else if (typeof window !== 'undefined') {
+  window.oauthConfig = oauthConfig;
+}
