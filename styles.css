@@ -1779,7 +1779,375 @@ img:not([src]) {
     margin: 0;
 }
 
-/* User Authentication Styles */
+/* Enhanced Luxury Authentication Styles */
+.auth-modal .modal-content.enhanced-auth {
+    max-width: 500px;
+    background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+    color: #fff;
+    padding: 0;
+    border: 2px solid #D4AF37;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+    overflow: hidden;
+}
+
+.luxury-header {
+    background: linear-gradient(135deg, #D4AF37 0%, #E8C96A 100%);
+    color: #000;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+}
+
+.luxury-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="luxury-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(0,0,0,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23luxury-pattern)"/></svg>');
+    opacity: 0.3;
+}
+
+.auth-logo {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 20px;
+}
+
+.crown-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.brand-name {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    font-family: 'Playfair Display', serif;
+}
+
+.auth-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.auth-subtitle {
+    font-size: 16px;
+    margin: 8px 0 0 0;
+    opacity: 0.8;
+    position: relative;
+    z-index: 1;
+}
+
+.luxury-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.2);
+    border: none;
+    color: #000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.luxury-close:hover {
+    background: rgba(0,0,0,0.4);
+    transform: scale(1.1);
+}
+
+.luxury-form {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.luxury-input-group {
+    position: relative;
+}
+
+.luxury-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #D4AF37;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.input-icon {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+}
+
+.luxury-input {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.luxury-input:focus {
+    outline: none;
+    border-color: #D4AF37;
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+.luxury-input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+.luxury-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: -10px 0 10px 0;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #D4AF37;
+}
+
+.forgot-link {
+    color: #D4AF37;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: #E8C96A;
+}
+
+.luxury-btn {
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #D4AF37 0%, #E8C96A 100%);
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.luxury-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.luxury-btn:hover::before {
+    left: 100%;
+}
+
+.luxury-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.auth-divider {
+    position: relative;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.auth-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+}
+
+.auth-divider span {
+    background: #111;
+    padding: 0 20px;
+    color: #D4AF37;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+}
+
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 20px;
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.social-btn:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: #D4AF37;
+    transform: translateY(-1px);
+}
+
+.google-btn:hover {
+    background: rgba(66, 133, 244, 0.1);
+    border-color: #4285F4;
+}
+
+.luxury-checkbox-group {
+    margin: 15px 0;
+}
+
+.luxury-checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.luxury-checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #D4AF37;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.luxury-checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #D4AF37;
+    border-radius: 4px;
+    position: relative;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.checkbox-text {
+    color: #ccc;
+}
+
+.terms-link {
+    color: #D4AF37;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.terms-link:hover {
+    color: #E8C96A;
+    text-decoration: underline;
+}
+
+.luxury-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.signup-prompt {
+    color: #ccc;
+    margin: 0;
+    font-size: 14px;
+}
+
+.signup-link {
+    color: #D4AF37;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.signup-link:hover {
+    color: #E8C96A;
+    text-decoration: underline;
+}
+
+.auth-footer {
+    background: rgba(0,0,0,0.3);
+    padding: 20px 40px;
+    text-align: center;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.security-note {
+    color: #888;
+    font-size: 12px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* User Authentication Styles (Legacy) */
 .auth-modal .modal-content {
     max-width: 450px;
     background: #111;

@@ -8,7 +8,7 @@ class UserAuth {
     this.bookingHistory = new Map();
     this.favorites = new Map();
     this.googleAuth = null;
-    this.googleClientId = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com'; // Replace with actual Google Client ID
+    this.googleClientId = '2ETI2miG4SavDKllQ3dbRHWmZZ9d8ELMBhAMr8i9UhA'; // Netlify OAuth Client ID
     this.init();
   }
 
