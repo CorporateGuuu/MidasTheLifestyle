@@ -216,40 +216,7 @@ class PWAManager {
         }
         this.dismissBanner();
 
-        // Only show success message if explicitly requested (after user action)
-        if (showSuccessMessage) {
-            this.showInstallSuccess();
-        }
-    }
-
-    showInstallSuccess() {
-        // Create success notification for actual app installation
-        const notification = document.createElement('div');
-        notification.className = 'install-success-notification';
-        notification.innerHTML = `
-            <div class="flex items-center gap-3">
-                <div class="success-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                    </svg>
-                </div>
-                <div>
-                    <h3>App Installed Successfully!</h3>
-                    <p>Midas The Lifestyle is now available on your home screen</p>
-                </div>
-            </div>
-        `;
-
-        document.body.appendChild(notification);
-
-        // Auto-remove notification after 5 seconds
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.remove();
-            }
-        }, 5000);
-
-        console.log('✅ PWA: Install success notification displayed');
+        console.log('✅ PWA: App installed successfully');
     }
 
     dismissBanner() {
