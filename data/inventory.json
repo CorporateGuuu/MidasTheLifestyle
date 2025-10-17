@@ -611,6 +611,121 @@
             "hero": "/assets/images/cars/bmw-m330i/hero.jpg",
             "thumbnail": "/assets/images/cars/bmw-m330i/thumbnail.jpg"
           }
+        },
+        {
+          "id": "mclaren-artura-spyder-001",
+          "name": "McLaren Artura Spyder",
+          "category": "convertible",
+          "brand": "McLaren",
+          "pricing": {
+            "daily": { "aed": 5481, "usd": 1499 }
+          },
+          "specifications": {
+            "engine": "3.0L Twin-Turbo V6 + Electric Motor",
+            "horsepower": 671,
+            "topSpeed": "330 km/h"
+          },
+          "features": ["Hybrid powertrain", "Carbon fiber body", "Retractable hardtop", "Advanced aerodynamics"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Atlanta", "Maryland", "Northern Virginia"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/mclaren-artura-spyder/hero.jpg",
+            "thumbnail": "/assets/images/cars/mclaren-artura-spyder/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "chevrolet-corvette-c8-z51-001",
+          "name": "Chevrolet Corvette C8 Z51",
+          "category": "hypercar",
+          "brand": "Chevrolet",
+          "pricing": {
+            "daily": { "aed": 1833, "usd": 500 }
+          },
+          "specifications": {
+            "engine": "6.2L LT2 V8",
+            "horsepower": 490,
+            "topSpeed": "312 km/h"
+          },
+          "features": ["Mid-engine design", "Z51 Performance Package", "Magnetic Selective Ride Control", "Carbon fiber components"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Atlanta", "Maryland"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/chevrolet-corvette-c8-z51/hero.jpg",
+            "thumbnail": "/assets/images/cars/chevrolet-corvette-c8-z51/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "mercedes-amg-cla35-001",
+          "name": "Mercedes-AMG CLA35",
+          "category": "sedan",
+          "brand": "Mercedes-AMG",
+          "pricing": {
+            "daily": { "aed": 1377, "usd": 375 }
+          },
+          "specifications": {
+            "engine": "2.0L Twin-Turbo I4",
+            "horsepower": 302,
+            "topSpeed": "250 km/h"
+          },
+          "features": ["AMG Sport suspension", "AMG Drive Select", "MBUX infotainment", "LED lighting"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/mercedes-amg-cla35/hero.jpg",
+            "thumbnail": "/assets/images/cars/mercedes-amg-cla35/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "mercedes-amg-sl55-001",
+          "name": "Mercedes-AMG SL55",
+          "category": "convertible",
+          "brand": "Mercedes-AMG",
+          "pricing": {
+            "daily": { "aed": 2567, "usd": 700 }
+          },
+          "specifications": {
+            "engine": "3.0L Twin-Turbo I6 + Electric Motor",
+            "horsepower": 469,
+            "topSpeed": "295 km/h"
+          },
+          "features": ["Retractable hardtop", "AIRSCARF system", "AMG Performance seats", "Mild hybrid technology"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/mercedes-amg-sl55/hero.jpg",
+            "thumbnail": "/assets/images/cars/mercedes-amg-sl55/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "dodge-durango-srt-001",
+          "name": "Dodge Durango SRT",
+          "category": "suv",
+          "brand": "Dodge",
+          "pricing": {
+            "daily": { "aed": 1923, "usd": 525 }
+          },
+          "specifications": {
+            "engine": "6.4L HEMI V8",
+            "horsepower": 710,
+            "topSpeed": "290 km/h"
+          },
+          "features": ["SRT Performance Package", "All-wheel drive", "Launch Control", "Sport-tuned suspension"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Atlanta", "Maryland", "Northern Virginia"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/dodge-durango-srt/hero.jpg",
+            "thumbnail": "/assets/images/cars/dodge-durango-srt/thumbnail.jpg"
+          }
         }
       ]
     },
