@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "lastUpdated": "2025-06-08T20:00:00Z",
-    "version": "1.0.0",
+    "lastUpdated": "2025-10-16T20:56:31Z",
+    "version": "1.1.0",
     "currency": {
       "primary": "AED",
       "secondary": "USD",
@@ -288,6 +288,328 @@
           "images": {
             "hero": "/assets/images/cars/mercedes-maybach-s680/hero.jpg",
             "thumbnail": "/assets/images/cars/mercedes-maybach-s680/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "ferrari-f8-001",
+          "name": "Ferrari F8",
+          "category": "hypercar",
+          "brand": "Ferrari",
+          "pricing": {
+            "daily": { "aed": 5851, "usd": 1595 }
+          },
+          "specifications": {
+            "engine": "3.9L Twin-Turbo V8",
+            "horsepower": 986,
+            "topSpeed": "340 km/h"
+          },
+          "features": ["Hybrid powertrain", "Carbon fiber monocoque", "Advanced aerodynamics"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/ferrari-f8/hero.jpg",
+            "thumbnail": "/assets/images/cars/ferrari-f8/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "mclaren-720s-spyder-001",
+          "name": "McLaren 720S Spyder",
+          "category": "hypercar",
+          "brand": "McLaren",
+          "pricing": {
+            "daily": { "aed": 4386, "usd": 1195 }
+          },
+          "specifications": {
+            "engine": "4.0L Twin-Turbo V8",
+            "horsepower": 710,
+            "topSpeed": "341 km/h"
+          },
+          "features": ["Convertible roof", "Carbon fiber chassis", "Proactive damping control"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Northern Virginia"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/mclaren-720s-spyder/hero.jpg",
+            "thumbnail": "/assets/images/cars/mclaren-720s-spyder/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "lamborghini-huracan-convertible-001",
+          "name": "Lamborghini Huracán EVO Convertible",
+          "category": "convertible",
+          "brand": "Lamborghini",
+          "pricing": {
+            "daily": { "aed": 3652, "usd": 995 }
+          },
+          "specifications": {
+            "engine": "5.2L Naturally Aspirated V10",
+            "horsepower": 610,
+            "topSpeed": "325 km/h"
+          },
+          "features": ["Retractable hardtop", "All-wheel drive", "Lamborghini Dione OS"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Atlanta", "Maryland"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/lamborghini-huracan-convertible/hero.jpg",
+            "thumbnail": "/assets/images/cars/lamborghini-huracan-convertible/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "rolls-royce-convertible-001",
+          "name": "Rolls-Royce Dawn",
+          "category": "convertible",
+          "brand": "Rolls-Royce",
+          "pricing": {
+            "daily": { "aed": 3285, "usd": 895 }
+          },
+          "specifications": {
+            "engine": "6.6L Twin-Turbo V12",
+            "horsepower": 563,
+            "topSpeed": "250 km/h"
+          },
+          "features": ["Soft-top convertible", "Starlight headliner", "Commissioning program"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/rolls-royce-convertible/hero.jpg",
+            "thumbnail": "/assets/images/cars/rolls-royce-convertible/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "maybach-s580-001",
+          "name": "Mercedes-Maybach S580",
+          "category": "sedan",
+          "brand": "Mercedes-Maybach",
+          "pricing": {
+            "daily": { "aed": 2918, "usd": 795 }
+          },
+          "specifications": {
+            "engine": "3.0L Twin-Turbo V6 + Electric Motor",
+            "horsepower": 496,
+            "topSpeed": "250 km/h"
+          },
+          "features": ["Executive seating", "Mild hybrid system", "Burmester sound system"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/maybach-s580/hero.jpg",
+            "thumbnail": "/assets/images/cars/maybach-s580/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "mercedes-maybach-gls600-001",
+          "name": "Mercedes-Maybach GLS600",
+          "category": "suv",
+          "brand": "Mercedes-Maybach",
+          "pricing": {
+            "daily": { "aed": 2918, "usd": 795 }
+          },
+          "specifications": {
+            "engine": "3.0L Twin-Turbo V6 + Electric Motor",
+            "horsepower": 500,
+            "topSpeed": "250 km/h"
+          },
+          "features": ["Luxury SUV interior", "Air suspension", "Off-road capability"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/mercedes-maybach-truck/hero.jpg",
+            "thumbnail": "/assets/images/cars/mercedes-maybach-truck/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "mercedes-amg-g63-001",
+          "name": "Mercedes-AMG G63",
+          "category": "suv",
+          "brand": "Mercedes-AMG",
+          "pricing": {
+            "daily": { "aed": 2184, "usd": 595 }
+          },
+          "specifications": {
+            "engine": "4.0L Twin-Turbo V8",
+            "horsepower": 577,
+            "topSpeed": "220 km/h"
+          },
+          "features": ["Iconic G-Wagon design", "Portal axle technology", "AMG Performance seats"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Atlanta", "Maryland"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/mercedes-amg-g63/hero.jpg",
+            "thumbnail": "/assets/images/cars/mercedes-amg-g63/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "mercedes-amg-gls63-001",
+          "name": "Mercedes-AMG GLS63",
+          "category": "suv",
+          "brand": "Mercedes-AMG",
+          "pricing": {
+            "daily": { "aed": 1818, "usd": 495 }
+          },
+          "specifications": {
+            "engine": "4.0L Twin-Turbo V8",
+            "horsepower": 621,
+            "topSpeed": "250 km/h"
+          },
+          "features": ["AMG performance package", "7-seat luxury SUV", "Off-road capability"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/mercedes-amg-gls63/hero.jpg",
+            "thumbnail": "/assets/images/cars/mercedes-amg-gls63/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "cadillac-escalade-001",
+          "name": "Cadillac Escalade",
+          "category": "suv",
+          "brand": "Cadillac",
+          "pricing": {
+            "daily": { "aed": 1652, "usd": 450 }
+          },
+          "specifications": {
+            "engine": "6.2L V8",
+            "horsepower": 420,
+            "topSpeed": "180 km/h"
+          },
+          "features": ["American luxury", "Super Cruise technology", "Versatile seating"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/cadillac-escalade/hero.jpg",
+            "thumbnail": "/assets/images/cars/cadillac-escalade/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "mercedes-amg-gt43-001",
+          "name": "Mercedes-AMG GT43",
+          "category": "sedan",
+          "brand": "Mercedes-AMG",
+          "pricing": {
+            "daily": { "aed": 1652, "usd": 450 }
+          },
+          "specifications": {
+            "engine": "3.0L Twin-Turbo I6",
+            "horsepower": 362,
+            "topSpeed": "250 km/h"
+          },
+          "features": ["AMG Dynamic Select", "Sport suspension", "Digital cockpit"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/mercedes-amg-gt43/hero.jpg",
+            "thumbnail": "/assets/images/cars/mercedes-amg-gt43/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "chevrolet-corvette-convertible-001",
+          "name": "Chevrolet Corvette C8 Convertible",
+          "category": "convertible",
+          "brand": "Chevrolet",
+          "pricing": {
+            "daily": { "aed": 1451, "usd": 395 }
+          },
+          "specifications": {
+            "engine": "6.2L LT2 V8",
+            "horsepower": 490,
+            "topSpeed": "312 km/h"
+          },
+          "features": ["Mid-engine design", "Retractable hardtop", "Magnetic Selective Ride Control"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/chevrolet-corvette-c8-convertible/hero.jpg",
+            "thumbnail": "/assets/images/cars/chevrolet-corvette-c8-convertible/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "mercedes-amg-c43-001",
+          "name": "Mercedes-AMG C43",
+          "category": "sedan",
+          "brand": "Mercedes-AMG",
+          "pricing": {
+            "daily": { "aed": 1285, "usd": 350 }
+          },
+          "specifications": {
+            "engine": "2.0L Twin-Turbo I4",
+            "horsepower": 385,
+            "topSpeed": "250 km/h"
+          },
+          "features": ["AMG sport package", "Adaptive suspension", "Heated steering wheel"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/mercedes-amg-c43/hero.jpg",
+            "thumbnail": "/assets/images/cars/mercedes-amg-c43/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "chevrolet-corvette-coupe-001",
+          "name": "Chevrolet Corvette C8 Coupe",
+          "category": "hypercar",
+          "brand": "Chevrolet",
+          "pricing": {
+            "daily": { "aed": 1285, "usd": 350 }
+          },
+          "specifications": {
+            "engine": "6.2L LT2 V8",
+            "horsepower": 490,
+            "topSpeed": "312 km/h"
+          },
+          "features": ["Mid-engine supercar", "Carbon fiber hood", "Performance data recorder"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/chevrolet-corvette-c8-coupe/hero.jpg",
+            "thumbnail": "/assets/images/cars/chevrolet-corvette-c8-coupe/thumbnail.jpg"
+          }
+        },
+        {
+          "id": "bmw-m330i-001",
+          "name": "BMW M330i",
+          "category": "sedan",
+          "brand": "BMW",
+          "pricing": {
+            "daily": { "aed": 1101, "usd": 300 }
+          },
+          "specifications": {
+            "engine": "2.0L Twin-Turbo I4",
+            "horsepower": 375,
+            "topSpeed": "250 km/h"
+          },
+          "features": ["M Sport suspension", "BMW iDrive system", "Harman Kardon audio"],
+          "availability": {
+            "locations": ["Dubai", "Washington DC", "Maryland", "Northern Virginia", "Atlanta"],
+            "status": "available"
+          },
+          "images": {
+            "hero": "/assets/images/cars/bmw-m330i/hero.jpg",
+            "thumbnail": "/assets/images/cars/bmw-m330i/thumbnail.jpg"
           }
         }
       ]
