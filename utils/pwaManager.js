@@ -1,3 +1,5 @@
+/* global window, document, navigator, localStorage */
+
 // PWA Manager for Midas The Lifestyle
 // Handles Progressive Web App functionality and mobile optimization
 
@@ -18,7 +20,6 @@ class PWAManager {
         this.setupTouchOptimizations();
         this.setupPWAFeatures();
         this.registerServiceWorker();
-        console.log('🚀 PWA Manager initialized with full PWA capabilities');
     }
 
     checkInstallationStatus() {
@@ -34,10 +35,8 @@ class PWAManager {
             // App is actually installed and running as PWA
             document.body.classList.add('pwa-standalone');
             this.addStandaloneStyles();
-            console.log('✅ PWA: Running in standalone mode (app is installed)');
         } else {
             // App is running in browser - show install prompt after delay
-            console.log('🌐 PWA: Running in browser mode - will show install prompt');
             setTimeout(() => {
                 this.showInstallPromptIfAvailable();
             }, 5000);
@@ -47,7 +46,6 @@ class PWAManager {
     setupInstallPrompt() {
         // Listen for the beforeinstallprompt event
         window.addEventListener('beforeinstallprompt', (e) => {
-            console.log('PWA: Install prompt available');
             e.preventDefault();
             this.deferredPrompt = e;
             this.showInstallButton();
@@ -55,7 +53,6 @@ class PWAManager {
 
         // Handle app installed event
         window.addEventListener('appinstalled', () => {
-            console.log('PWA: App installed successfully');
             this.handleAppInstalled(true); // Show success message for browser-initiated install
         });
     }
@@ -103,12 +100,7 @@ class PWAManager {
     showInstallPromptIfAvailable() {
         // Only show if not installed and user hasn't dismissed recently
         if (!this.isInstalled && !this.checkDismissalStatus()) {
-            console.log('📱 PWA: Showing install prompt banner');
             this.showInstallBanner();
-        } else if (this.isInstalled) {
-            console.log('✅ PWA: App already installed, skipping install prompt');
-        } else {
-            console.log('⏰ PWA: Install prompt dismissed recently, skipping');
         }
     }
 
@@ -132,17 +124,14 @@ class PWAManager {
     showInstallBanner() {
         // Double-check conditions before showing banner
         if (this.isInstalled || document.getElementById('install-banner')) {
-            console.log('🚫 PWA: Banner not shown - app installed or banner already exists');
             return;
         }
 
         // Check dismissal status using the new method
         if (this.checkDismissalStatus()) {
-            console.log('🚫 PWA: Banner not shown - recently dismissed');
             return;
         }
 
-        console.log('🎯 PWA: Creating install banner');
         const banner = document.createElement('div');
         banner.id = 'install-banner';
         banner.className = 'install-banner';
@@ -172,7 +161,6 @@ class PWAManager {
         `;
 
         document.body.appendChild(banner);
-        console.log('✅ PWA: Install banner displayed');
 
         // Auto-dismiss after 15 seconds
         setTimeout(() => {
@@ -182,27 +170,23 @@ class PWAManager {
 
     async promptInstall() {
         if (!this.deferredPrompt) {
-            console.log('PWA: No install prompt available');
             return;
         }
 
         try {
             // Show the install prompt
             this.deferredPrompt.prompt();
-            
+
             // Wait for the user to respond
             const { outcome } = await this.deferredPrompt.userChoice;
-            
+
             if (outcome === 'accepted') {
-                console.log('PWA: User accepted install');
                 this.handleAppInstalled(true); // Show success message for user-initiated install
-            } else {
-                console.log('PWA: User dismissed install');
             }
-            
+
             this.deferredPrompt = null;
         } catch (error) {
-            console.error('PWA: Install prompt error:', error);
+            // Handle error silently in production
         }
     }
 
@@ -216,7 +200,39 @@ class PWAManager {
         }
         this.dismissBanner();
 
-        console.log('✅ PWA: App installed successfully');
+        if (showSuccessMessage) {
+            this.showInstallSuccessMessage();
+        }
+    }
+
+    showInstallSuccessMessage() {
+        if (document.getElementById('install-success')) {
+            return; // Already showing success message
+        }
+
+        const successBanner = document.createElement('div');
+        successBanner.id = 'install-success';
+        successBanner.className = 'install-success-message';
+        successBanner.innerHTML = `
+            <div class="success-content">
+                <div class="flex items-center gap-2">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    <span>App installed successfully! You can now use it from your home screen.</span>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(successBanner);
+
+        // Auto-dismiss after 5 seconds
+        setTimeout(() => {
+            const banner = document.getElementById('install-success');
+            if (banner) {
+                banner.remove();
+            }
+        }, 5000);
     }
 
     dismissBanner() {
@@ -226,7 +242,6 @@ class PWAManager {
             // Remember user dismissed the banner for 24 hours
             const dismissUntil = Date.now() + (24 * 60 * 60 * 1000);
             localStorage.setItem('midas-install-dismissed', dismissUntil);
-            console.log('❌ PWA: Install banner dismissed by user for 24 hours');
         }
     }
 
@@ -429,12 +444,26 @@ class PWAManager {
         const addHaptic = (element, type = 'light') => {
             element.addEventListener('click', () => {
                 if (navigator.vibrate) {
-                    const patterns = {
-                        light: [10],
-                        medium: [20],
-                        heavy: [30]
-                    };
-                    navigator.vibrate(patterns[type] || patterns.light);
+                    // Validate type to prevent object injection
+                    const validTypes = ['light', 'medium', 'heavy'];
+                    const safeType = validTypes.includes(type) ? type : 'light';
+
+                    // Use explicit assignment instead of dynamic property access
+                    let vibrationPattern;
+                    switch (safeType) {
+                        case 'light':
+                            vibrationPattern = [10];
+                            break;
+                        case 'medium':
+                            vibrationPattern = [20];
+                            break;
+                        case 'heavy':
+                            vibrationPattern = [30];
+                            break;
+                        default:
+                            vibrationPattern = [10];
+                    }
+                    navigator.vibrate(vibrationPattern);
                 }
             });
         };
@@ -494,14 +523,12 @@ class PWAManager {
         this.setupShareTarget();
         this.setupFileHandling();
         this.setupProtocolHandling();
-        console.log('✅ PWA Features: Advanced PWA features configured');
     }
 
     async registerServiceWorker() {
         if ('serviceWorker' in navigator) {
             try {
                 const registration = await navigator.serviceWorker.register('/sw.js');
-                console.log('✅ PWA: Service Worker registered successfully');
 
                 registration.addEventListener('updatefound', () => {
                     const newWorker = registration.installing;
@@ -513,13 +540,13 @@ class PWAManager {
                 });
 
             } catch (error) {
-                console.error('❌ PWA: Service Worker registration failed:', error);
+                // Handle service worker registration error silently in production
             }
         }
     }
 
     setupAppShortcuts() {
-        console.log('🔗 PWA: App shortcuts configured');
+        // App shortcuts configured
     }
 
     setupShareTarget() {
@@ -550,16 +577,16 @@ class PWAManager {
         }
     }
 
-    handleSharedContent(data) {
-        console.log('📤 PWA: Handling shared content:', data);
+    handleSharedContent(_data) { // eslint-disable-line no-unused-vars
+        // Handling shared content in production
     }
 
-    handleFiles(files) {
-        console.log('📁 PWA: Handling files:', files);
+    handleFiles(_files) { // eslint-disable-line no-unused-vars
+        // Handling files in production
     }
 
-    handleProtocolLink(handler) {
-        console.log('🔗 PWA: Handling protocol link:', handler);
+    handleProtocolLink(_handler) { // eslint-disable-line no-unused-vars
+        // Handling protocol link in production
     }
 
     showUpdateAvailable() {

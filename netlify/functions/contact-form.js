@@ -1,23 +1,22 @@
 // Netlify Function for Contact Form Processing
 // Handles contact form submissions for Midas Lifestyle
 
-// const nodemailer = require('nodemailer'); // Temporarily disabled for testing
+const nodemailer = require('nodemailer');
 
-// Email configuration (temporarily disabled for testing)
+// Email configuration
 const createTransporter = () => {
-  // return nodemailer.createTransporter({
-  //   service: 'gmail',
-  //   auth: {
-  //     user: process.env.EMAIL_USER,
-  //     pass: process.env.EMAIL_PASS
-  //   }
-  // });
-  return null; // Temporarily disabled
+  return nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    }
+  });
 };
 
 // Spam protection - simple honeypot and rate limiting
 const validateSubmission = (body) => {
-  const { name, email, phone, service, message, honeypot } = body;
+  const { name, email, service, message, honeypot } = body;
   
   // Honeypot field should be empty
   if (honeypot && honeypot.trim() !== '') {
@@ -146,7 +145,7 @@ const formatAutoReply = (formData) => {
 };
 
 // Main handler function
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
     return {
@@ -189,37 +188,29 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Create email transporter (temporarily disabled for testing)
-    // const transporter = createTransporter();
+    // Create email transporter
+    const transporter = createTransporter();
 
-    // Send notification to concierge team (temporarily disabled)
+    // Send notification to concierge team
     const emailContent = formatEmailContent(formData);
-    console.log('Would send email to concierge:', emailContent.subject);
+    // eslint-disable-next-line no-console
+    console.log('Sending email to concierge:', emailContent.subject);
 
-    // await transporter.sendMail({
-    //   from: process.env.EMAIL_USER,
-    //   to: 'concierge@midasthelifestyle.com',
-    //   subject: emailContent.subject,
-    //   html: emailContent.html
-    // });
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: 'concierge@midasthelifestyle.com',
+      subject: emailContent.subject,
+      html: emailContent.html
+    });
 
-    // Send auto-reply to customer (temporarily disabled)
+    // Send auto-reply to customer
     const autoReply = formatAutoReply(formData);
-    console.log('Would send auto-reply to:', formData.email);
 
-    // await transporter.sendMail({
-    //   from: process.env.EMAIL_USER,
-    //   to: formData.email,
-    //   subject: autoReply.subject,
-    //   html: autoReply.html
-    // });
-
-    // Log submission (in production, save to database)
-    console.log('Form submission processed:', {
-      timestamp: new Date().toISOString(),
-      name: formData.name,
-      email: formData.email,
-      service: formData.service
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: formData.email,
+      subject: autoReply.subject,
+      html: autoReply.html
     });
 
     return {
@@ -235,6 +226,7 @@ exports.handler = async (event, context) => {
     };
 
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Error processing form:', error);
     
     return {
